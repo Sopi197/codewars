@@ -28,6 +28,7 @@ var_dump(removeRotten([]));
 echo PHP_EOL;
 
 // ОПИСАНИЕ:
+// https://www.codewars.com/kata/57eba158e8ca2c8aba0002a0
 // Учитывая строку слов (x), вам нужно вернуть массив слов, отсортированный в алфавитном порядке по последнему символу в каждом.
 // Если у двух слов одна и та же последняя буква, возвращаемый массив должен отображать их в том порядке, в котором они появляются в данной строке.
 // Все входные данные будут действительными.
@@ -37,6 +38,20 @@ echo PHP_EOL;
 
 function last($x)
 {
-    return explode(" ", $x);
+    $arr = explode(" ", $x);
+    $arr_last = [];
+    for ($i = 0; $i < count($arr); $i++) {
+        $arr_last[] = $arr[$i][strlen($arr[$i]) - 1];
+    }
+    sort($arr_last);
+    $res = [];
+    for ($i = 0; $i < count($arr_last); $i++) {
+        for ($k = 0; $k < count($arr); $k++) {
+            if ($arr_last[$i] === $arr[$k][strlen($arr[$k]) - 1]) {
+                $res[] = $arr[$k];
+            }
+        }
+    }
+    return array_values(array_unique($res));
 }
 var_dump(last('man i need a taxi up to ubud'));
