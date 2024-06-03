@@ -10,12 +10,6 @@
 // 1. https://www.codewars.com/kata/56cd44e1aa4ac7879200010b/train/php - нужно знать регулярные выражения
 // 2. https://www.codewars.com/kata/5700c9acc1555755be00027e
 
-/*
-codewars
-ivan_babienko@mail.ru
-Yamaha684
-*/
-
 
 // 1. [7-kyu], [string]. Vowel Count [понравилась]
 // https://www.codewars.com/kata/54ff3102c1bad923760001f3
