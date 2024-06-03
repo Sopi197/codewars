@@ -1,4 +1,3 @@
-
 <?php
 // codewars 7-kyu [string] [https://www.codewars.com/kata/search/php?q=&r%5B%5D=-7&tags=Strings&beta=false&order_by=popularity%20desc]
 // Чтобы понять, как решаются задачи, нужно всё расписать визуально на доске и найти закономерности
@@ -9,6 +8,7 @@
 // задачи, которые понравились с тегом [понравилась]
 // задачи, которые я не смог полностью решить: 
 // 1. https://www.codewars.com/kata/56cd44e1aa4ac7879200010b/train/php - нужно знать регулярные выражения
+// 2. https://www.codewars.com/kata/5700c9acc1555755be00027e
 
 /*
 codewars
@@ -1036,7 +1036,7 @@ echo PHP_EOL;
 
 
 
-// 31. [7-kyu], [string]. Substituting Variables Into Strings: Padded Numbers [понравилась]
+// 31. [7-kyu], [string]. Numbers to Letters [понравилась]
 // https://www.codewars.com/kata/57ebaa8f7b45ef590c00000c/train/php
 // Учитывая массив чисел (в строковом формате), вы должны вернуть строку. Цифры соответствуют буквам алфавита в обратном порядке: a=26, z=1 и т.д. Также следует учитывать '!', '?' и '', которые представлены цифрами '27', '28' и '29' соответственно.
 // Все входные данные будут действительными.
@@ -1046,11 +1046,39 @@ echo PHP_EOL;
 
 function switcher($arr)
 {
-    $alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '!', '?', ' '];
-    $alph_rev = array_reverse($alphabet);
-    $res = "";
-    for ($i = 0 ; $i < count($arr); $i++) {
-        
+
+    $alphabet = array_reverse(range('a', 'z'));
+    // range("a", "z") - вывести весь алфавит!!!
+    array_push($alphabet, '!', '?', ' ');
+    $res = '';
+    for ($i = 0; $i < count($arr); $i++) {
+        $res .= $alphabet[$arr[$i] - 1];
     }
+    return $res;
 }
 var_dump(switcher(['24', '12', '23', '22', '4', '26', '9', '8']));
+var_dump(switcher(['25', '7', '8', '4', '14', '23', '8', '25', '23', '29', '16', '16', '4']));
+var_dump(switcher(['4', '24']));
+echo PHP_EOL;
+
+
+
+// 32. [7-kyu], [string]. Substituting Variables Into Strings: Padded Numbers [понравилась]
+// Вам будет предоставлена ​​строка (x) с изображением кошки «C» и мыши «m». Остальная часть строки будет состоять из '.'
+// Вам нужно выяснить, сможет ли кошка поймать мышь из текущего положения. Кот может перепрыгнуть через трёх персонажей. Так:
+// C......m возвращает «Сбежал!» <-- более трех символов между
+// C...m возвращает «Пойман!» <-- поскольку между ними три символа, кот может прыгать.
+// $this->assertSame("Escaped!", cat_mouse("C....m"));
+// $this->assertSame("Caught!", cat_mouse("C..m"));
+// $this->assertSame("Caught!", cat_mouse("C...m"));
+// $this->assertSame("Escaped!", cat_mouse("C.....m"));
+
+function cat_mouse($s)
+{
+    return (strlen($s) > 5) ? "Escaped!" : "Caught!";
+    // или 
+    //   return substr_count($s,'.') > 3 ? 'Escaped!' : 'Caught!';
+
+}
+var_dump(cat_mouse("C....m"));
+var_dump(cat_mouse("C...m"));
