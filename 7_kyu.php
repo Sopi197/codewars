@@ -1082,3 +1082,4 @@ function cat_mouse($s)
 }
 var_dump(cat_mouse("C....m"));
 var_dump(cat_mouse("C...m"));
++ 29 минут
