@@ -1084,6 +1084,14 @@ var_dump(cat_mouse("C...m"));
 // ("wonderful", "people", "e")  ==>  "wondeople"
 
 
+https://www.codewars.com/kata/597bb84522bc93b71e00007e/train/php
+// Учитывая два слова и букву, верните одно слово, представляющее собой комбинацию обоих слов, объединенную в той точке, где данная буква впервые появляется в каждом слове. Возвращаемое слово должно иметь начало первого слова и окончание второго с разделительной буквой посередине. Вы можете предположить, что оба слова будут содержать разделительную букву.
+// ("hello", "world", "l")       ==>  "held"
+// ("coding", "anywhere", "n")   ==>  "codinywhere"
+// ("jason", "samson", "s")      ==>  "jasamson"
+// ("wonderful", "people", "e")  ==>  "wondeople"
+
+
 function stringMerge($string1, $string2, $letter) {
     $res1 = "";
     $res2 = "";
@@ -1094,12 +1102,16 @@ function stringMerge($string1, $string2, $letter) {
         }
     }
     for ($i = 0; $i < strlen($string2); $i++) {
-        if ($string2[$i] === $letter) {
+        if ($string2[$i] == $letter) {
             $res2 = substr($string2, $i + 1);
         }
     }
     // return $res1 . $res2;
-    return $res2;
+    return "$res1 + $res2";
+    
+   
 }
 var_dump(stringMerge("hello", "world", "l"));
 var_dump(stringMerge("carizou", "zebza", "z"));
+var_dump(stringMerge("spidtr", "alligttor", "t"));
+
