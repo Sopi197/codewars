@@ -1,7 +1,7 @@
 <?php
 // codewars 7-kyu [string] [https://www.codewars.com/kata/search/php?q=&r%5B%5D=-7&tags=Strings&beta=false&order_by=popularity%20desc]
 // Чтобы понять, как решаются задачи, нужно всё расписать визуально на доске и найти закономерности
-// 30 задач [7-kyu] [string] 
+// 40 задач [7-kyu] [string] 
 // 20 задач [7-kyu] [mathematics] 
 // 20 задач [7-kyu] [arrays] 
 // 20 задач [7-kyu] [fundamentals]
@@ -9,7 +9,14 @@
 // задачи, которые я не смог полностью решить: 
 // 1. https://www.codewars.com/kata/56cd44e1aa4ac7879200010b/train/php - нужно знать регулярные выражения
 // 2. https://www.codewars.com/kata/5700c9acc1555755be00027e
+// 3. https://www.codewars.com/kata/59dd2c38f703c4ae5e000014/train/php - решить с помощью регулярных выражений
+// 4. https://www.codewars.com/kata/576bb3c4b1abc497ec000065/train/php - решить с помощью регулярных выражений
 
+
+// Github
+// ivan_babienko@mail.ru
+// Yamaha6843
+// Sopi197
 
 // 1. [7-kyu], [string]. Vowel Count [понравилась]
 // https://www.codewars.com/kata/54ff3102c1bad923760001f3
@@ -217,14 +224,13 @@ function accum($s)
         $res .= ucwords(strtolower(str_repeat($s[$i], $i + 1))) . "-"; // A-Bb-Ccc-Dddd
     }
     return trim($res, "-");
-    // или
-    // return substr($res, 0, strlen($res) - 1);
+  
 }
 var_dump(accum("abcd"));
 var_dump(accum("ZpglnRxqenU"));
 echo PHP_EOL;
 
-// или через цикл
+// или 
 function accum_1($s)
 {
     $arr = [];
@@ -1057,7 +1063,8 @@ echo PHP_EOL;
 
 
 
-// 32. [7-kyu], [string]. Substituting Variables Into Strings: Padded Numbers [понравилась]
+// 32. [7-kyu], [string]. Cat and Mouse - Easy Version [понравилась]
+// https://www.codewars.com/kata/57ee24e17b45eff6d6000164
 // Вам будет предоставлена ​​строка (x) с изображением кошки «C» и мыши «m». Остальная часть строки будет состоять из '.'
 // Вам нужно выяснить, сможет ли кошка поймать мышь из текущего положения. Кот может перепрыгнуть через трёх персонажей. Так:
 // C......m возвращает «Сбежал!» <-- более трех символов между
@@ -1071,47 +1078,91 @@ function cat_mouse($s)
 {
     return (strlen($s) > 5) ? "Escaped!" : "Caught!";
     // или 
-    //   return substr_count($s,'.') > 3 ? 'Escaped!' : 'Caught!';
+    // return substr_count($s,'.') > 3 ? 'Escaped!' : 'Caught!';
 
 }
 var_dump(cat_mouse("C....m"));
 var_dump(cat_mouse("C...m"));
+echo PHP_EOL;
 
+
+
+// 33. [7-kyu], [string]. String Merge! [понравилась]
+// https://www.codewars.com/kata/597bb84522bc93b71e00007e/train/php
 // Учитывая два слова и букву, верните одно слово, представляющее собой комбинацию обоих слов, объединенную в той точке, где данная буква впервые появляется в каждом слове. Возвращаемое слово должно иметь начало первого слова и окончание второго с разделительной буквой посередине. Вы можете предположить, что оба слова будут содержать разделительную букву.
 // ("hello", "world", "l")       ==>  "held"
 // ("coding", "anywhere", "n")   ==>  "codinywhere"
 // ("jason", "samson", "s")      ==>  "jasamson"
 // ("wonderful", "people", "e")  ==>  "wondeople"
 
+function stringMerge($string1, $string2, $letter)
+{
+    return strstr($string1, $letter, true) . strstr($string2, $letter);
 
-https://www.codewars.com/kata/597bb84522bc93b71e00007e/train/php
-// Учитывая два слова и букву, верните одно слово, представляющее собой комбинацию обоих слов, объединенную в той точке, где данная буква впервые появляется в каждом слове. Возвращаемое слово должно иметь начало первого слова и окончание второго с разделительной буквой посередине. Вы можете предположить, что оба слова будут содержать разделительную букву.
-// ("hello", "world", "l")       ==>  "held"
-// ("coding", "anywhere", "n")   ==>  "codinywhere"
-// ("jason", "samson", "s")      ==>  "jasamson"
-// ("wonderful", "people", "e")  ==>  "wondeople"
-
-
-function stringMerge($string1, $string2, $letter) {
-    $res1 = "";
-    $res2 = "";
-    for ($i = 0; $i < strlen($string1); $i++) {
-        $res1 .= $string1[$i];
-        if ($string1[$i] === $letter) {
-            break;
-        }
-    }
-    for ($i = 0; $i < strlen($string2); $i++) {
-        if ($string2[$i] == $letter) {
-            $res2 = substr($string2, $i + 1);
-        }
-    }
-    // return $res1 . $res2;
-    return "$res1 + $res2";
-    
-   
 }
-var_dump(stringMerge("hello", "world", "l"));
-var_dump(stringMerge("carizou", "zebza", "z"));
-var_dump(stringMerge("spidtr", "alligttor", "t"));
+var_dump(stringMerge("carizou", "zebza", "z")); // "carizebza"
+echo PHP_EOL;
 
+
+
+// 34. [7-kyu], [string]. Numbers in strings [понравилась]
+// https://www.codewars.com/kata/59dd2c38f703c4ae5e000014/train/php
+// В этой Ката вам будет предоставлена ​​строка, состоящая из строчных букв и цифр. Ваша задача — сравнить группировки чисел и вернуть наибольшее число. Числа не будут иметь ведущих нулей.
+// Например,solve("gh12cdy695m1") = 695, потому что это самая большая из всех групп чисел.
+// $this->assertSame(695, solve('gh12cdy695m1'));
+// $this->assertSame(9, solve('2ti9iei7qhr5'));
+// $this->assertSame(61, solve('vih61w8oohj5'));
+// $this->assertSame(42, solve('f7g42g16hcu5'));
+// $this->assertSame(85, solve('lu1j8qbbb85'));
+
+function string_merge($s)
+{
+    $res = "";
+    for ($i = 0; $i < strlen($s); $i++) {
+        if ((int) $s[$i] !== 0 or $s[$i] === "0") {
+            $res .= $s[$i];
+        } else {
+            $res .= "_";
+        }
+    }
+    return (int) max(explode("_", str_replace("__", "_", str_replace("___", "_", $res))));
+}
+var_dump(string_merge("gh12cdy695m1"));
+var_dump(string_merge("gh12cdy6950m1"));
+echo PHP_EOL;
+
+
+
+// 35. [7-kyu], [string]. Compare Strings by Sum of Chars [понравилась]- не решил - чтобы полностью решить, нужно знать регулярные выражения!
+// https://www.codewars.com/kata/576bb3c4b1abc497ec000065/train/php
+// Сравните две строки, сравнив сумму их значений (код символов ASCII).
+// Для сравнения рассматривайте все буквы как прописные.
+// null/NULL/Nil/None следует рассматривать как пустые строки.
+// Если строка содержит символы, отличные от букв, рассматривайте всю строку как пустую.
+// Ваш метод должен возвращать true, если строки равны, и false, если они не равны.
+// Examples:
+// "AD", "BC"  -> equal
+// "AD", "DD"  -> not equal
+// "gf", "FG"  -> equal
+// "zz1", ""   -> equal (both are considered empty)
+// "ZzZz", "ffPFF" -> equal
+// "kl", "lz"  -> not equal
+// null, ""    -> equal
+// $this->assertSame(true, compare("AD", "BC"));
+
+function compare($s1, $s2)
+{
+    $res_s1 = 0;
+    $res_s2 = 0;
+    for ($i = 0; $i < strlen($s1); $i++) {
+        if ((int) $s1[$i])
+            $res_s1 += ord(strtolower($s1[$i]));
+    }
+    for ($i = 0; $i < strlen($s2); $i++) {
+        $res_s2 += ord(strtolower($s2[$i]));
+    }
+    return $res_s1 === $res_s2;
+}
+var_dump(compare("AD", "BC"));
+var_dump(compare("gf", "FG"));
+var_dump(compare('ZzZz', 'ffPFF'));
