@@ -5,12 +5,13 @@
 // 20 задач [7-kyu] [mathematics] 
 // 20 задач [7-kyu] [arrays] 
 // 20 задач [7-kyu] [fundamentals]
-// задачи, которые понравились с тегом [понравилась]
+// задачи, которые понравились с тегом 
 // задачи, которые я не смог полностью решить: 
 // 1. https://www.codewars.com/kata/56cd44e1aa4ac7879200010b/train/php - нужно знать регулярные выражения
 // 2. https://www.codewars.com/kata/5700c9acc1555755be00027e
 // 3. https://www.codewars.com/kata/59dd2c38f703c4ae5e000014/train/php - решить с помощью регулярных выражений
 // 4. https://www.codewars.com/kata/576bb3c4b1abc497ec000065/train/php - решить с помощью регулярных выражений
+// 5. https://www.codewars.com/kata/57faf32df815ebd49e000117/train/php
 
 
 // Github
@@ -18,7 +19,7 @@
 // Yamaha6843
 // Sopi197
 
-// 1. [7-kyu], [string]. Vowel Count [понравилась]
+// 1. [7-kyu], [string]. Vowel Count 
 // https://www.codewars.com/kata/54ff3102c1bad923760001f3
 // Возвращает количество гласных в заданной строке.
 // Гласными для этой Ката мы будем считать a, e, i, o, u (но не y).
@@ -41,7 +42,7 @@ echo PHP_EOL;
 
 
 
-// 2. [7-kyu], [string]. Disemvowel Trolls [понравилась]
+// 2. [7-kyu], [string]. Disemvowel Trolls 
 // https://www.codewars.com/kata/52fba66badcd10859f00097e
 // Тролли атакуют ваш раздел комментариев!
 // Распространенный способ справиться с этой ситуацией — удалить все гласные из комментариев троллей, нейтрализуя угрозу.
@@ -60,7 +61,7 @@ echo PHP_EOL;
 
 
 
-// 3. [7-kyu], [string]. Reversing Words in a String [понравилась]
+// 3. [7-kyu], [string]. Reversing Words in a String 
 // https://www.codewars.com/kata/57a55c8b72292d057b000594/php
 // Вам нужно написать функцию, которая меняет местами слова в заданной строке. Слово также может соответствовать пустой строке. Если это недостаточно ясно, вот несколько примеров:
 // Example (Input --> Output)
@@ -104,7 +105,7 @@ echo PHP_EOL;
 
 
 
-// 4. [7-kyu], [string]. Highest and Lowest [понравилась]
+// 4. [7-kyu], [string]. Highest and Lowest 
 // https://www.codewars.com/kata/554b4ac871d6813a03000035/train/php
 // В этом небольшом задании вам дается строка чисел, разделенных пробелами, и вы должны вернуть наибольшее и наименьшее число.
 // Примеры
@@ -130,7 +131,7 @@ echo PHP_EOL;
 
 
 
-// 5. [7-kyu], [string]. Get the Middle Character [понравилась]
+// 5. [7-kyu], [string]. Get the Middle Character 
 // https://www.codewars.com/kata/56747fd5cb988479af000028/train/php
 // Вам будет предоставлено слово. Ваша задача — вернуть средний символ слова. Если длина слова нечетная, верните средний символ. Если длина слова четная, верните 2 средних символа.
 // $this->assertSame("es", getMiddle("test"));
@@ -172,7 +173,7 @@ echo PHP_EOL;
 
 
 
-// 6. [7-kyu], [string]. Isograms [понравилась]
+// 6. [7-kyu], [string]. Isograms 
 // https://www.codewars.com/kata/54ba84be607a92aa900000f1
 // Изограмма – это слово, в котором нет повторяющихся букв, как последовательных, так и непоследовательных. Реализуйте функцию, которая определяет, является ли строка, содержащая только буквы, изограммой. Предположим, что пустая строка является изограммой. Не обращайте внимания на регистр букв.
 // "Dermatoglyphics" --> true
@@ -204,7 +205,7 @@ echo PHP_EOL;
 
 
 
-// 7. [7-kyu], [string]. Mumbling [понравилась]
+// 7. [7-kyu], [string]. Mumbling 
 // https://www.codewars.com/kata/5667e8f4e3f572a8f2000039/train/php
 // В примерах ниже показано, как написать функцию accum:
 // Примеры:
@@ -224,7 +225,7 @@ function accum($s)
         $res .= ucwords(strtolower(str_repeat($s[$i], $i + 1))) . "-"; // A-Bb-Ccc-Dddd
     }
     return trim($res, "-");
-  
+
 }
 var_dump(accum("abcd"));
 var_dump(accum("ZpglnRxqenU"));
@@ -244,7 +245,7 @@ var_dump(accum_1("ZpglnRxqenU"));
 echo PHP_EOL;
 
 
-// 8. [7-kyu], [string]. Complementary DNA [понравилась]
+// 8. [7-kyu], [string]. Complementary DNA 
 // https://www.codewars.com/kata/554e4a2f232cdd87d9000038
 // Дезоксирибонуклеиновая кислота (ДНК) — это химическое вещество, находящееся в ядре клеток и несущее «инструкции» для развития и функционирования живых организмов.
 // В цепочках ДНК символы «А» и «Т» дополняют друг друга, как «С» и «G». Ваша функция получает одну сторону ДНК, вам нужно вернуть другую дополнительную сторону. Цепь ДНК никогда не бывает пустой или ДНК вообще не существует.
@@ -281,7 +282,7 @@ echo PHP_EOL;
 
 
 
-// 9. [7-kyu], [string]. Jaden Casing Strings [понравилась]
+// 9. [7-kyu], [string]. Jaden Casing Strings 
 // https://www.codewars.com/kata/5390bac347d09b7da40006f6/train/php
 // Джейден Смит, сын Уилла Смита, является звездой таких фильмов, как «Парень-каратист» (2010) и «После Земли» (2013). Джейден также известен своей философией, которую он распространяет через Твиттер. Когда он пишет в Твиттере, он известен тем, что почти всегда пишет каждое слово с заглавной буквы. Для простоты вам придется писать каждое слово с заглавной буквы. Посмотрите, какими будут сокращения в примере ниже.
 // Ваша задача — преобразовать строки так, как их написал Джейден Смит. Строки представляют собой настоящие цитаты Джейдена Смита, но они не пишутся с заглавной буквы так, как он их первоначально напечатал.
@@ -299,7 +300,7 @@ echo PHP_EOL;
 
 
 
-// 10. [7-kyu], [string]. Credit Card Mask [понравилась]
+// 10. [7-kyu], [string]. Credit Card Mask 
 // https://www.codewars.com/kata/5412509bd436bd33920011bc/train/javascript
 // Обычно, когда вы что-то покупаете, вас спрашивают, верен ли номер вашей кредитной карты, номер телефона или ответ на ваш самый секретный вопрос. Однако, поскольку кто-то может заглянуть вам через плечо, вы не хотите, чтобы это отображалось на вашем экране. Вместо этого мы маскируем это.
 // Ваша задача — написать функцию Maskify, которая заменяет все символы, кроме последних четырех, на «#».
@@ -343,7 +344,7 @@ echo PHP_EOL;
 
 
 
-// 11. [7-kyu], [string]. String ends with? [понравилась]
+// 11. [7-kyu], [string]. String ends with? 
 // https://www.codewars.com/kata/51f2d1cafc9c0f745c00037d/train/javascript
 // Завершите решение так, чтобы оно возвращало true, если первый переданный аргумент (строка) заканчивается вторым аргументом (также строкой).
 // Примеры:
@@ -386,7 +387,7 @@ echo PHP_EOL;
 
 
 
-// 12. [7-kyu], [string]. Remove anchor from URL [понравилась]
+// 12. [7-kyu], [string]. Remove anchor from URL 
 // https://www.codewars.com/kata/51f2b4448cadf20ed0000386
 // Завершите функцию/метод так, чтобы она возвращала URL-адрес с чем угодно после удаления привязки (#).
 // Examples
@@ -415,7 +416,7 @@ echo PHP_EOL;
 
 
 
-// 13. [7-kyu], [string]. Reverse words [понравилась]
+// 13. [7-kyu], [string]. Reverse words 
 // https://www.codewars.com/kata/5259b20d6021e9e14c0010d4
 // Завершите функцию, которая принимает строковый параметр и меняет местами каждое слово в строке. Все пробелы в строке должны быть сохранены.
 // Examples
@@ -441,7 +442,7 @@ echo PHP_EOL;
 
 
 
-// 14. [7-kyu], [string]. Remove duplicate words [понравилась]
+// 14. [7-kyu], [string]. Remove duplicate words 
 // https://www.codewars.com/kata/5b39e3772ae7545f650000fc
 // Ваша задача — удалить из строки все повторяющиеся слова, оставив только отдельные (первые) слова.
 // Input:
@@ -459,7 +460,7 @@ echo PHP_EOL;
 
 
 
-// 15. [7-kyu], [string]. Alternate capitalization [понравилась]
+// 15. [7-kyu], [string]. Alternate capitalization 
 // https://www.codewars.com/kata/59cfc000aeb2844d16000075
 // Учитывая строку, напишите заглавными буквы, которые занимают четные и нечетные индексы отдельно, и верните результат, как показано ниже. Индекс 0 будет считаться четным.
 // Например, заглавная буква("abcdef") = ['AbCdEf', 'aBcDeF']. 
@@ -489,7 +490,7 @@ echo PHP_EOL;
 
 
 
-// 16. [7-kyu], [string]. Alphabet war [понравилась]
+// 16. [7-kyu], [string]. Alphabet war 
 // https://www.codewars.com/kata/59377c53e66267c8f6000027
 // Строка может содержать буквы w, p, b, s, m, q, d, z, а также другие буквы, не влияющие на счет.
 // w, p, b, s входят в команду левой стороны. Сложите их очки, чтобы получить общее количество очков Левой стороны. m, q, d, z находятся в команде правой стороны. Сложите их очки, чтобы получить общее количество очков Right Side. Другие буквы не принадлежат ни одной команде, не имеют очков и не влияют на общий результат ни одной из команд.
@@ -558,7 +559,7 @@ echo PHP_EOL;
 
 
 
-// 18. [7-kyu], [string]. Convert an array of strings to array of numbers [понравилась]
+// 18. [7-kyu], [string]. Convert an array of strings to array of numbers 
 // https://www.codewars.com/kata/5783d8f3202c0e486c001d23/train/php
 // Вам необходимо привести весь массив к правильному типу.
 // Создайте функцию, которая принимает в качестве параметра последовательность чисел, представленную в виде строк, и выводит последовательность чисел.
@@ -583,7 +584,7 @@ echo PHP_EOL;
 
 
 
-// 19. [7-kyu], [string]. Bumps in the Road [понравилась]
+// 19. [7-kyu], [string]. Bumps in the Road 
 // https://www.codewars.com/kata/57ed30dde7728215300005fa/train/php
 // Ваша машина старая, она легко ломается. Амортизаторов больше нет, и вы думаете, что он выдержит еще около 15 ударов, прежде чем полностью умрет.
 // К несчастью для вас, ваша поездка очень ухабистая! Дана строка, показывающая либо ровную дорогу (_), либо неровности (n). Если вам удалось благополучно добраться до дома, встретив 15 или меньше ударов, верните Woohoo!, в противном случае верните Car Dead.
@@ -629,7 +630,7 @@ echo PHP_EOL;
 
 
 
-// 20. [7-kyu], [string]. All unique [понравилась]
+// 20. [7-kyu], [string]. All unique 
 // https://www.codewars.com/kata/553e8b195b853c6db4000048/train/php
 // Напишите программу, определяющую, содержит ли строка только уникальные символы. Возвращайте true, если это так, и false в противном случае.
 // Строка может содержать любой из 128 символов ASCII. Символы чувствительны к регистру, например. «a» и «A» считаются разными символами.
@@ -646,7 +647,7 @@ var_dump(hasUniqueChars("++-"));
 echo PHP_EOL;
 
 
-// 21. [7-kyu], [string]. Coding Meetup #3 - Higher-Order Functions Series - Is Ruby coming? [понравилась]
+// 21. [7-kyu], [string]. Coding Meetup #3 - Higher-Order Functions Series - Is Ruby coming? 
 // https://www.codewars.com/kata/5827acd5f524dd029d0005a4
 // Вам будет предоставлен массив объектов (ассоциативные массивы в PHP), представляющих данные о разработчиках, которые зарегистрировались для участия в следующей конференции по программированию, которую вы организуете.
 // Ваша задача вернуть:
@@ -700,7 +701,7 @@ echo PHP_EOL;
 
 
 
-// 22. [7-kyu], [string]. Spacify [понравилась]
+// 22. [7-kyu], [string]. Spacify 
 // https://www.codewars.com/kata/57f8ee485cae443c4d000127/train/php
 // Измените функцию spacify так, чтобы она возвращала заданную строку с пробелами, вставленными между каждым символом.
 // spacify("hello world") // "h e l l o   w o r l d"
@@ -714,7 +715,7 @@ echo PHP_EOL;
 
 
 
-// 23. [7-kyu], [string]. Coding Meetup #2 - Higher-Order Functions Series - Greet developers [понравилась]
+// 23. [7-kyu], [string]. Coding Meetup #2 - Higher-Order Functions Series - Greet developers 
 // https://www.codewars.com/kata/58279e13c983ca4a2a00002a/train/php
 // Вам будет предоставлен массив объектов (ассоциативные массивы в PHP, таблицы в COBOL), представляющих данные о разработчиках, которые подписались на участие в следующей встрече по программированию, которую вы организуете.
 // Ваша задача — вернуть массив, в котором каждый объект будет иметь новое свойство «приветствие» со следующим строковым значением:
@@ -801,7 +802,7 @@ echo PHP_EOL;
 
 
 
-// 24. [7-kyu], [string]. Spacify [понравилась]
+// 24. [7-kyu], [string]. Spacify 
 // https://www.codewars.com/kata/5827bc50f524dd029d0005f2/php
 // Вам будет предоставлен массив объектов (ассоциативные массивы в PHP), представляющих данные о разработчиках, которые зарегистрировались для участия в следующей конференции по программированию, которую вы организуете. Список упорядочен в зависимости от того, кто зарегистрировался первым.
 // Ваша задача — вернуть одну из следующих строк:
@@ -856,7 +857,7 @@ var_dump(get_first_python([
 
 
 
-// 25. [7-kyu], [string]. Alphabet symmetry [понравилась]
+// 25. [7-kyu], [string]. Alphabet symmetry 
 // https://www.codewars.com/kata/59d9ff9f7905dfeed50000b0/train/php
 // Рассмотрим слово abode. Мы видим, что буква a находится в позиции 1, а буква b — в позиции 2. В алфавите буквы a и b также находятся в позициях 1 и 2. Обратите также внимание, что d и e в abode занимают позиции, которые они занимали бы в алфавите. , это позиции 4 и 5.
 // Учитывая массив слов, верните массив количества букв, занимающих свои позиции в алфавите для каждого слова. Например,
@@ -889,7 +890,7 @@ var_dump(solve(["IAMDEFANDJKL", "thedefgh", "xyzDEFghijabc"]));
 
 
 
-// 26. [7-kyu], [string]. Help the Fruit Guy [понравилась]
+// 26. [7-kyu], [string]. Help the Fruit Guy 
 // https://www.codewars.com/kata/557af4c6169ac832300000ba/train/php
 // У нашего фруктового парня есть мешок с фруктами (представленный в виде набора ниток), в котором некоторые фрукты гнилые. Он хочет заменить все гнилые кусочки фруктов свежими. Например, для данного ["apple", "rottenBanana", "apple"] заменяемый массив должен быть ["apple", "banana", "apple"]. Ваша задача — реализовать метод, который принимает массив строк, содержащих фрукты, и должен возвращать массив строк, в котором все гнилые фрукты заменены хорошими.
 // Примечания
@@ -919,7 +920,7 @@ echo PHP_EOL;
 
 
 
-// 27. [7-kyu], [string]. Sort by Last Char [понравилась]
+// 27. [7-kyu], [string]. Sort by Last Char 
 // https://www.codewars.com/kata/57eba158e8ca2c8aba0002a0
 // Учитывая строку слов (x), вам нужно вернуть массив слов, отсортированный в алфавитном порядке по последнему символу в каждом.
 // Если у двух слов одна и та же последняя буква, возвращаемый массив должен отображать их в том порядке, в котором они появляются в данной строке.
@@ -952,7 +953,7 @@ echo PHP_EOL;
 
 
 
-// 28. [7-kyu], [string]. Digits explosion [понравилась]
+// 28. [7-kyu], [string]. Digits explosion 
 // https://www.codewars.com/kata/585b1fafe08bae9988000314
 // Учитывая строку, состоящую из цифр [0–9], верните строку, в которой каждая цифра повторяется количество раз, равное ее значению.
 // Examples
@@ -977,7 +978,7 @@ echo PHP_EOL;
 
 
 
-// 29. [7-kyu], [string]. Char Code Calculation [понравилась]
+// 29. [7-kyu], [string]. Char Code Calculation 
 // https://www.codewars.com/kata/57f75cc397d62fc93d000059/train/php
 // Учитывая строку, превратите каждый символ в его код ASCII и соедините их вместе, чтобы создать число — назовем это число total1:
 // 'ABC' --> 'A' = 65, 'B' = 66, 'C' = 67 --> 656667
@@ -1022,7 +1023,7 @@ echo PHP_EOL;
 
 
 
-// 30. [7-kyu], [string]. Substituting Variables Into Strings: Padded Numbers [понравилась]
+// 30. [7-kyu], [string]. Substituting Variables Into Strings: Padded Numbers 
 // https://www.codewars.com/kata/5700c9acc1555755be00027e
 // Завершите решение так, чтобы оно возвращало форматированную строку. Возвращаемое значение должно равняться «Значение равно VALUE», где значение представляет собой дополненное 5-значное число.
 // $this->assertSame("Value is 00005", solution(5));
@@ -1036,7 +1037,7 @@ echo PHP_EOL;
 
 
 
-// 31. [7-kyu], [string]. Numbers to Letters [понравилась]
+// 31. [7-kyu], [string]. Numbers to Letters 
 // https://www.codewars.com/kata/57ebaa8f7b45ef590c00000c/train/php
 // Учитывая массив чисел (в строковом формате), вы должны вернуть строку. Цифры соответствуют буквам алфавита в обратном порядке: a=26, z=1 и т.д. Также следует учитывать '!', '?' и '', которые представлены цифрами '27', '28' и '29' соответственно.
 // Все входные данные будут действительными.
@@ -1063,7 +1064,7 @@ echo PHP_EOL;
 
 
 
-// 32. [7-kyu], [string]. Cat and Mouse - Easy Version [понравилась]
+// 32. [7-kyu], [string]. Cat and Mouse - Easy Version 
 // https://www.codewars.com/kata/57ee24e17b45eff6d6000164
 // Вам будет предоставлена ​​строка (x) с изображением кошки «C» и мыши «m». Остальная часть строки будет состоять из '.'
 // Вам нужно выяснить, сможет ли кошка поймать мышь из текущего положения. Кот может перепрыгнуть через трёх персонажей. Так:
@@ -1087,7 +1088,7 @@ echo PHP_EOL;
 
 
 
-// 33. [7-kyu], [string]. String Merge! [понравилась]
+// 33. [7-kyu], [string]. String Merge! 
 // https://www.codewars.com/kata/597bb84522bc93b71e00007e/train/php
 // Учитывая два слова и букву, верните одно слово, представляющее собой комбинацию обоих слов, объединенную в той точке, где данная буква впервые появляется в каждом слове. Возвращаемое слово должно иметь начало первого слова и окончание второго с разделительной буквой посередине. Вы можете предположить, что оба слова будут содержать разделительную букву.
 // ("hello", "world", "l")       ==>  "held"
@@ -1105,7 +1106,7 @@ echo PHP_EOL;
 
 
 
-// 34. [7-kyu], [string]. Numbers in strings [понравилась]
+// 34. [7-kyu], [string]. Numbers in strings 
 // https://www.codewars.com/kata/59dd2c38f703c4ae5e000014/train/php
 // В этой Ката вам будет предоставлена ​​строка, состоящая из строчных букв и цифр. Ваша задача — сравнить группировки чисел и вернуть наибольшее число. Числа не будут иметь ведущих нулей.
 // Например,solve("gh12cdy695m1") = 695, потому что это самая большая из всех групп чисел.
@@ -1133,7 +1134,7 @@ echo PHP_EOL;
 
 
 
-// 35. [7-kyu], [string]. Compare Strings by Sum of Chars [понравилась]- не решил - чтобы полностью решить, нужно знать регулярные выражения!
+// 35. [7-kyu], [string]. Compare Strings by Sum of Chars - не решил - чтобы полностью решить, нужно знать регулярные выражения!
 // https://www.codewars.com/kata/576bb3c4b1abc497ec000065/train/php
 // Сравните две строки, сравнив сумму их значений (код символов ASCII).
 // Для сравнения рассматривайте все буквы как прописные.
@@ -1166,3 +1167,227 @@ function compare($s1, $s2)
 var_dump(compare("AD", "BC"));
 var_dump(compare("gf", "FG"));
 var_dump(compare('ZzZz', 'ffPFF'));
+
+echo PHP_EOL;
+
+
+
+// 36. [7-kyu], [string]. By 3, or not by 3? That is the question . . . 
+// https://www.codewars.com/kata/59f7fc109f0e86d705000043/train/php
+// В начальной школе я научился трюку, позволяющему определить, делится ли число на три, — это сложить все целые числа числа вместе и разделить полученную сумму на три. Если от деления суммы на три нет остатка, то исходное число тоже делится на три.
+// Учитывая последовательность цифр в виде строки, определите, делится ли число, представленное строкой, на три.
+// Пример:
+// «123» -> правда
+// «8409» -> правда
+// «100853» -> ложь
+// «33333333» -> правда
+// «7» -> ложь
+// Старайтесь избегать использования оператора % (по модулю).
+// $this->assertSame(true, divisibleByThree('123'));
+// $this->assertSame(true, divisibleByThree('19254'));
+// $this->assertSame(false, divisibleByThree('1'));
+// $this->assertSame(true, divisibleByThree('963210456'));
+// $this->assertSame(false, divisibleByThree('010110101011'));
+// $this->assertSame(true, divisibleByThree('9'));
+// $this->assertSame(true, divisibleByThree('6363'));
+// $this->assertSame(false, divisibleByThree('10987654321'));
+// $this->assertSame(true, divisibleByThree('9876543211234567890009'));
+// $this->assertSame(false, divisibleByThree('9876543211234567890002'));
+
+function divisibleByThree($str)
+{
+    // $res = 0;
+    // for ($i = 0; $i < strlen($str); $i++) {
+    // $res += (int) $str[$i];
+    // }
+    // return gettype($res / 3) === "integer";
+    // или 
+    // return gettype((int) $str / 3) === "integer";
+    // или
+    return gettype(array_sum(str_split($str)) / 3) === "integer";
+}
+var_dump(divisibleByThree("100853")); // 
+var_dump(divisibleByThree("33333333"));
+var_dump(divisibleByThree("7"));
+var_dump(divisibleByThree("010110101011"));
+var_dump(divisibleByThree("9876543211234567890002"));
+echo PHP_EOL;
+
+
+
+// 37. [7-kyu], [string]. Interview Question (easy) 
+// https://www.codewars.com/kata/5b358a1e228d316283001892/train/php
+// Вы получаете название города в виде строки, и вам нужно вернуть строку, которая показывает, сколько раз каждая буква встречается в строке с помощью звездочек (*).
+// Например:
+// "Chicago"  -->  "c:**,h:*,i:*,a:*,g:*,o:*"
+// Как видите, буква c показана всего один раз, но с двумя звездочками.
+// Возвращаемая строка должна включать только буквы (не тире, пробелы, апострофы и т. д.). В выводе не должно быть пробелов, а разные буквы разделяются запятой (,), как показано в примере выше.
+// Обратите внимание, что возвращаемая строка должна перечислять буквы в порядке их первого появления в исходной строке.
+// Еще примеры:
+// "Bangkok"    -->  "b:*,a:*,n:*,g:*,k:**,o:*"
+// "Las Vegas"  -->  "l:*,a:**,s:**,v:*,e:*,g:*"
+// substr_count($str, "a") - возвращает число вхождений подстроки "a" в строке $str
+
+function get_strings($city)
+{
+    // return str_repeat("*", 2);
+    // return substr_count(strtolower($city), "c");
+    $city = strtolower($city);
+    $res = "";
+    for ($i = 0; $i < strlen($city); $i++) {
+        if ($city[$i] === " ") {
+            continue;
+        }
+        $res .= $city[$i] . ":" . str_repeat("*", substr_count($city, $city[$i])) . ",";
+    }
+    return implode(",", array_unique(explode(",", trim($res, ","))));
+}
+var_dump(get_strings("Chicago")); // "c:**,h:*,i:*,a:*,g:*,o:*"
+var_dump(get_strings("Las Vegas")); // "l:*,a:**,s:**,v:*,e:*,g:*"
+echo PHP_EOL;
+
+
+
+// 38. [7-kyu], [string]. Frequency sequence 
+// https://www.codewars.com/kata/585a033e3a36cdc50a00011c
+// Ваша задача — вернуть выходную строку, которая преобразует входную строку s, заменяя каждый символ в s числом, представляющим количество раз, когда этот символ встречается в s, и разделяя каждое число символом(ами) sep.
+// "hello world", "-" --> "1-1-3-3-2-1-1-2-1-3-1"
+// "19999999"   , ":" --> "1:7:7:7:7:7:7:7"
+// "^^^**$"     , "x" --> "3x3x3x2x2x1"
+
+function freq_seq($s, $sep)
+{
+    $arr = [];
+    $chars = array_count_values(str_split($s));
+    foreach (str_split($s) as $value) {
+        $arr[] = $chars[$value];
+    }
+    return implode("$sep", $arr);
+}
+var_dump(freq_seq("hello world", "-"));
+echo PHP_EOL;
+
+
+
+// 39. [7-kyu], [string]. Correct the time-string 
+// https://www.codewars.com/kata/57873ab5e55533a2890000c7/train/php
+// Вам нужно создать метод, который исправляет заданную строку времени.
+// Кроме того, возникла проблема: многие струны порваны.
+// Время форматируется в 24-часовом формате, то есть от 00:00:00 до 23:59:59.
+// "09:10:01" -> "09:10:01"  
+// "11:70:10" -> "12:10:10"  
+// "19:99:99" -> "20:40:39"  
+// "24:01:01" -> "00:01:01"  
+// $this->assertSame(null, timeCorrect(null));
+// $this->assertSame("", timeCorrect(""));
+// $this->assertSame(null, timeCorrect("001122"));
+// $this->assertSame(null, timeCorrect("00;11;22"));
+// $this->assertSame(null, timeCorrect("0a:1c:22"));
+// $this->assertSame("09:10:01", timeCorrect("09:10:01"));
+// $this->assertSame("12:10:10", timeCorrect("11:70:10"));
+// $this->assertSame("20:39:09", timeCorrect("19:99:09"));
+// $this->assertSame("20:40:39", timeCorrect("19:99:99"));
+// $this->assertSame("00:01:01", timeCorrect("24:01:01"));
+// $this->assertSame("04:01:01", timeCorrect("52:01:01"));
+
+function timeCorrect($timestring)
+{
+    if ($timestring === null) {
+        return null;
+    } else if ($timestring === "") {
+        return "";
+    }
+    if (substr_count($timestring, ":") === 0) {
+        return null;
+    }
+    for ($i = 0; $i < strlen($timestring); $i++) {
+        if ((int) $timestring[$i] === 0 and $timestring[$i] !== "0" and $timestring[$i] !== ":") {
+            return null;
+        }
+    }
+    $arr = explode(":", $timestring);
+    $arr_new = [];
+    for ($i = 0; $i < count($arr); $i++) {
+        $arr_new[$i] = (int) $arr[$i];
+    }
+    for ($i = 2; $i >= 0; $i--) {
+        if ($arr_new[$i] > 59 and $i !== 0) {
+            $arr_new[$i] = $arr_new[$i] % 60;
+            $arr_new[$i - 1]++;
+        }
+        if ($i === 0 and $arr[$i] > 23) {
+            $arr_new[$i] = $arr_new[$i] % 24;
+        }
+    }
+    for ($i = 0; $i < count($arr_new); $i++) {
+        if ($arr_new[$i] < 10) {
+            $arr_new[$i] = "0" . $arr_new[$i];
+        }
+    }
+    return implode(":", $arr_new);
+}
+var_dump(timeCorrect("100:99:99")); // "20:40:39"
+var_dump(timeCorrect(null));
+var_dump(timeCorrect(""));
+var_dump(timeCorrect("001122"));
+var_dump(timeCorrect("00;11;22"));
+var_dump(timeCorrect("0a:1c:22"));
+var_dump(timeCorrect('09:10:01'));
+echo PHP_EOL;
+
+
+
+// 40. [7-kyu], [string]. Scrolling Text 
+// https://www.codewars.com/kata/5a995c2aba1bb57f660001fd
+// Ваша задача — выполнить функцию, которая принимает строку и возвращает массив со всеми возможными поворотами данной строки в верхнем регистре.
+// $this->assertSame(["ABC", "BCA", "CAB"], scrollingText("abc"));
+// $this->assertSame(["CODEWARS", "ODEWARSC", "DEWARSCO", "EWARSCOD", "WARSCODE", "ARSCODEW", "RSCODEWA", "SCODEWAR"], scrollingText("codewars"));
+// codewars, odewarsc, dewarsco, ewarscod, warscode, arscodew, rscodewa, scodewar
+
+function scrollingText($text)
+{
+    $text = strtoupper($text);
+    $arr = [];
+    for ($i = 0; $i < strlen($text); $i++) {
+        $arr[] = substr($text, $i) . substr($text, 0, $i);
+    }
+    return $arr;
+}
+var_dump(scrollingText("codewars"));
+echo PHP_EOL;
+
+
+
+// 41. [7-kyu], [string]. Determine if the poker hand is flush
+// https://www.codewars.com/kata/5acbc3b3481ebb23a400007d/train/php
+// Определите, является ли покерная рука флешем, то есть все пять карт одной масти.
+// Вашей функции будет передан список/массив из 5 строк, каждая из которых представляет покерную карту в формате «5H» (5 червей), что означает значение карты, за которым следует начальная буква ее масти (червы, пики, бубны или Клубы). Джокеры не включены.
+// Ваша функция должна возвращать true, если на руке флеш, и false в противном случае.
+// Возможные значения карт: 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A.
+// ["AS", "3S", "9S", "KS", "4S"] ==> true
+// ["AD", "4S", "7H", "KS", "10S"] ==> false
+// $this->assertSame(false, checkIfFlush(["AD", "4S", "7H", "KC", "5S"]));
+// $this->assertSame(false, checkIfFlush(["10D", "4S", "7H", "KC", "5S"]));
+// $this->assertSame(true, checkIfFlush(["10D", "QD", "7D", "KD", "5D"]));
+
+function checkIfFlush($cards)
+{
+    $arr = [];
+    for ($i = 0; $i < count($cards); $i++) {
+        $arr[] = $cards[$i][strlen($cards) - 1];
+    }
+    return count(array_unique($arr)) === 1 ? true : false;
+    // return array_unique($arr);
+}
+var_dump(checkIfFlush(["AS", "3S", "9S", "KS", "4S"]));
+var_dump(checkIfFlush(["AS", "3S", "9S", "KS", "4K"]));
+var_dump(checkIfFlush(["10D", "QD", "7D", "KD", "5D"]));
+
+
+// var_dump(count(array_diff([1, 2, 3], [1, 2, 4])));
+
+
+// 40 https://www.codewars.com/kata/581b30af1ef8ee6aea0015b9/train/php
+
+// 07.06.2024 - решил 2 задачи codewars - 60 минут
+// 08.06.2024 - решил 3 задачи codewars - 3 часа
