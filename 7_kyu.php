@@ -1,17 +1,18 @@
 <?php
 // codewars 7-kyu [string] [https://www.codewars.com/kata/search/php?q=&r%5B%5D=-7&tags=Strings&beta=false&order_by=popularity%20desc]
 // Чтобы понять, как решаются задачи, нужно всё расписать визуально на доске и найти закономерности
-// 40 задач [7-kyu] [string] 
+// 50 задач [7-kyu] [string] 
 // 20 задач [7-kyu] [mathematics] 
 // 20 задач [7-kyu] [arrays] 
 // 20 задач [7-kyu] [fundamentals]
 // задачи, которые понравились с тегом 
-// задачи, которые я не смог полностью решить: 
-// 1. https://www.codewars.com/kata/56cd44e1aa4ac7879200010b/train/php - нужно знать регулярные выражения
+// задачи, которые нужно решить с помощью регулярных выражений: 
+// 1. https://www.codewars.com/kata/56cd44e1aa4ac7879200010b/train/php 
 // 2. https://www.codewars.com/kata/5700c9acc1555755be00027e
-// 3. https://www.codewars.com/kata/59dd2c38f703c4ae5e000014/train/php - решить с помощью регулярных выражений
-// 4. https://www.codewars.com/kata/576bb3c4b1abc497ec000065/train/php - решить с помощью регулярных выражений
+// 3. https://www.codewars.com/kata/59dd2c38f703c4ae5e000014/train/php 
+// 4. https://www.codewars.com/kata/576bb3c4b1abc497ec000065/train/php 
 // 5. https://www.codewars.com/kata/57faf32df815ebd49e000117/train/php
+// 6. https://www.codewars.com/kata/5b37a50642b27ebf2e000010/solutions/php
 
 
 // Github
@@ -1374,20 +1375,134 @@ function checkIfFlush($cards)
 {
     $arr = [];
     for ($i = 0; $i < count($cards); $i++) {
-        $arr[] = $cards[$i][strlen($cards) - 1];
+        $arr[] = $cards[$i][strlen($cards[$i]) - 1];
     }
-    return count(array_unique($arr)) === 1 ? true : false;
-    // return array_unique($arr);
+    // return count(array_unique($arr)) === 1 ? true : false;
+    return count(array_unique($arr)) > 1 ? false : true;
 }
 var_dump(checkIfFlush(["AS", "3S", "9S", "KS", "4S"]));
 var_dump(checkIfFlush(["AS", "3S", "9S", "KS", "4K"]));
 var_dump(checkIfFlush(["10D", "QD", "7D", "KD", "5D"]));
+echo PHP_EOL;
 
 
-// var_dump(count(array_diff([1, 2, 3], [1, 2, 4])));
+
+// 42. [7-kyu], [string]. Well of Ideas - Harder Version
+// https://www.codewars.com/kata/57f22b0f1b5432ff09001cab/train/php
+// В этом ката вам нужно проверить предоставленный двумерный массив (x) на наличие хороших идей «хороших» и плохих идей «плохих». Если есть одна или две хорошие идеи, верните "Publish!", если их больше 2, верните "I smell a series!". Если хороших идей нет, как это часто бывает, верните "Fail!".
+// Подмассивы могут иметь разную длину.
+// Решение должно быть нечувствительно к регистру (т.е. gOOd, GOOD и good считается хорошей идеей). Все входные данные не могут быть строками.
+// $this->assertSame(well([['bad', 'bAd', 'bad'], ['bad', 'bAd', 'bad'], ['bad', 'bAd', 'bad']]), 'Fail!');
+// $this->assertSame(well([['gOOd', 'bad', 'BAD', 'bad', 'bad'], ['bad', 'bAd', 'bad'], ['GOOD', 'bad', 'bad', 'bAd']]), 'Publish!');
+// $this->assertSame(well([['gOOd', 'bAd', 'BAD', 'bad', 'bad', 'GOOD'], ['bad'], ['gOOd', 'BAD']]), 'I smell a series!');
+
+function well($arr)
+{
+    $count = substr_count(strtolower(json_encode($arr)), "good");
+    return !$count ? "Fail!" : ($count > 2 ? "I smell a series!" : "Publish!");
+    // или 
+    // $count = 0;
+    // for ($i = 0; $i < count($arr); $i++) {
+    //     for ($k = 0; $k < count($arr[$i]); $k++) {
+    //         if (strtolower($arr[$i][$k]) === "good") {
+    //             $count++;
+    //         }
+    //     }
+    // }
+    // return ($count > 2) ? "I smell a series!" : (($count > 0) ? "Publish!" : "Fail!");
+}
+var_dump(well([['gOOd', 'bAd', 'BAD', 'bad', 'bad', 'GOOD'], ['bad'], ['gOOd', 'BAD']])); // 3
+var_dump(well([['gOOd', 'bad', 'BAD', 'bad', 'bad'], ['bad', 'bAd', 'bad'], ['GOOD', 'bad', 'bad', 'bAd']])); // 2
+var_dump(well([['bad', 'BAD', 'bad', 'bad'], ['bad', 'bAd', 'bad'], ['bad', 'bad', 'bAd']])); // 2
+echo PHP_EOL;
 
 
-// 40 https://www.codewars.com/kata/581b30af1ef8ee6aea0015b9/train/php
+
+// 43. [7-kyu], [string]. Exclamation marks series #7: Remove words from the sentence if it contains one exclamation mark
+// https://www.codewars.com/kata/57fafb6d2b5314c839000195
+// Удалите слова из предложения, если они содержат ровно один восклицательный знак. Слова разделяются одним пробелом, без пробелов в начале/конце.
+// remove("Hi!") === ""
+// remove("Hi! Hi!") === ""
+// remove("Hi! Hi! Hi!") === ""
+// remove("Hi Hi! Hi!") === "Hi"
+// remove("Hi! !Hi Hi!") === ""
+// remove("Hi! Hi!! Hi!") === "Hi!!"
+// remove("Hi! !Hi! Hi!") === "!Hi!"
+
+function remove_word($s)
+{
+    // $arr = explode(" ", $s);
+    // $res = "";
+    // for ($i = 0; $i < count($arr); $i++) {
+    //     if (substr_count($arr[$i], "!") !== 1) {
+    //         $res .= $arr[$i];
+    //     }
+    // }
+    // return $res;
+    return implode("", array_filter(explode(" ", $s), function ($el) {
+        return substr_count($el, "!") !== 1;
+    }));
+
+}
+var_dump(remove_word("Hi! !Hi! Hi!"));
+var_dump(remove_word("Hi! Hi! Hi!"));
+echo PHP_EOL;
+
+
+
+// 44. [7-kyu], [string]. Sum of a Beach
+// https://www.codewars.com/kata/5b37a50642b27ebf2e000010/solutions/php
+// Beaches are filled with sand, water, fish, and sun. Given a string, calculate how many times the words "Sand", "Water", "Fish", and "Sun" appear without overlapping (regardless of the case).
+// регистр не играет роли
+// sumOfABeach("WAtErSlIde")                    ==>  1
+// sumOfABeach("GolDeNSanDyWateRyBeaChSuNN")    ==>  3
+// sumOfABeach("gOfIshsunesunFiSh")             ==>  4
+// sumOfABeach("cItYTowNcARShoW")               ==>  0
+
+function sumOfABeach($beach)
+{
+    return substr_count(strtolower($beach), "sun") + substr_count(strtolower($beach), "fish") + substr_count(strtolower($beach), "water") + substr_count(strtolower($beach), "sand");
+}
+var_dump(sumOfABeach("GolDeNSanDyWateRyBeaChSuNN"));
+
+
+
+
 
 // 07.06.2024 - решил 2 задачи codewars - 60 минут
 // 08.06.2024 - решил 3 задачи codewars - 3 часа
+// 09.06.2024 - 3 задачи на строки решить
+
+
+// 50 https://www.codewars.com/kata/581b30af1ef8ee6aea0015b9/train/php
+
+// Записать в файл теории про массивы
+// https://www.php.net/manual/ru/function.array-merge.php 
+// https://www.php.net/manual/ru/function.json-encode.php
+// ширина курсора - 2
+// перекинуть все треки в вк
+// 01. Anyma (ofc), Janus Rasmussen, Delhia De France - Claire (Original Mix) - Rose Avenue
+// 02. CRi - No Mission (Original Mix) - Anjunadeep
+// Monolink - Return To Oz (ARTBAT Remix)
+// Sasha, Krister Linder - Cut Me Down (Kastis Torrau & Donatello feat. Arnas D. Remix)
+// https://www.youtube.com/watch?v=DA7ApXsutzQ - перекинуть все треки в вк
+// 03. Aldebaran - Colle Stelle (Original Mix) - TAU
+// Gusgus - Over (Official Video) [HD]
+// Orbital - Halcyon On and On
+// https://www.youtube.com/watch?v=_fwJ1tonkxY
+// https://www.youtube.com/watch?v=AwWnv-12GP8
+// https://www.youtube.com/watch?v=d8Oc90QevaI - просто радио играет
+// 04. Diamond Mouth - Divine Flow (Jonas Saalbach Remix) - Radikon
+// 05. Claudiu Adam - Simple Gestures (Original Mix) - Where The Heart Is
+// 06. Jackarta - Here She Comes (Original Mix) - Songspire Records
+// 07. Nick Curly - Mute Navigator (Black Circle Remix) - RADIANT.
+// 08. Matt Lange - Rift (Alex O’Rion Extended Mix) - Anjunabeats
+// 09. Albuquerque, Who Else - Life Dilemma (Original Mix) - Get Physical Music
+// 10. Fur Coat - Ancient Stories (Original Mix) - Oddity Records 
+// 11. Westseven, Ross Farren - Compass (Wassu & djimboh Remix) - When We Dip XYZ
+// 12. Yotto & Stephan Jolk - Only One (Original Mix) - Afterlife Records
+// 13. Ben Tov, Gerry Liberty - Nuwe Reen (Mass Digital Remix) - Harabe Lab
+// 14. Valdovinos - Linda (Your Life Is Your Life) - Bar 25 Music
+// 15. Fluida - Welcome Home (Original Mix) - Anjunadeep
+// 16. Biesmans - Trains Planes and Automobiles (Fideles Remix) - Watergate Records
+// 17. Coccolino Deep - Away (Original Mix) - Unreleased
