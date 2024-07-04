@@ -2408,10 +2408,24 @@ echo PHP_EOL;
 
 function divisors($integer)
 {
+    $arr = [];
+    for ($i = 2; $i < $integer; $i++) {
+        if ($integer % $i === 0) {
+            $arr[] = $i;
+        }
+    }
+    if (count($arr) < 1) {
+        return "$integer is prime";
+    } else {
+        return $arr;
+    }
 
 }
+var_dump(divisors(13));
 
-
+// https://www.codewars.com/kata/544aed4c4a30184e960010f4/train/php
+// https://www.codewars.com/kata/5813d19765d81c592200001a
+// https://www.codewars.com/kata/542c0f198e077084c0000c2e
 
 // 120 минут 22 июня 2 задачи
 // 60 минут 23 июня 1 задача
