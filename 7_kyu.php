@@ -1,7 +1,7 @@
 <?php
 // codewars 7-kyu [string] [https://www.codewars.com/kata/search/php?q=&r%5B%5D=-7&tags=Strings&beta=false&order_by=popularity%20desc]
 // Чтобы понять, как решаются задачи, нужно всё расписать визуально на доске и найти закономерности
-// 50 задач [7-kyu] [string] 
+// 67 задач [7-kyu] [string] 
 // 20 задач [7-kyu] [mathematics] 
 // 20 задач [7-kyu] [arrays] 
 // 20 задач [7-kyu] [fundamentals]
@@ -13,12 +13,16 @@
 // 4. https://www.codewars.com/kata/576bb3c4b1abc497ec000065/train/php 
 // 5. https://www.codewars.com/kata/57faf32df815ebd49e000117/train/php
 // 6. https://www.codewars.com/kata/5b37a50642b27ebf2e000010/solutions/php
+// 7. https://www.codewars.com/kata/58e8cad9fd89ea0c6c000258
+// 8. https://www.codewars.com/kata/5787628de55533d8ce000b84/train/php - не смог решить, задача на корректную дату
+// 9. https://www.codewars.com/kata/57b365f81fae8a0571000142/train/php - решил, но решить ещё через регулярные выражения
+
+
 
 
 // Github
 // ivan_babienko@mail.ru
 // Yamaha6843
-// Sopi197
 
 // 1. [7-kyu], [string]. Vowel Count 
 // https://www.codewars.com/kata/54ff3102c1bad923760001f3
@@ -1450,6 +1454,7 @@ echo PHP_EOL;
 
 
 
+
 // 44. [7-kyu], [string]. Sum of a Beach
 // https://www.codewars.com/kata/5b37a50642b27ebf2e000010/solutions/php
 // Beaches are filled with sand, water, fish, and sun. Given a string, calculate how many times the words "Sand", "Water", "Fish", and "Sun" appear without overlapping (regardless of the case).
@@ -1464,45 +1469,956 @@ function sumOfABeach($beach)
     return substr_count(strtolower($beach), "sun") + substr_count(strtolower($beach), "fish") + substr_count(strtolower($beach), "water") + substr_count(strtolower($beach), "sand");
 }
 var_dump(sumOfABeach("GolDeNSanDyWateRyBeaChSuNN"));
+echo PHP_EOL;
 
 
 
+// 45. [7-kyu], [string]. sPoNgEbOb MeMe
+// https://www.codewars.com/kata/5982619d2671576e90000017/train/php
+// Вам нужно создать функцию, которая преобразует входные данные в этот формат, при этом выходные данные будут той же строкой, ожидая наличия шаблона из прописных и строчных букв.
+// Пример:
+// input:  "stop Making spongebob Memes!"
+// output: "StOp mAkInG SpOnGeBoB MeMeS!"
+// spongeMeme("colored teens cant Be successful in tech") // =>'CoLoReD TeEnS CaNt bE SuCcEsSfUl iN TeCh'
+
+function sponge_meme($sentence)
+{
+    $sentence = strtolower($sentence);
+    for ($i = 0; $i < strlen($sentence); $i++) {
+        if ($i % 2 === 0) {
+            $sentence[$i] = strtoupper($sentence[$i]);
+        }
+    }
+    return $sentence;
+}
+var_dump(sponge_meme("stop Making spongebob Memes!"));
+echo PHP_EOL;
 
 
-// 07.06.2024 - решил 2 задачи codewars - 60 минут
-// 08.06.2024 - решил 3 задачи codewars - 3 часа
-// 09.06.2024 - 3 задачи на строки решить
+
+// 46. [7-kyu], [string]. Kooka-Counter
+// https://www.codewars.com/kata/58e8cad9fd89ea0c6c000258
+// Examples
+// ha = female => 1
+// Ha = male => 1
+// Haha = male + female => 2
+// haHa = female + male => 2
+// hahahahaha = female => 1
+// hahahahahaHaHaHa = female + male => 2
+// HaHaHahahaHaHa = male + female + male => 3
+// $this->assertSame(0, kookaCounter(""));
+// $this->assertSame(1, kookaCounter("hahahahaha"));
+// $this->assertSame(2, kookaCounter("hahahahahaHaHaHa"));
+// $this->assertSame(3, kookaCounter("HaHaHahahaHaHa"));
+
+function kookaCounter($laughing)
+{
+    if (!empty($laughing)) {
+        $res = 1;
+        for ($i = 0; $i < strlen($laughing) - 2; $i = $i + 2) {
+            if ($laughing[$i] !== $laughing[$i + 2]) {
+                $res++;
+            }
+        }
+        return $res;
+    } else {
+        return 0;
+    }
+}
+var_dump(kookaCounter("haha")); // 2
+var_dump(kookaCounter(""));
+var_dump(kookaCounter("haHaha"));
+var_dump(kookaCounter("HaHaHahahaHaHa"));
+echo PHP_EOL;
 
 
-// 50 https://www.codewars.com/kata/581b30af1ef8ee6aea0015b9/train/php
 
-// Записать в файл теории про массивы
-// https://www.php.net/manual/ru/function.array-merge.php 
-// https://www.php.net/manual/ru/function.json-encode.php
-// ширина курсора - 2
-// перекинуть все треки в вк
-// 01. Anyma (ofc), Janus Rasmussen, Delhia De France - Claire (Original Mix) - Rose Avenue
-// 02. CRi - No Mission (Original Mix) - Anjunadeep
-// Monolink - Return To Oz (ARTBAT Remix)
-// Sasha, Krister Linder - Cut Me Down (Kastis Torrau & Donatello feat. Arnas D. Remix)
-// https://www.youtube.com/watch?v=DA7ApXsutzQ - перекинуть все треки в вк
-// 03. Aldebaran - Colle Stelle (Original Mix) - TAU
-// Gusgus - Over (Official Video) [HD]
-// Orbital - Halcyon On and On
-// https://www.youtube.com/watch?v=_fwJ1tonkxY
-// https://www.youtube.com/watch?v=AwWnv-12GP8
-// https://www.youtube.com/watch?v=d8Oc90QevaI - просто радио играет
-// 04. Diamond Mouth - Divine Flow (Jonas Saalbach Remix) - Radikon
-// 05. Claudiu Adam - Simple Gestures (Original Mix) - Where The Heart Is
-// 06. Jackarta - Here She Comes (Original Mix) - Songspire Records
-// 07. Nick Curly - Mute Navigator (Black Circle Remix) - RADIANT.
-// 08. Matt Lange - Rift (Alex O’Rion Extended Mix) - Anjunabeats
-// 09. Albuquerque, Who Else - Life Dilemma (Original Mix) - Get Physical Music
-// 10. Fur Coat - Ancient Stories (Original Mix) - Oddity Records 
-// 11. Westseven, Ross Farren - Compass (Wassu & djimboh Remix) - When We Dip XYZ
-// 12. Yotto & Stephan Jolk - Only One (Original Mix) - Afterlife Records
-// 13. Ben Tov, Gerry Liberty - Nuwe Reen (Mass Digital Remix) - Harabe Lab
-// 14. Valdovinos - Linda (Your Life Is Your Life) - Bar 25 Music
-// 15. Fluida - Welcome Home (Original Mix) - Anjunadeep
-// 16. Biesmans - Trains Planes and Automobiles (Fideles Remix) - Watergate Records
-// 17. Coccolino Deep - Away (Original Mix) - Unreleased
+// 47. [7-kyu], [string]. Hungarian Vowel Harmony (easy) - задача не работает нормально со всеми символами
+// https://www.codewars.com/kata/57fd696e26b06857eb0011e7
+// Ваша цель — создать функцию dative() (Dative() в C#), которая возвращает допустимую форму действительного венгерского слова w в дательном падеже i. е. добавьте к слову w правильный суффикс nek или nak в соответствии с правилами гармонии гласных.
+// Правила гармонии гласных (упрощенные)
+// Когда последняя гласная в слове
+// гласная переднего ряда (e, é, i, í, ö, ő, ü, ű), суффикс -nek
+// гласная заднего ряда (a, á, o, ó, u, ú), суффикс -nak
+// Examples:
+// dative("ablak"); // "ablaknak"
+// dative("szék"); // "széknek"
+// dative("otthon"); // "otthonnak"
+// Для простоты: все слова оканчиваются на согласную 
+// Все строки являются строками Юникода.
+// В тестах нет грамматических исключений.
+
+function dative(string $w): string
+{
+    $arr_1 = ["e", "e", "i", "x", "p", "l", "s", "n"];
+    $arr_2 = ["a", "á", "o", "ó", "u", "ú"];
+    if (in_array($w[strlen($w) - 2], $arr_1)) {
+        $w .= "nek";
+    } else if (in_array($w[strlen($w) - 2], $arr_2)) {
+        $w .= "nak";
+    }
+    return $w;
+}
+var_dump(dative("ablak"));
+var_dump(dative("szek"));
+var_dump(dative("otthon"));
+echo PHP_EOL;
+
+
+
+// 48. [7-kyu], [string]. String Scramble
+// https://www.codewars.com/kata/5822d89270ca28c85c0000f3
+// Если заданы строка и массив индексных номеров, верните символы строки, переставленные в порядке, указанном в сопутствующем массиве.
+// Пример:
+// scramble('abcd', [0,3,1,2]) -> 'acdb'
+// Строка, которую вы вернете, будет иметь: 'a' в индексе 0, 'b' в индексе 3, 'c' в индексе 1, 'd' в индексе 2, поскольку порядок этих символов соответствует их соответствующим номерам в массиве индексов.
+// Другими словами, поместите первый символ в строке в индекс, описанный первым элементом массива
+// Можно предположить, что вам будут даны строка и массив одинаковой длины, и оба содержат допустимые символы (A-Z, a-z или 0-9).
+// $this->assertSame(scramble('abcd',[0,3,1,2]), 'acdb');
+// $this->assertSame(scramble('sc301s', [4,0,3,1,5,2]), "c0s3s1", "Should return c0s3s1");
+// $this->assertSame(scramble('bskl5', [2,1,4,3,0]), "5sblk", "Should return 5sblk");
+
+function scramble($str, $arr)
+{
+    // scramble('abcd', [0,3,1,2]) -> 'acdb'
+    $res = $str;
+    for ($i = 0; $i < strlen($str); $i++) {
+        $res[$arr[$i]] = $str[$i];
+    }
+    return $res;
+    // или 
+    // $new_arr = array_combine($arr, str_split($str));
+    // ksort($new_arr);
+    // return implode($new_arr);
+}
+var_dump(scramble("abcd", [0, 3, 1, 2])); // acdb
+echo PHP_EOL;
+
+
+
+// 49. [7-kyu], [string]. Pull your words together, man!
+// https://www.codewars.com/kata/59ad7d2e07157af687000070/train/php
+// Ваш друг Робби успешно создал ИИ, способный общаться на английском языке!
+// Робби почти закончил проект, однако вывод машины не работает так, как ожидалось. Вот пример предложения, которое она выводит:
+// ["this","is","a","sentence"]
+// Каждый раз, когда он пытается произнести предложение, вместо того, чтобы отформатировать его в обычной английской орфографии, он просто выводит список слов.
+// Робби не спал всю ночь, чтобы закончить этот проект, и ему нужно немного поспать. Поэтому он хочет, чтобы вы написали последнюю часть его кода, функцию sentencify, которая берет вывод, который выдает машина, и форматирует его в правильной английской орфографии.
+// Ваша функция должна:
+// Сделать первую букву первого слова заглавной.
+// Добавить точку (.) в конец предложения.
+// Объединить слова в целую строку с пробелами.
+// Не выполнять никаких других манипуляций со словами.
+// sentencify(array("i", "am", "an", "AI")), "I am an AI.");
+function sentencify($words)
+{
+    // ucfirst(string), uc = uppercase - перевод первого символа в верхний регистр
+    // ucfirst(explode(" ", $words));
+    return ucfirst(implode(" ", $words)) . ".";
+
+}
+var_dump(sentencify(array("i", "am", "an", "AI")));
+echo PHP_EOL;
+
+
+
+// 50. [7-kyu], [string]. Dropcaps
+// https://www.codewars.com/kata/559e5b717dd758a3eb00005a/train/php
+// DropCaps означает, что первая буква начального слова абзаца должна быть заглавной, а остальные строчными, как в газете.
+// Но для разнообразия давайте сделаем это для каждого слова данной строки. Ваша задача — сделать заглавными все слова, длина которых больше 2, оставив меньшие слова такими, какие они есть.
+// *должно работать также с начальными и конечными пробелами и заглавными буквами.
+// "apple" => "Apple"
+// "apple of banana" => "Apple of Banana"
+// "one space" => "One Space"
+// " space WALK " => " Space Walk "
+// Примечание: вам будет предоставлено по крайней мере одно слово, и вы должны принять строку в качестве входных данных и вернуть строку в качестве выходных данных.
+
+function dropCap($s)
+{
+    $arr = explode(" ", $s);
+    for ($i = 0; $i < count($arr); $i++) {
+        if (strlen($arr[$i]) > 2) {
+            $arr[$i] = ucfirst($arr[$i][0]) . strtolower(substr($arr[$i], 1));
+        }
+    }
+    return implode(" ", $arr);
+}
+var_dump(dropCap("space of WALK"));
+echo PHP_EOL;
+
+
+// 51. [7-kyu], [string]. Dropcaps
+// https://www.codewars.com/kata/58b972cae826b960a300003e/train/php
+// Дженни 9 лет. Она самый молодой детектив в Северной Америке. Дженни учится в 3 классе, поэтому, когда появляется новое задание, она получает код для расшифровки в виде наклейки (с числами) в своей тетради по математике и комментария (предложения) в своей тетради для письма. Все, что ей нужно сделать, это придумать одно слово, а дальше она уже знает, что делать. И вот тут наступает ваша роль — вы можете помочь Дженни узнать, что это за слово!
+// Чтобы узнать, что это за слово, вы должны использовать наклейку (массив из 3 чисел), чтобы извлечь 3 буквы из комментария (строки), которые составляют слово.
+// Каждое из чисел в массиве относится к положению буквы в строке в порядке возрастания.
+// Пробелы — это не места, вам нужны сами буквы. Никаких пробелов.
+// Возвращаемое слово должно состоять только из строчных букв.
+// Если вы не можете найти одну из букв с помощью индексных номеров, верните «No mission today». Дженни было бы очень грустно, но такова жизнь... :(
+// Пример: ввод: [5, 0, 3], "I love you" вывод: "ivy" (0 = "i", 3 = "v", 5 = "y")
+// $this->assertSame(missing([5, 0, 3], "I love you"), "ivy");
+// $this->assertSame(missing([29, 31, 8], "The quick brown fox jumps over the lazy dog"), "bay");
+// $this->assertSame(missing([12, 4, 6], "Good Morning"), "No mission today");
+
+function missing($nums, $str)
+{
+    sort($nums); // сортируем массив в порядке возрастания
+    $str_new = strtolower(implode(explode(" ", $str))); // удаляем пробелы и переводим в нижний регистр
+    $res = "";
+    for ($i = 0; $i < count($nums); $i++) {
+        if (isset($str_new[$nums[$i]])) {
+            $res .= $str_new[$nums[$i]];
+        } else {
+            $res = "No mission today";
+        }
+    }
+    return $res;
+}
+var_dump(missing([5, 0, 3], "I love you"));
+var_dump(missing([12, 4, 6], "Good Morning"));
+echo PHP_EOL;
+echo PHP_EOL;
+
+
+
+// 52. [7-kyu], [string]. Count salutes
+// https://www.codewars.com/kata/605ae9e1d2be8a0023b494ed/train/php
+// Есть узкий коридор, в котором люди могут идти только направо и налево. Когда два человека встречаются в коридоре, по традиции они должны отдать друг другу честь. Люди движутся с одинаковой скоростью влево и вправо.
+// Ваша задача — написать функцию, которая, учитывая строковое представление людей, движущихся в коридоре, подсчитает количество приветствий, которые будут иметь место.
+// Примечание: при встрече людей происходит 2 приветствия, одно другому и наоборот.
+// Входные данные
+// Люди, движущиеся направо, будут представлены как >; люди, движущиеся налево, будут представлены как <. Пример входных данных: >--<--->->. Символ - представляет пустое пространство, о котором вам не нужно беспокоиться.
+// Примеры
+// Входные данные: >----->-----<--< 
+// Выходные данные: 8
+// Объяснение: оба парня, движущиеся направо, встретятся с обоими парнями, движущимися налево.
+// Следовательно, всего произойдет 4 встречи и 8 приветствий.
+// Вход: <---<--->----<
+// Выход: 2
+// Объяснение: Происходит только одна встреча.
+// $this->assertEquals(4, count_salutes('<---->---<---<-->'));
+// $this->assertEquals(0, count_salutes('------'));
+// $this->assertEquals(42, count_salutes('>>>>>>>>>>>>>>>>>>>>>----<->'));
+// $this->assertEquals(2, count_salutes('<<----<>---<'));
+
+function count_salutes($hallway)
+{
+    $hallway_count = 0;
+    for ($i = 0; $i < strlen($hallway); $i++) {
+        if ($hallway[$i] === ">") {
+            for ($k = $i + 1; $k < strlen($hallway); $k++) {
+                if ($hallway[$k] === "<") {
+                    $hallway_count = $hallway_count + 2;
+                }
+            }
+        }
+    }
+    return $hallway_count;
+
+}
+var_dump(count_salutes('<---->---<---<-->')); // 4
+var_dump(count_salutes('>>>>>>>>>>>>>>>>>>>>>----<->')); // 4
+echo PHP_EOL;
+
+
+
+// 53. [7-kyu], [string]. Baby shark lyrics generator
+// https://www.codewars.com/kata/5d076515e102162ac0dc514e
+// Создайте функцию, как можно короче, которая возвращает этот текст.
+// Ваш код должен быть короче 300 символов. Обратите внимание на три точки в конце песни.
+
+// Baby shark, doo doo doo doo doo doo
+// Baby shark, doo doo doo doo doo doo
+// Baby shark, doo doo doo doo doo doo
+// Baby shark!
+// Mommy shark, doo doo doo doo doo doo
+// Mommy shark, doo doo doo doo doo doo
+// Mommy shark, doo doo doo doo doo doo
+// Mommy shark!
+// Daddy shark, doo doo doo doo doo doo
+// Daddy shark, doo doo doo doo doo doo
+// Daddy shark, doo doo doo doo doo doo
+// Daddy shark!
+// Grandma shark, doo doo doo doo doo doo
+// Grandma shark, doo doo doo doo doo doo
+// Grandma shark, doo doo doo doo doo doo
+// Grandma shark!
+// Grandpa shark, doo doo doo doo doo doo
+// Grandpa shark, doo doo doo doo doo doo
+// Grandpa shark, doo doo doo doo doo doo
+// Grandpa shark!
+// Let's go hunt, doo doo doo doo doo doo
+// Let's go hunt, doo doo doo doo doo doo
+// Let's go hunt, doo doo doo doo doo doo
+// Let's go hunt!
+// Run away,…
+
+function babySharkLyrics()
+{
+    $w = ['Baby shark', 'Mommy shark', 'Daddy shark', 'Grandma shark', 'Grandpa shark', 'Let\'s go hunt'];
+    $s = '';
+    foreach ($w as $el) {
+        $s .= str_repeat($el . ", doo doo doo doo doo doo\n", 3) . $el . '!' . "\n";
+    }
+    return $s . 'Run away,…';
+    // или 
+    // $r = "";
+    // $a = ["Baby shark", "Mommy shark", "Daddy shark", "Grandma shark", "Grandpa shark", "Let's go hunt"];
+    // for ($k = 0; $k < count($a); $k++) {
+    //     for ($i = 0; $i < 4; $i++) {
+    //         if ($i === 3) {
+    //             $r .= $a[$k] . "!\n";
+    //             break;
+    //         }
+    //         $r .= $a[$k] . "," . str_repeat(" doo", 6) . "\n";
+    //     }
+    // }
+    // return $r . "Run away,…";
+
+}
+var_dump(babySharkLyrics());
+echo PHP_EOL;
+
+
+
+// 54. [7-kyu], [string]. Make a square box!
+// https://www.codewars.com/kata/58644e8ddf95f81a38001d8d/train/php
+// Учитывая число в качестве параметра (от 2 до 30), верните массив, содержащий строки, образующие блок.
+// Так:
+// п = 5
+// [
+//     '-----',
+//     '-   -',
+//     '-   -',
+//     '-   -',
+//     '-----'
+// ]
+// n = 3
+// [
+//   '---',
+//   '- -',
+//   '---'
+// ]
+
+function box($n)
+{
+    $res = "";
+    for ($i = 0; $i < $n; $i++) {
+        if ($i > 0 && $i < $n - 1) {
+            $res .= "-" . str_repeat(" ", $n - 2) . "-" . "\n";
+        } else {
+            if ($i === $n - 1) {
+                $res .= str_repeat("-", $n);
+            } else {
+                $res .= str_repeat("-", $n) . "\n";
+            }
+        }
+    }
+    return explode("\n", $res);
+}
+var_dump(box(5));
+echo PHP_EOL;
+
+
+
+// 55. [7-kyu], [string]. String reverse slicing 101
+// https://www.codewars.com/kata/586efc2dcf7be0f217000619/train/php
+// В качестве входных данных вам будет предоставлена ​​строка символов. Завершите функцию, которая возвращает список строк: (а) в порядке, обратном исходной строке, и (б) так, чтобы каждая последующая строка начиналась на один символ дальше от конца исходной строки.
+// Предположим, что исходная строка имеет длину не менее 3 символов. Попробуйте сделать это, используя фрагменты, и избегайте преобразования строки в список(массив).
+// Примеры
+// '123' ==> ['321', '21', '1']
+// 'abcde' ==> ['edcba', 'dcba', 'cba', 'ba', 'a']
+
+function reverse_slice($str)
+{
+    $str = strrev($str);
+    $arr = [];
+    for ($i = 0; $i < strlen($str); $i++) {
+        $arr[] = substr($str, $i);
+    }
+    return $arr;
+}
+var_dump(reverse_slice("123"));
+echo PHP_EOL;
+
+
+
+// 56. [7-kyu], [string]. Alan Partridge I - Partridge Watch
+// Учитывая массив терминов, если какой-либо из этих терминов относится к Алану Партриджу, верните Mine's a Pint!
+// Количество восклицательных знаков (!) после t должно определяться количеством терминов, связанных с Аланом, которые вы найдете в данном массиве (x). Соответствующие термины следующие:
+// Partridge
+// PearTree
+// Chat
+// Dan
+// Toblerone
+// Lynn
+// AlphaPapa
+// Nomad
+// Если не найдете соответствующих терминов, верните Lynn, I've pierced my foot on a spike!!
+// $this->assertSame('Mine\'s a Pint!', part(['Grouse', 'Partridge', 'Pheasant']));
+// $this->assertSame('Lynn, I\'ve pierced my foot on a spike!!', part(['Pheasant', 'Goose', 'Starling', 'Robin']));
+
+function part($a)
+{
+    $arr = ["Partridge", "PearTree", "Chat", "Dan", "Toblerone", "Lynn", "AlphaPapa", "Nomad"];
+    $count = 0;
+    for ($i = 0; $i < count($a); $i++) {
+        if (in_array($a[$i], $arr)) {
+            $count++;
+        }
+    }
+    return ($count > 0) ? "Mine's a Pint" . str_repeat("!", $count) : "Lynn, I've pierced my foot on a spike!!";
+}
+var_dump(part(['Grouse', 'Partridge', 'Pheasant']));
+echo PHP_EOL;
+
+
+
+// 57. [7-kyu], [string]. Correct the date-string - не смог решить
+// https://www.codewars.com/kata/5787628de55533d8ce000b84/train/php
+// Вам необходимо создать метод, который исправляет заданную строку даты. Кроме того, возникла проблема: многие строки даты повреждены. Формат даты — европейский. Это означает «ДД.ММ.ГГГГ».
+// Некоторые примеры:
+// "30.02.2016" -> "01.03.2016"
+// "40.06.2015" -> "10.07.2015"
+// "11.13.2014" -> "11.01.2015"
+// "99.11.2010" -> "07.02.2011"
+// $this->assertSame("11.01.2015", dateCorrect("11.13.2014"));
+// Если входная строка равна нулю или пуста, верните именно это значение!
+// Если формат строки даты недействителен, верните ноль.
+// Подсказка: сначала исправьте месяц, а затем день!
+
+function dateCorrect($datestring)
+{
+    $mouth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    $arr = explode(".", $datestring);
+    $years = 0;
+    if ($arr[2] % 4 === 0) {
+        $mouth[1] = 29;
+    }
+    if ($arr[1] > 12) {
+        while ($arr[1] >= 12) { // 1
+            $years++; // 1
+            $arr[1] = $arr[1] - 12; // 1
+        }
+    }
+    for ($start = $arr[1]; $arr[0] > $mouth[$arr[1] - 1]; $mouth[$arr[1]]) { // 02; 
+        $arr[0] = $arr[0] - $mouth[$arr[1] - 1];
+        $arr[1] = $arr[1] + 1; // 1
+        if ($arr[1] == 12) {
+            $arr[1] = 0; // 2
+            $years++;
+        }
+    }
+    $arr[2] = $arr[2] + $years;
+    return implode(".", $arr);
+
+
+}
+// var_dump(dateCorrect("30.02.2023"));
+// var_dump(dateCorrect("99.11.2010"));// 19 
+
+
+// 58. [7-kyu], [string]. Alan Partridge III - London
+// https://www.codewars.com/kata/580a41b6d6df740d6100030c/train/php
+// «Отправляйтесь в Лондон. Я гарантирую, что вас либо ограбят, либо вас не оценят.
+// Сядьте на поезд до Лондона и остановитесь на остановках Rejection, Disappointment, Backstabling Central и Shattered Dreams Parkway».
+// Задача
+// Ваша задача — проверить, содержит ли предоставленный список/массив станций все остановки, упомянутые Аланом. Список остановок следующий:
+// Rejection
+// Disappointment
+// Backstabbing Central
+// Shattered Dreams Parkway
+// Если все остановки присутствуют в данном списке/массиве, верните «Smell my cheese you mother!», если нет, верните «No, seriously, run. You will miss it.». 
+// $this->assertSame('Smell my cheese you mother!', alan(['Norwich', 'Rejection', 'Disappointment', 'Backstabbing Central', 'Shattered Dreams Parkway', 'London']));
+// $this->assertSame('No, seriously, run. You will miss it.', alan(['London', 'Norwich']));
+// $this->assertSame('Smell my cheese you mother!', alan(['Norwich', 'Tooting', 'Bank', 'Rejection', 'Disappointment', 'Backstabbing Central', 'Exeter', 'Shattered Dreams Parkway', 'Belgium','London']));
+
+
+function alan($a)
+{
+    $stops = ["Rejection", "Disappointment", "Backstabbing Central", "Shattered Dreams Parkway"];
+    $arr = array_intersect($stops, $a);
+    return ($arr === $stops) ? "Smell my cheese you mother!" : "No, seriously, run. You will miss it.";
+}
+var_dump(alan(['Norwich', 'Rejection', 'Disappointment', 'Backstabbing Central', 'Shattered Dreams Parkway', 'London']));
+
+
+
+// 59. [7-kyu], [string]. Kill The Monsters!
+// https://www.codewars.com/kata/5b36137991c74600f200001b/train/php
+// Вы сражаетесь с монстрами! Вы достаточно сильны, чтобы убить их одним ударом, но после того, как вы ударите 3 раза, один из оставшихся монстров ударит вас один раз.
+// Ваше здоровье – это здоровье (h); количество монстров — это монстры (m), урон, который может нанести вам монстр, — это урон (dm).
+// Напишите функцию, которая будет вычислять:
+// сколько ударов вы получили, сколько урона вы получили и ваше оставшееся здоровье.
+// если ваше здоровье <= 0, вы умираете, и функция должна вернуть «hero died».
+// Все числа строго положительные. Ваша функция всегда должна возвращать строку.
+// Examples
+// (100, 3, 33)  => "hits: 0, damage: 0, health: 100"
+// ( 50, 7, 10)  => "hits: 2, damage: 20, health: 30"
+// $this->assertSame("hits: 2, damage: 20, health: 30", killMonsters(50, 7, 10));
+// $this->assertSame("hits: 0, damage: 0, health: 20", killMonsters(20, 1, 10));
+// $this->assertSame("hero died", killMonsters(30, 4, 50));
+
+function killMonsters($h, $m, $dm)
+{
+    $hits_count = 0;
+    while ($m - 3 > 0) {
+        $hits_count++;
+        $m = $m - 3;
+    }
+    $damage = $hits_count * $dm;
+    $health = $h - $damage;
+    return ($health <= 0) ? "hero died" : "hits: $hits_count, damage: $damage, health: $health";
+}
+
+
+
+// 60. [7-kyu], [string]. Youtube URL - тесты на codewars сломаны, но решено верно!
+// https://www.codewars.com/kata/58a0697ef636cac09c000014/train/php
+// На видео много ссылок:
+// https://www.youtube.com/embed/UN8oLGBNXpE – правильно для iframe
+// https://www.youtube.com/watch?v=UN8oLGBNXpE
+// http://www.youtube.com/watch?v=UN8oLGBNXpE
+// https://youtu.be/UN8oLGBNXpE
+// Если вставить первую ссылку в iframe, то она работает, а другая не работает.
+// Напишите функцию, которая преобразует строку в правильный формат для iframe.
+// $this->assertSame("https://www.youtube.com/embed/L3JxAuUyjzY", makeYoutubeLink('https://www.youtube.com/embed/L3JxAuUyjzY'));
+// $this->assertSame("https://www.youtube.com/embed/L3JxAuUyjzY", makeYoutubeLink('https://www.youtube.com/watch?v=L3JxAuUyjzY'));
+// var_dump(strtr("hello", "hl", "12")); // 1e22o
+
+function makeYoutubeLink($str)
+{
+    $arr = explode("/", $str);
+    if (!in_array("https:", $arr)) {
+        $arr[0] = "https:";
+    }
+    if (!str_contains($arr[2], "www")) {
+        $arr[2] = "www." . $arr[2];
+    }
+    if (!in_array("embed", $arr)) {
+        $arr[2] = $arr[2] . "/embed";
+    }
+    if (str_contains($str, "watch?v=")) {
+        $arr[count($arr) - 1] = substr($arr[count($arr) - 1], strlen("watch?v="));
+    }
+    // return $arr;
+    return implode("/", $arr);
+
+}
+// var_dump(makeYoutubeLink("https://www.youtube.com/watch?v=UN8oLGBNXpE"));
+// var_dump(makeYoutubeLink("https://www.youtube.com/embed/watch?v=UN8oLGBNXpE"));
+// var_dump(makeYoutubeLink("https://youtu.be/UN8oLGBNXpE"));
+// var_dump(makeYoutubeLink("https://www.youtube.com/embed/UN8oLGBNXpE"));
+// var_dump(makeYoutubeLink("https://www.youtube.com/L3JxAuUyjzY"));
+var_dump(makeYoutubeLink("https://www.youtube.com/embed/UN8oLGBNXpE")); // 'https://www.youtube.com/embed/UN8oLGBNXpE'
+echo PHP_EOL;
+
+
+
+// 61. [7-kyu], [string]. Measuring Average Speed
+// https://www.codewars.com/kata/57b365f81fae8a0571000142/train/php
+// Средняя скорость рассчитывается путем деления расстояния на время. Учитывая две строки в качестве входных данных, первая из которых указывает пройденное расстояние (в метрах или километрах), а вторая указывает время, необходимое для путешествия (в секундах или минутах), верните строку, указывающую его скорость в милях в час, округленную до ближайшее целое число.
+// Для целей этого ката один метр в секунду определяется как 2,23694 мили в час.
+// Например, учитывая входные значения расстояния и времени «3 км» ​​и «5 минут», мы должны вернуть значение скорости «22 мили в час».
+// $this->assertSame("22mph", calculate_speed("100m", "10s"));
+// $this->assertSame("22mph", calculate_speed("3km", "5min"));
+// $this->assertSame("0mph", calculate_speed("35m", "293s"));
+// $this->assertSame("548mph", calculate_speed("573km", "39min"));
+
+function calculate_speed($distance, $time)
+{
+    // $distance_n = "";
+    // $time_n = "";
+    // $type_dist = "";
+    // $type_time = "";
+    // $time_dist_count = 0;
+    // $time_count = 0;
+    // for ($i = 0; $i < strlen($distance); $i++) {
+    //     if ((int) $distance[$i] !== 0 or $distance[$i] === "0") {
+    //         $distance_n .= $distance[$i];
+    //         $time_dist_count++;
+    //     } else {
+    //         $type_dist = substr($distance, $time_dist_count);
+    //     }
+    // }
+    // for ($i = 0; $i < strlen($time); $i++) {
+    //     if ((int) $time[$i] !== 0 or $time[$i] === "0") {
+    //         $time_n .= $time[$i];
+    //         $time_count++;
+    //     } else {
+    //         $type_time = substr($time, $time_count);
+    //     }
+    // }
+    // if ($type_dist == "km") {
+    //     $distance_n = 1000 * $distance_n;
+    // }
+    // if ($type_time == "min") {
+    //     $time_n = 60 * $time_n;
+    // }
+    // return round(($distance_n / $time_n) * 2.23694) . "mph";
+    // или через intval(), str_ends_with
+    $distance_n = intval($distance);
+    $time_n = intval($time);
+    if (str_ends_with($distance, "km")) {
+        $distance_n = $distance_n * 1000;
+    }
+    if (str_ends_with($time, "min")) {
+        $time_n = $time_n * 60;
+    }
+    return round(($distance_n / $time_n) * 2.23694) . "mph";
+}
+var_dump(calculate_speed("3km", "5min"));
+var_dump(calculate_speed("35m", "293s"));
+var_dump(calculate_speed("573km", "39min"));
+echo PHP_EOL;
+
+
+
+// 62. [7-kyu], [string]. Find the Middle of the Product
+// https://www.codewars.com/kata/5ac54bcbb925d9b437000001
+// Учитывая строку символов, я хочу, чтобы функция findMiddle()/find_middle() возвращала среднее число в произведении каждой цифры в строке.
+// Пример: 's7d8jd9' -> 7, 8, 9 -> 7*8*9=504, поэтому 0 следует возвращать как целое число.
+// Не все строки будут содержать цифры. В этом случае и в случае любых нестроковых значений верните -1.
+// Если в произведении четное количество цифр, верните две средние цифры.
+// Пример: 1563 -> 56
+// ПРИМЕЧАНИЕ. Удалите ведущие нули, если произведение четное и первая цифра из двух — ноль. Пример 2016 -> 1
+// $this->assertEquals(findMiddle('s7d8jd9'), 0);
+// $this->assertEquals(findMiddle('58jd9fgh/fgh6s.,sdf'), 16);
+
+function findMiddle($str)
+{
+    if (is_string($str)) {
+        $res = 1;
+        $flag = 0;
+        for ($i = 0; $i < strlen($str); $i++) {
+            if ((int) $str[$i] !== 0 or $str[$i] === "0") {
+                $res *= $str[$i];
+                $flag++;
+            }
+        }
+        if ($flag === 0) {
+            return -1;
+        }
+        $res = "$res";
+        if (strlen($res) % 2 !== 0) { // "504", 3/2 = 1.5, float(1) => int 1 
+            return (int) ($res)[(int) floor(strlen($res) / 2)];
+        } else {
+            return (int) substr($res, strlen($res) / 2 - 1, 2); // ведущие нули удаляются (int): (int) 01 => 1
+        }
+    } else {
+        return -1;
+    }
+}
+var_dump(findMiddle("s7d8jd9"));
+var_dump(findMiddle("s1d5j3d457")); // 2100
+var_dump(findMiddle("a4895")); // 2100
+var_dump(findMiddle("4d7a8d9d")); // 2016
+echo PHP_EOL;
+
+
+
+// 63. [7-kyu], [string]. Is that a real phone number? (British version)
+// https://www.codewars.com/kata/581a52d305fe7756720002eb/php
+// Но ПОДОЖДИТЕ, это действительный номер?
+// Ваша задача — написать функцию, которая проверяет, содержит ли данная строка действительный номер мобильного (сотового) британского телефона или нет.
+// Если верно, верните «In with a chance».
+// Если значение недействительно или вам дана пустая строка, верните «Plenty more fish in the sea».
+// Число может быть действительным следующими способами:
+// Здесь, в Великобритании, номера мобильных телефонов начинаются с «07», за которым следуют еще 9 цифр, например. '07454876120'.
+// Иногда номеру предшествует код страны, префикс «+44», который заменяет «0» в «07», например. '+447454876120'.
+// А иногда вы встретите числа с тире между цифрами или по обе стороны, например. «+44--745---487-6120» или «-074-54-87-61-20-». Как видите, тире могут идти подряд.
+// $this->assertSame('In with a chance', validateNumber('07454876120'));
+// $this->assertSame('Plenty more fish in the sea', validateNumber('0754876120'));
+// $this->assertSame('In with a chance', validateNumber('0745-487-61-20'));
+// $this->assertSame('In with a chance', validateNumber('+447535514555'));
+
+function validateNumber($str)
+{
+    if (is_string($str)) {
+        $res = "";
+        for ($i = 0; $i < strlen($str); $i++) {
+            if ($str[$i] === "-")
+                continue;
+            $res .= $str[$i];
+        }
+        if ((($res[0] . $res[1]) === "07" and strlen($res) === 11) or (($res[0] . $res[1] . $res[2] . $res[3]) === "+447" and strlen($res) === 13)) {
+            return "In with a chance";
+        } else {
+            return 'Plenty more fish in the sea';
+        }
+    } else {
+        return 'Plenty more fish in the sea';
+    }
+}
+var_dump(validateNumber("07454876120"));
+var_dump(validateNumber("+44-1-7--535--51--4555"));
+echo PHP_EOL;
+
+
+// 64. [7-kyu], [string]. Simple Fun #182: Happy "g"
+// https://www.codewars.com/kata/58bcd27b7288983803000002
+// Допустим, «g» счастлива в данной строке, если непосредственно справа или слева от нее есть еще одна «g».
+// Выясните, все ли буквы «g» в данной строке счастливы.
+// Пример
+// Для str = "gg0gg3gg0gg" результат должен быть истинным.
+// Для str = "gog" вывод должен быть ложным.
+// Случайная строка строчных букв, цифр и пробелов.
+// [вывод] логическое значение
+// true, если все буквы «g» счастливы, в противном случае — false.
+// $this->assert True (g_happy("gg0gg3gg0gg"));
+// $this->assert False (g_happy("gog"));
+// $this->assert False (g_happy("ggg ggg g ggg"));
+// $this->assert True (g_happy("A half of a half is a quarter."));
+// $this->assert False (g_happy("good grief"));
+// $this->assert True (g_happy("bigger is ggooder"));
+// $this->assert True (g_happy("gggggggggg"));
+
+function g_happy($str)
+{
+    $str = $str . " ";
+    for ($i = 0; $i < strlen($str); $i++) {
+        if (($str[$i] === "g" and $str[$i + 1] !== "g") and ($str[$i] === "g" and $str[$i - 1] !== "g")) {
+            return false;
+        }
+    }
+    return true;
+}
+var_dump(g_happy("gog"));
+echo PHP_EOL;
+
+
+
+// 65. [7-kyu], [string]. Holiday V - SeaSick Snorkelling - решил верно, но все тесты не проходит в codewars
+// https://www.codewars.com/kata/57e90bcc97a0592126000064
+// Из-за последствий Эль-Ниньо в этом году мое путешествие с маской и трубкой в ​​отпуске было похоже на пребывание в стиральной машине... Совсем не весело.
+// Учитывая строку, состоящую из символов «~» и «_», обозначающих волны и штиль(отсутсвие волн) соответственно, ваша задача — проверить, не заболеет ли человек морской болезнью(укачивание).
+// Изменения от спокойствия к волне или от волны к затишью добавят эффекта (на самом деле, волна достигает минимума, но и этого вполне достаточно). Узнайте, сколько изменений уровня имеет строка, и если это число превышает 20% длины строки, верните «Throw Up», в противном случае верните «No Problem».
+// $this->assertSame("No Problem", sea_sick("~"));
+// $this->assertSame("Throw Up", sea_sick("_~~~~~~~_~__~______~~__~~_~~"));
+// $this->assertSame("Throw Up", sea_sick("______~___~_"));
+
+function sea_sick($s)
+{
+    $changes = 0;
+    for ($i = 0; $i < strlen($s) - 1; $i++) {
+        if ($s[$i] !== $s[$i + 1]) {
+            $changes++;
+        }
+    }
+    if ($changes * 100 / 12 > 20) {
+        return "Throw Up";
+    } else {
+        return "No Problem";
+    }
+}
+var_dump(sea_sick("______~___~_"));
+var_dump(sea_sick("_~~~~~~~_~__~______~~__~~_~~"));
+var_dump(sea_sick("~"));
+echo PHP_EOL;
+
+
+
+// 66. [7-kyu], [string]. Holiday II - Plane Seating 
+// https://www.codewars.com/kata/57e8f757085f7c7d6300009a
+// Поиск места в самолете никогда не доставляет удовольствия, особенно во время дальнего перелета... Вы прилетаете, снова осознаете, насколько мало места для ног у вас есть, и как бы забираетесь на сиденье, заваленное кучей своих вещей.
+// Чтобы запутать ситуацию (хотя они утверждают, что пытаются сделать обратное), многие авиакомпании исключают буквы «I» и «J» из своей системы обозначения мест.
+// система именования состоит из числа (в данном случае от 1 до 60), обозначающего часть самолета, в которой находится сиденье (1-20 = переднее, 21-40 = среднее, 40+ = заднее). За этим номером следует буква A-K, за исключением, упомянутым выше.
+// Буквы A-C обозначают места в левом кластере, D-F - в середине, а G-K - в правом.
+// Учитывая номер места, ваша задача — вернуть местоположение места в следующем формате:
+// «2B» вернет «Спереди-слева».
+// Если число больше 60 или буква недействительна, верните «Нет места!».
+// $this->revTest(planeSeat("2A"),"Front-Left");
+// $this->revTest(planeSeat("23D"),"Middle-Middle");
+// $this->revTest(planeSeat("49K"),"Back-Right");
+// $this->revTest(planeSeat("60A"),"Back-Left");
+// $this->revTest(planeSeat("61D"),"No Seat!!");
+// $this->revTest(planeSeat("30I"),"No Seat!!");
+
+function planeSeat($a)
+{
+    $left = range("A", "C");
+    $middle = range("D", "F");
+    $right = ["G", "H", "K"]; // исключили I и J
+    $pos = "No Seat!!";
+    if (intval($a) <= 20) {
+        $pos = "Front";
+    } else if (intval($a) <= 40) {
+        $pos = "Middle";
+    } else if (intval($a) <= 60) {
+        $pos = "Back";
+    } else {
+        return $pos;
+    }
+    if (in_array($a[strlen($a) - 1], $left)) {
+        $pos .= "-Left";
+    } else if (in_array($a[strlen($a) - 1], $middle)) {
+        $pos .= "-Middle";
+    } else if (in_array($a[strlen($a) - 1], $right)) {
+        $pos .= "-Right";
+    } else {
+        return $pos;
+    }
+    return $pos;
+}
+var_dump(planeSeat("60K"));
+echo PHP_EOL;
+
+
+
+// 67. [7-kyu], [string]. Celebrity Baby Names 
+// https://www.codewars.com/kata/577d5ce442a8d81e790002b2
+// Детские имена знаменитостей
+// Знаменитости любят называть своих детей необычными именами. Последней тенденцией в выборе детских имен является «тенденция последней буквы». Правила тренда таковы: первая буква имени ребенка должна совпадать с последней буквой его старшего брата или сестры. Например:
+// Suri (1st child), Ireland (2nd child), Diva (3rd child), Aleph (4th child)
+// И так далее...
+// Создайте функцию validName, которая принимает массив имен. Он должен вернуть «Congratulations, your baby names are compatible!» если все имена соответствуют правилу. Он должен вернуть сообщение «Back to the drawing board, your baby names are not compatible.». если все имена не соответствуют правилу.
+// Если у пары только один ребенок, ответьте: «Congratulations, you can choose any name you like!»
+// Если массив пуст, верните «You must test at least one name.».
+// Примечания:
+// Имена могут быть написаны через дефис или состоять из двух слов, например. Blue Ivy или Jean-Paul
+// Имена не должны содержать никаких других символов, кроме букв, дефисов и пробелов.
+// $this->assertSame(valid_name(["Cruz", "Zuma"]), "Congratulations, your baby names are compatible!");
+// $this->assertSame(valid_name(["Buddy Bear","Romeo", "Olive"]), "Congratulations, your baby names are compatible!");
+// $this->assertSame(valid_name(["Peaches", "Saint", "Theodora", "Ava", "Apple", "Egypt", "Tallulah", "Harlow", "Willow", "Weston", "Nala", "Atlas", "Silas", "Sundance", "Esmeralda", "Angel", "Lily-Rose", "Ever", "Rebel", "Lourdes"]), "Congratulations, your baby names are compatible!");
+// $this->assertSame(valid_name(["Jaden"]), "Congratulations, you can choose any name you like!");
+// $this->assertSame(valid_name(["George", "Charlotte"]), "Back to the drawing board, your baby names are not compatible.");
+
+function valid_name($array)
+{
+    if (count($array) === 1) {
+        return "Congratulations, you can choose any name you like!";
+    }
+    if (count($array) < 1) {
+        return "You must test at least one name.";
+    }
+    for ($i = 0; $i < count($array) - 1; $i++) {
+        if (($array[$i][strlen($array[$i]) - 1] !== strtolower($array[$i + 1][0]))) {
+            return "Back to the drawing board, your baby names are not compatible.";
+        }
+    }
+    return "Congratulations, your baby names are compatible!";
+}
+var_dump(valid_name(["Peaches", "Saint", "Theodora", "Ava", "Apple", "Evan"]));
+echo PHP_EOL;
+
+
+
+// 1. [7-kyu], [mathematics]. Sum of odd numbers
+// https://www.codewars.com/kata/55fd2d567d94ac3bc9000064/php
+// Учитывая треугольник последовательных нечетных чисел:
+// 1
+// 3 5
+// 7 9 11
+// 13 15 17 19
+// 21 23 25 27 29
+// ...
+// Вычислите сумму чисел в n-й строке этого треугольника (начиная с индекса 1), например: (Вход --> Выход)
+// 1 --> 1
+// 2 --> 3 + 5 = 8
+// $this->assertSame(1, rowSumOddNumbers(1));
+// $this->assertSame(8, rowSumOddNumbers(2));
+// $this->assertSame(2197, rowSumOddNumbers(13));
+// $this->assertSame(6859, rowSumOddNumbers(19));
+// $this->assertSame(68921, rowSumOddNumbers(41));
+// $this->assertSame(74088, rowSumOddNumbers(42));
+// $this->assertSame(405224, rowSumOddNumbers(74));
+// $this->assertSame(636056, rowSumOddNumbers(86));
+// $this->assertSame(804357, rowSumOddNumbers(93));
+// $this->assertSame(1030301, rowSumOddNumbers(101));
+
+function rowSumOddNumbers($n)
+{
+    return $n ** 3;
+}
+var_dump(rowSumOddNumbers(3));
+echo PHP_EOL;
+
+
+// 2. [7-kyu], [mathematics]. Square Every Digit
+// https://www.codewars.com/kata/546e2562b03326a88e000020/train/php
+// Добро пожаловать. В этом ката вас просят возвести в квадрат каждую цифру числа и соединить их.
+// Например, если мы пропустим через функцию 9119, получится 811181, потому что 9^2 — это 81, а 1^2 — это 1. (81-1-1-81)
+// Пример №2: Ввод 765 вернет/должен вернуть 493625, потому что 7^2 — это 49, 6^2 — 36, а 52 — 25. (49-36-25)
+// Примечание. Функция принимает целое число и возвращает целое число.
+// $this->assertSame(811181, square_digits(9119));
+// $this->assertSame(41636640, square_digits(24680));
+// $this->assertSame(19254981, square_digits(13579));
+// $this->assertSame(0, square_digits(0));
+
+function square_digits($num)
+{
+    if (is_int($num)) {
+        $res = "";
+        for ($i = 0; $i < strlen($num); $i++) {
+            $res .= $num[$i] ** 2;
+        }
+        return (int) $res;
+    }
+}
+var_dump(square_digits("24680"));
+echo PHP_EOL;
+
+
+
+// 3. [7-kyu], [mathematics]. You're a square!
+// Квадрат квадратов
+// Вам нравятся строительные блоки. Вам особенно нравятся квадратные строительные блоки. А что вам еще больше нравится, так это сложить их в квадрат из квадратных строительных блоков!
+// Однако иногда невозможно расположить их в квадрат. Вместо этого у вас получится обычный прямоугольник! Эти проклятые штуки! Если бы у вас только был способ узнать, зря ли вы сейчас работаете… Подождите! Вот и все! Вам просто нужно проверить, является ли количество строительных блоков идеальным квадратом.
+// Задача
+// Учитывая целое число, определите, является ли оно квадратным числом:
+// В математике квадратное число или идеальный квадрат — это целое число, которое является квадратом целого числа; другими словами, это произведение некоторого целого числа само на себя.
+// В тестах всегда будет использоваться некоторое целое число, поэтому не беспокойтесь об этом в языках с динамической типизацией.
+// Примеры
+// -1 => ложь
+//  0 => правда
+//  3 => ложь
+//  4 => правда
+// 25 => правда
+// 26 => ложь
+// $this->assertFalse(isSquare(-1), "Negative numbers cannot be square numbers");
+// $this->assertTrue(isSquare(0));
+// $this->assertFalse(isSquare(3));
+// $this->assertTrue(isSquare(4));
+// $this->assertTrue(isSquare(25));
+// $this->assertFalse(isSquare(26));
+
+function isSquare($n)
+{
+    $n = $n ** 0.5;
+    if (strlen("$n") > 1) {
+        return false;
+    } else {
+        return true;
+    }
+}
+var_dump(isSquare(25));
+var_dump(isSquare(24));
+var_dump(isSquare(-1));
+echo PHP_EOL;
+
+
+
+// 4. [7-kyu], [mathematics]. Find the divisors!
+// Создайте функцию с именем divisors/Divisors, которая принимает целое число n > 1 и возвращает массив со всеми делителями целого числа (кроме 1 и самого числа), от наименьшего до наибольшего. Если число простое, верните строку «(целое число) является простым».
+// divisors(12); // => [2, 3, 4, 6]
+// divisors(25); // => [5]
+// divisors(13); // => '13 is prime'
+// $this->assertSame([3, 5], divisors(15));
+// $this->assertSame([2, 3, 4, 6], divisors(12));
+// $this->assertSame('13 is prime', divisors(13));
+
+function divisors($integer)
+{
+
+}
+
+
+
+// 120 минут 22 июня 2 задачи
+// 60 минут 23 июня 1 задача
+// 40 минут 27 июня  1 задача
+// 30 минут 28 июня  1 задача
+// 60 минут 29 июня 2 задачи
+// 60+37 минут 30 июня 3 задачи
+// 1 июня спал
+// 2 июня был с настей, не занимался!
+// 60 минут 3 июня 3 задачи codewars + теория массивы ассоциативные 
