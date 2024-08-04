@@ -128,7 +128,7 @@ var_dump(binary_addition(10, 4)); // 1110
 echo PHP_EOL;
 
 
-// 5. [7-kyu], [fundametals]. Growth of a Population
+// 5. [7-kyu], [fundametals]. Growth of a Population - тесты codewars не пропускают, они сломаны
 // https://www.codewars.com/kata/563b662a59afc2b5120000c6/train/php
 // В небольшом городе население p0 = 1000 в начале года. Население регулярно увеличивается на 2 процента в год, и, более того, в город приезжает 50 новых жителей в год. Сколько лет нужно городу, чтобы его население стало больше или равно p = 1200 жителей?
 // В конце первого года будет:
@@ -200,6 +200,10 @@ function number($bus_stops)
     //     }
     // }
     // return $count_entrance - $count_exit;
+    // return array_sum(array_column($bus_stops, 0)) - array_sum(array_column($bus_stops, 1));
+    // return array_reduce($bus_stops, function ($peopleCount, $stop) {
+    // return $peopleCount + $stop[0] - $stop[1];
+    // });
 }
 var_dump(number([[10, 0], [30, 5], [5, 8]]));
 echo PHP_EOL;
@@ -209,7 +213,107 @@ echo PHP_EOL;
 // strval() - приведение к типу string 
 
 
+// 7. [7-kyu], [fundametals]. Count the Digit
+// https://www.codewars.com/kata/566fc12495810954b1000030
+// Описание:
+// Возьмите целое число n (n >= 0) и цифру d (0 <= d <= 9) в качестве целого числа.
+// Возведите в квадрат все числа k (0 <= k <= n) между 0 и n.
+// Подсчитайте количество цифр d, использованных при записи всех k**2.
+// Реализуйте функцию, принимающую n и d в качестве параметров и возвращающую это количество.
+// Примеры:
+// n = 10, d = 1
+// k*k равны 0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100
+// Мы используем цифру 1 в: 1, 16, 81, 100. Тогда общее количество равно 4.
+// Функция, если в качестве аргумента заданы n = 25 и d = 1, должна вернуть 11, поскольку
+// k*k, содержащие цифру 1, равны:
+// 1, 16, 81, 100, 121, 144, 169, 196, 361, 441.
+// Таким образом, существует 11 цифр 1 для квадратов чисел от 0 до 25.
+// Обратите внимание, что 121 имеет удвоенную цифру 1.
+// $this->revTest(nbDig(5750, 0), 4700);
+// $this->revTest(nbDig(11011, 2), 9481);
+// $this->revTest(nbDig(12224, 8), 7733);
 
+function countTheDigit($n, $d)
+{
+    $str = "";
+    for ($i = 0; $i <= $n; $i++) {
+        $str .= $i ** 2 . " ";
+    }
+    return substr_count($str, strval($d));
+}
+var_dump(countTheDigit(5750, 0));
+echo PHP_EOL;
+
+
+
+// 8. [7-kyu], [fundametals]. Sort array by string length
+// https://www.codewars.com/kata/57ea5b0b75ae11d1e800006c
+// Напишите функцию, которая принимает массив строк в качестве аргумента и возвращает отсортированный массив, содержащий те же строки, упорядоченные от самой короткой к самой длинной.
+// Например, если этот массив был передан в качестве аргумента:
+// ["Telescopes", "Glasses", "Eyes", "Monocles"]
+// Ваша функция вернет следующий массив:
+// ["Eyes", "Glasses", "Monocles", "Telescopes"]
+// Все строки в массиве, переданном вашей функции, будут иметь разную длину, поэтому вам не придется решать, как упорядочить несколько строк одинаковой длины.
+// $this->assertEquals(["I", "To", "Beg", "Life"], sortByLength(["Beg", "Life", "I", "To"]));
+// $this->assertEquals(["", "Pizza", "Brains", "Moderately"], sortByLength(["", "Moderately", "Brains", "Pizza"]));
+// $this->assertEquals(["Short", "Longer", "Longest"], sortByLength(["Longer", "Longest", "Short"]));
+
+function sortByLength($toSort)
+{
+    $arr_lenth = [];
+    for ($i = 0; $i < count($toSort); $i++) {
+        $arr_lenth[] = strlen($toSort[$i]);
+    }
+    sort($arr_lenth); // [1, 2, 3, 4]
+    $arr_res = [];
+    for ($i = 0; $i < count($arr_lenth); $i++) {
+        for ($k = 0; $k < count($toSort); $k++) {
+            if ($arr_lenth[$i] === strlen($toSort[$k])) {
+                $arr_res[] = $toSort[$k];
+            }
+        }
+    }
+    return $arr_res;
+    // usort($toSort, fn($a, $b) => strlen($a) - strlen($b));
+    // return $toSort;
+}
+var_dump(sortByLength(["Beg", "Life", "I", "To"])); // ["I", "To", "Beg", "Life"]
+echo PHP_EOL;
+
+
+
+// 9. [7-kyu], [fundametals]. Find the stray number
+// https://www.codewars.com/kata/57f609022f4d534f05000024
+// Описание:
+// Вам дан массив целых чисел нечетной длины, в котором все они одинаковы, за исключением одного единственного числа.
+// Завершите метод, который принимает такой массив и возвращает это единственное другое число.
+// Входной массив всегда будет допустимым! (нечетная длина >= 3)
+// Примеры
+// [1, 1, 2] ==> 2
+// [17, 17, 3, 17, 17, 17, 17] ==> 3
+// $this->assertSame(2, stray([1, 1, 2]));
+// $this->assertSame(4, stray([4, 2, 2, 2, 2]));
+// $this->assertSame(5, stray([4, 4, 4, 5, 4, 4, 4]));
+
+function stray($arr)
+{
+    $count = 0;
+    for ($i = 0; $i < count($arr); $i++) {
+        if (isset($arr[$i + 1]) and $arr[0] !== $arr[$i + 1]) {
+            $count++;
+        }
+        if ($count > 1) {
+            return $arr[0];
+        } else {
+            return $arr[$i + 1];
+        }
+    }
+}
+var_dump(stray([17, 17, 17, 3, 17, 17, 17]));
+
+// https://www.codewars.com/kata/555eded1ad94b00403000071
+// https://www.codewars.com/kata/5949481f86420f59480000e7
+// https://www.codewars.com/kata/55908aad6620c066bc00002a
 
 
 
