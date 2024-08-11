@@ -346,10 +346,88 @@ var_dump(duplicateCount(1));
 echo PHP_EOL;
 
 
-// 12. [6-kyu], [string] 
+// 13. [6-kyu], [string] Duplicate Encoder
+// https://www.codewars.com/kata/54b42f9314d9229fd6000d9c
+// Цель этого упражнения — преобразовать строку в новую строку, где каждый символ в новой строке — это "(", если этот символ встречается в исходной строке только один раз, или ")", если этот символ встречается в исходной строке более одного раза. Игнорируйте регистр букв при определении того, является ли символ дубликатом.
+// Примеры
+// "din" => "((("
+// "recede" => "()()()"
+// "Success" => ")())())"
+// "(( @" => "))(("
+// Сообщения об утверждениях могут быть неясны относительно того, что они отображают в некоторых языках. Если вы видите "...It Should encode XXX", "XXX" — это ожидаемый результат, а не входные данные!
+// $this->assertSame('(((', duplicate_encode('din'));
+// $this->assertSame('()()()', duplicate_encode('recede'));
+// $this->assertSame(')())())', duplicate_encode('Success'), 'should ignore case');
+// $this->assertSame('))))))', duplicate_encode('iiiiii'), 'duplicate-only-string');
+// $this->assertSame(')))))(', duplicate_encode(' ( ( )'));
+
+function duplicateEncoder($word)
+{
+    $res = "";
+    $word = strtolower($word);
+    for ($i = 0; $i < strlen($word); $i++) {
+        if (substr_count($word, $word[$i]) === 1) {
+            $res .= "(";
+        } else {
+            $res .= ")";
+        }
+    }
+    return $res;
+}
+var_dump(duplicateEncoder("(( @"));
+echo PHP_EOL;
 
 
 
+// 14. [6-kyu], [arrays] Replace With Alphabet Position
+// https://www.codewars.com/kata/546f922b54af40e1e90001da
+// В этом ката вам необходимо, имея строку, заменить каждую букву ее позицией в алфавите.
+// Если что-то в тексте не является буквой, проигнорируйте это и не возвращайте.
+// "a" = 1, "b" = 2, etc.
+// Example
+// Input = "The sunset sets at twelve o' clock."
+// Output = "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11"
+
+function alphabet_position($s)
+{
+    $alphabet = range("a", "z");
+    $res = "";
+    $s = strtolower($s);
+    for ($i = 0; $i < strlen($s); $i++) {
+        if (in_array($s[$i], $alphabet)) {
+            $res .= array_search($s[$i], $alphabet) + 1 . " ";
+        }
+    }
+    return trim($res);
+}
+var_dump(alphabet_position("The sunset sets at twelve o' clock."));
+echo PHP_EOL;
+
+
+
+// 15. [6-kyu], [arrays] Does my number look big in this?
+// https://www.codewars.com/kata/5287e858c6b5a9678200083c
+// Нарциссическое число (или число Армстронга) — это положительное число, которое является суммой своих собственных цифр, каждая из которых возведена в степень количества цифр в данной базе. В этой Кате мы ограничимся десятичной дробью (основанием 10).
+// Например, возьмем 153 (3 цифры), что является нарциссическим:
+// 1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153
+// и 1652 (4 цифры), что не является:
+// 1^4 + 6^4 + 5^4 + 2^4 = 1 + 1296 + 625 + 16 = 1938
+// Задача:
+// Ваш код должен возвращать true или false (не «true» и «false») в зависимости от того, является ли заданное число нарциссическим числом в десятичной системе счисления.
+// Это может быть True и False в вашем языке, например PHP.
+// Проверка ошибок на наличие текстовых строк или других недопустимых входных данных не требуется, в функцию будут переданы только допустимые положительные ненулевые целые числа.
+
+function narcis_number($n)
+{
+    $res = 0;
+    $str = strval($n);
+    for ($i = 0; $i < strlen($str); $i++) {
+        $res += $str[$i] ** strlen($str);
+    }
+    return $res === $n;
+
+}
+var_dump(narcis_number(1938));
 
 // ...[] - оператор spread - вытаскивает элементы из массива
 // strlen(943) = 3 - преобразует в строку автоматически
