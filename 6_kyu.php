@@ -1158,37 +1158,236 @@ echo PHP_EOL;
 // $this->assertSame("I", solution(1));
 // $this->assertSame("MCMXC", solution(1990));
 // $this->assertSame("MMVIII", solution(2008));
+// I 1
+// V 5
+// X 10
+// L 50
+// C 100
+// D 500
+// M 1000
 
 function roman_encoder($n)
 {
     if ($n > 0 and $n < 4000) {
         $res = "";
-        $numbers = [1, 5, 10, 50, 100, 500, 1000];
-        $arr = [1 => "I", 5 => "V", 10 => "X", 50 => "L", 100 => "C", 500 => "D", 1000 => "M"];
-        if ($n < 4) {
-            $res = str_repeat("I", $n);
-        } else if ($n === 4) {
-            $res = "IV";
-        } else if (in_array($n, $numbers)) {
-            $res = $arr[$n];
-        } else {
-            $current = $n;
-            for ($i = count($numbers) - 1; $i >= 0; $i--) {
-                if ($current / $numbers[$i] > 1) {
-                    $res .= $arr[$numbers[$i]]; // DC
-                    $current = $n - $numbers[$i]; // 399
-                }
+        $arr = [1 => "I", 5 => "V", 10 => "X", 50 => "L", 100 => "C", 500 => "D", 1000 => "M"]; // 
+        $current = strval($n); // 
+        $count = strlen($current) - 1;
+        for ($i = 0; $i < strlen($current); $i++) {
+            if ($current[$i] == 1 or $current[$i] == 2 or $current[$i] == 3) {
+                $sum = $current[$i] * 10 ** $count;
+                $res .= str_repeat($arr[$sum / $current[$i]], $current[$i]);
+                $count--;
+            } else if ($current[$i] == 4) {
+                $sum = ($current[$i] + 1) * 10 ** $count;
+                $res .= $arr[$sum / 10 * 2] . $arr[$sum];
+                $count--;
+            } else if ($current[$i] == 5) {
+                $sum = $current[$i] * 10 ** $count;
+                $res .= $arr[$sum];
+                $count--;
+            } else if ($current[$i] == 6 or $current[$i] == 7 or $current[$i] == 8) {
+                $index = $current[$i] - 5; // 1, 2, 3
+                $sum = ($current[$i] - $index) * 10 ** $count;
+                $res .= $arr[$sum] . str_repeat($arr[10 ** $count], $index);
+                $count--;
+            } else if ($current[$i] == 9) {
+                $sum = ($current[$i] + 1) * 10 ** $count / 10;
+                $res .= $arr[$sum] . $arr[($current[$i] + 1) * 10 ** $count];
+                $count--;
+            } else {
+                $count--;
             }
         }
         return $res;
     }
     return "error!";
+    // $roman = "";
+    // $numerals = ["M" => 1000, "CM" => 900, "D" => 500, "CD" => 400, "C" => 100, "XC" => 90, "L" => 50, "XL" => 40, "X" => 10, "IX" => 9, "V" => 5, "IV" => 4, "I" => 1];
+    // foreach ($numerals as $numeral => $value) {
+    //     $roman .= str_repeat($numeral, floor($number / $value));
+    //     $number = $number % $value;
+    // }
+    // return $roman;
 }
-var_dump(roman_encoder(2008)); // MMVIII
-// var_dump(roman_encoder(1990)); // MCMXC
-// var_dump(roman_encoder(1666)); // MDCLXVI
-// echo PHP_EOL;
-// var_dump(1001 / 1000);
+var_dump(roman_encoder(3009)); // "MMMIX"
+echo PHP_EOL;
+
+
+
+// 34. [6-kyu] Roman Numerals Decoder
+// https://www.codewars.com/kata/51b6249c4612257ac0000005
+// Создайте функцию, которая принимает римскую цифру в качестве аргумента и возвращает ее значение в виде десятичного целого числа. Вам не нужно проверять форму римской цифры.
+// Современные римские цифры записываются путем выражения каждой десятичной цифры числа, которое должно быть закодировано, отдельно, начиная с самой левой цифры и пропуская все нули. Так, 1990 отображается как "MCMXC" (1000 = M, 900 = CM, 90 = XC), а 2008 отображается как "MMVIII" (2000 = MM, 8 = VIII). Римская цифра для 1666, "MDCLXVI", использует каждую букву в порядке убывания.
+// Example:
+// "MM"      -> 2000
+// "MDCLXVI" -> 1666
+// "M"       -> 1000
+// "CD"      ->  400
+// "XC"      ->   90
+// "XL"      ->   40
+// "I"       ->    1
+// I => 1
+// V => 5
+// X => 10
+// L => 50
+// C => 100
+// D => 500
+// M => 1000
+// $this->assertSame(1000, solution("M"));
+// $this->assertSame(50, solution("L"));
+// $this->assertSame(4, solution("IV"));
+// $this->assertSame(2017, solution("MMXVII"));
+// $this->assertSame(1337, solution("MCCCXXXVII"));
+// M 1000 CM 900 D 500 CD 400 C 100 XC 90 L 50 XL 40 X 10 IX 9 V 5 IV 4 I 1
+
+function roman_decoder($roman)
+{
+    $arr = ["I" => 1, "IV" => 4, "V" => 5, "IX" => 9, "X" => 10, "XL" => 40, "L" => 50, "XC" => 90, "C" => 100, "CD" => 400, "D" => 500, "CM" => 900, "M" => 1000];
+    $sum = 0;
+    for ($i = 0; $i < strlen($roman); $i++) {
+        if (isset($roman[$i + 1]) and $arr[$roman[$i]] < $arr[$roman[$i + 1]]) {
+            $sum -= $arr[$roman[$i]];
+        } else {
+            $sum += $arr[$roman[$i]];
+        }
+    }
+    return $sum;
+}
+var_dump(roman_decoder("MMXIV"));
+echo PHP_EOL;
+
+
+
+// 35. [6-kyu] CamelCase Method
+// https://www.codewars.com/kata/587731fda577b3d1b0001196
+// Напишите метод (или функцию, в зависимости от языка), который преобразует строку в camelCase, то есть все слова должны иметь заглавную первую букву и удалять пробелы.
+// Примеры (ввод --> вывод):
+// "hello case" --> "HelloCase"
+// "camel case word" --> "CamelCaseWord"
+// $this->assertSame("TestCase", camel_case("test case"));
+// $this->assertSame("CamelCaseMethod", camel_case("camel case method"));
+// $this->assertSame("SayHello", camel_case("say hello "));
+// $this->assertSame("CamelCaseWord", camel_case(" camel case word"));
+// $this->assertSame("", camel_case(""));
+
+function camel_case($s)
+{
+    return str_replace(' ', '', ucwords($s));
+    // return ucwords("hello happy"); // Hello Happy
+    // $res = "";
+    // for ($i = 0; $i < strlen($s); $i++) {
+    // if ($i === 0) {
+    // $s[$i] = strtoupper($s[$i]);
+    // }
+    // if ($s[$i] === " " and isset($s[$i + 1])) {
+    // $res .= "";
+    // $s[$i + 1] = strtoupper($s[$i + 1]);
+    // } else {
+    // $res .= $s[$i];
+    // }
+    // }
+    // return trim($res);
+}
+var_dump(camel_case(" camel case word"));
+echo PHP_EOL;
+
+
+
+// 36. [6-kyu] Simple Encryption #1 - Alternating Split
+// https://www.codewars.com/kata/57814d79a56c88e3e0000786/train/php
+// Реализуйте алгоритм псевдошифрования, который, имея строку S и целое число N, объединяет все нечетные символы S со всеми четными символами S, этот процесс должен быть повторен N раз.
+// Примеры:
+// encrypt("012345", 1) => "135024"
+// encrypt("012345", 2) => "135024" -> "304152"
+// encrypt("012345", 3) => "135024" -> "304152" -> "012345"
+// encrypt("01234", 1) => "13024"
+// encrypt("01234", 2) => "13024" -> "32104"
+// encrypt("01234", 3) => "13024" -> "32104" -> "20314"
+// Вместе с функцией шифрования следует также реализовать функцию дешифрования, которая обращает процесс.
+// Если строка S является пустым значением или целое число N не является положительным, вернуть первый аргумент без изменений.
+// По сути, описание говорит вам, что нужно сделать (чтобы зашифровать), — это разделить строку(и) на две группы: одна группа — это части строки в нечетном индексе, а другая группа — части строки в четном индексе. Затем просто объедините эти две группы, и у вас получится метод шифрования.
+// $this->assertSame("This is a test!", encrypt("This is a test!", 0));
+// $this->assertSame("hsi  etTi sats!", encrypt("This is a test!", 1));
+// $this->assertSame("s eT ashi tist!", encrypt("This is a test!", 2));
+// $this->assertSame(" Tah itse sits!", encrypt("This is a test!", 3));
+// $this->assertSame("This is a test!", encrypt("This is a test!", 4));
+// $this->assertSame("This is a test!", encrypt("This is a test!", -1));
+// $this->assertSame("hskt svr neetn!Ti aai eyitrsig", encrypt("This kata is very interesting!", 1));
+// $this->assertSame("This is a test!", decrypt("This is a test!", 0));
+// $this->assertSame("This is a test!", decrypt("hsi  etTi sats!", 1));
+// $this->assertSame("This is a test!", decrypt("s eT ashi tist!", 2));
+// $this->assertSame("This is a test!", decrypt(" Tah itse sits!", 3));
+// $this->assertSame("This is a test!", decrypt("This is a test!", 4));
+// $this->assertSame("This is a test!", decrypt("This is a test!", -1));
+// $this->assertSame("This kata is very interesting!", decrypt("hskt svr neetn!Ti aai eyitrsig", 1));
+
+function encrypt($text, $n)
+{
+    if ($text === null) {
+        return null;
+    }
+    for ($k = 0; $k < $n; $k++) {
+        $even = "";
+        $odd = "";
+        for ($i = 0; $i < strlen($text); $i++) {
+            if ($i % 2 !== 0) {
+                $odd .= $text[$i];
+            } else {
+                $even .= $text[$i];
+            }
+        }
+        $text = $odd . $even;
+    }
+    return $text;
+}
+var_dump(encrypt("This is a test!", 1)); // hsi  etTi sats!
+
+function decrypt($text, $n)
+{
+    if ($text === null) {
+        return null;
+    }
+    $res = "";
+    if ($n <= 0) {
+        return $text;
+    }
+    for ($k = 0; $k < $n; $k++) {
+        $res = "";
+        $one = substr($text, floor(strlen($text) / 2)); // Ti sats!
+        $two = substr($text, 0, strlen($text) / 2); // hsi  et
+        for ($i = 0; $i < strlen($text); $i++) {
+            if (isset($one[$i]) and isset($two[$i])) {
+                $res .= $one[$i] . $two[$i];
+            }
+        }
+        if (strlen($text) % 2 !== 0) {
+            $res .= $one[strlen($one) - 1];
+        }
+        $text = $res;
+    }
+    return $res;
+}
+var_dump(decrypt("This is a test!", -1));
+echo PHP_EOL;
+
+
+// 37. [6-kyu] WeIrD StRiNg CaSe
+// https://www.codewars.com/kata/52b757663a95b11b3d00062d
+// Напишите функцию, которая принимает строку и возвращает ту же строку, в которой все четные индексированные символы в каждом слове заглавные, а все нечетные индексированные символы в каждом слове строчные. Только что объясненная индексация начинается с нуля, поэтому индекс с нуля четный, поэтому этот символ должен быть заглавным, и вам нужно начинать заново для каждого слова.
+// Переданная строка будет состоять только из буквенных символов и пробелов (' '). Пробелы будут присутствовать только в том случае, если слов несколько. Слова будут разделены одним пробелом (' ').
+// Примеры:
+// "String" => "StRiNg"
+// "Weird string case" => "WeIrD StRiNg CaSe"
+
+function toWeirdCase($string)
+{
+    $arr = explode(" ", $string);
+    foreach($arr as $value => $key) {
+        
+    }
+}
+var_dump(toWeirdCase("Weird string case"));
 
 
 
@@ -1196,3 +1395,63 @@ var_dump(roman_encoder(2008)); // MMVIII
 
 
 
+
+// когда мы ищем простые числа циклом, то нет смысла перебирать числа больше корня из числа, которое мы проверяем $i <= sqrt($n)
+// ...[] - оператор spread - вытаскивает элементы из массива
+// strlen(943) = 3 - преобразует в строку автоматически
+// str_split(943) = ["9", "4", "3"] - преобразует в строку автоматически
+// перемельман - арифметика для развлечения
+// книги по математике перельман
+// грокаем алгоритмы
+// array_values($arr) возвращает индексный массив со всеми значениями массива array и сбрасывает ключи 
+
+
+
+
+
+
+// 120 минут 22 июня 2 задачи
+// 60 минут 23 июня 1 задача
+// 40 минут 27 июня  1 задача
+// 30 минут 28 июня  1 задача
+// 60 минут 29 июня 2 задачи
+// 60+37 минут 30 июня 3 задачи
+// 1 июня спал
+// 2 июня был с Настей, не занимался!
+// 60 минут 3 июня 3 задачи codewars [mathematics] + теория массивы ассоциативные 
+// 4 июня ездил со своей девушкой
+// 5 июня спал
+// 6 июня 3 задачи [mathematics] 40 минут 
+// 7 июня был у Насти в гостях и готовился 
+// 15 июля 30 минут 3 задачи codewars
+// 23 июля 60 минут 3 задачи codewars
+// 24 июля 30 минут 3 задачи codewars
+// 25 июля  3 задачи codewars и Обход массива циклами в PHP | Базовый курс PHP-7 [Андрей андриевский] 90 минут 
+// 26 июля 3 задачи codewars 30 мин 
+// 27 июля отдыхал со своей девушкой
+// 28 июля 120 мин codewars 3 задачи  Функции работы с массивами в PHP | Базовый курс PHP-7 | Базовый курс PHP-7 [Андрей андриевский], Объявление и вызов функции в PHP | Базовый курс PHP-7, Объявление и вызов функции в PHP | Базовый курс PHP-7
+// 29 июля 2 задачи codewars 60 мин 
+// 30 июля 2 задачи codewars 120 мин 
+// 31 июля был с Настей, не занимался! 
+// 01 августа занимался 30 мин codewars 1 задача 
+// 02 августа был с Настей, не занимался! 
+// 03 августа занимался 120 мин codewars 6 задач
+// 04 августа занимался 120 мин codewars 4 задачи
+// 05 августа занимался 60 мин codewars 6 задач
+// 06 августа ничего не делал
+// 07 августа ничего не делал, хотел спать и отдыхал с Настей
+// 09 августа 2 задачи 7-kyu и 3 задачи 6-kyu 60 мин
+// 10 августа 8 задач 6-kyu и 1 задача 5-kyu codewars за 2.5 часа
+// 11 августа 4 задачи codewars 6-kyu 30 минут
+// 12 августа 3 задачи codewars 6-kyu, Работа с параметрами функций в PHP | Базовый курс PHP-7 120 минут 
+// 13 загонялся, общался с Настей 
+// 14 августа 3 задачи codewars 6-kyu 30 минут
+// 15 августа 3 задачи codewars 6-kyu 120 минут
+// 16 августа 2 задачи codewars 6-kyu 120 минут
+// 17 августа 1 задачa codewars 6-kyu 2.5 часа
+// 18 августа 2 задачи codewars 6-kyu 120 минут
+// 21 августа 1 задачa codewars 6-kyu 30 минут
+// 26 августа 1 задачa codewars 6-kyu 180 минут
+// 27 августа 1 задачa codewars 6-kyu 20 минут Глобальные и статические переменные в PHP | Базовый курс PHP-7
+// 28 августа 1 задача codewars 5 мин
+// 29 августа 1 задача codewars 40 мин
