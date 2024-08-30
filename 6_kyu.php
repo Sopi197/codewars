@@ -1439,10 +1439,20 @@ function factorial($n)
     if ($n <= 1) {
         return 1;
     }
-    $n = $n * factorial($n - 1);
+    $n = $n * factorial($n - 1); // 5*4*3*2
     return $n;
 }
 var_dump(factorial(5)); // 5*4*3*2 = 120
+
+function factorial_loop($n)
+{
+    $res = 1;
+    for ($i = 1; $i <= $n; $i++) {
+        $res *= $i;
+    }
+    return $res;
+}
+var_dump(factorial_loop(5)); // 120
 
 /* 
 ПРАКТИКА:
