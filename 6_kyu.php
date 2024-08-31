@@ -1387,10 +1387,23 @@ echo PHP_EOL;
 
 function toWeirdCase($string)
 {
-    $arr = explode(" ", $string);
-    foreach($arr as $value => $key) {
-        
+    $str = str_split(strtolower($string));
+    for ($i = 0; $i < count($str); $i++) {
+        if ($str[$i] != " ") {
+            $str[$i] = strtoupper($str[$i]);
+            $i = $i + 1;
+        }
     }
+    return implode("", $str);
+    // $arr = explode(" ", strtolower($string));
+    // for ($i = 0; $i < count($arr); $i++) {
+    //     for ($k = 0; $k < strlen($arr[$i]); $k++) {
+    //         if ($k % 2 === 0) {
+    //             $arr[$i][$k] = strtoupper($arr[$i][$k]);
+    //         }
+    //     }
+    // }
+    // return implode(" ", $arr);
 }
 var_dump(toWeirdCase("Weird string case"));
 
@@ -1467,4 +1480,5 @@ var_dump(factorial_loop(5)); // 120
 Напишите рекурсивную функцию обхода этого массива с выводом его элементов
 */
 
+// 30 теория по рекурсии 30 мин и 10 мин 1 задача codewars
 
