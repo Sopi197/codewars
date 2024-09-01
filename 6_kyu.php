@@ -1563,6 +1563,8 @@ function rec_sol($arr)
 var_dump(rec_sol([1, [2, 7, 8], [3, 4, [5, [6, 7]]]]));
 
 
+
+// Васильев А.Н. Программирование на PHP в примерах и задачах 2021
 // https://metanit.com/php/ - хороший учебник
 // https://code.mu/ru/php/book/prime/ - хороший продвинутый учебник
 
