@@ -1608,6 +1608,9 @@ var_dump(rec_sol([1, [2, 7, 8], [3, 4, [5, [6, 7]]]]));
 // 30.08 - теория по рекурсии 30 мин и 10 мин 1 задача codewars
 // 31.08 - 10 мин 1 задача codewars и 20 мин решение 2х задач на рекурсию  
 // 01.08 - 10 мин 1 задача codewars 
+https://www.avito.ru/moskva/telefony/xiaomi_redmi_12_8256_gb_4346632796
+https://www.avito.ru/moskva/telefony/xiaomi_redmi_12_8256_gb_4003715243
+https://www.avito.ru/moskva/telefony/xiaomi_redmi_note_12_8256_gb_4054053791
 
 // Настя делает мне массаж 30 мин
 // Настя громко делает что-то
