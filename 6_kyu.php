@@ -9,11 +9,6 @@ echo "\n\n========================================= 6-[kyu] ====================
 // https://www.codewars.com/kata/583203e6eb35d7980400002a
 
 
-// Github
-// ivan_babienko@mail.ru
-// Sopi197
-// Yamaha684684
-
 // 1. [6-kyu], [strings]. Stop gninnipS My sdroW!
 // https://www.codewars.com/kata/5264d2b162488dc400000001/solutions/php
 // Stop gninnipS My sdroW!
@@ -1377,10 +1372,8 @@ var_dump(decrypt("This is a test!", -1));
 echo PHP_EOL;
 
 
-<?php
-
 // 37. [6-kyu] WeIrD StRiNg CaSe
-// https://www.codewars.com/kata/52b757663a95b11b3d00062d/train/php
+// https://www.codewars.com/kata/52b757663a95b11b3d00062d
 // Напишите функцию, которая принимает строку и возвращает ту же строку, в которой все четные индексированные символы в каждом слове заглавные, а все нечетные индексированные символы в каждом слове строчные. Только что объясненная индексация начинается с нуля, поэтому индекс с нуля четный, поэтому этот символ должен быть заглавным, и вам нужно начинать заново для каждого слова.
 // Переданная строка будет состоять только из буквенных символов и пробелов (' '). Пробелы будут присутствовать только в том случае, если слов несколько. Слова будут разделены одним пробелом (' ').
 // Примеры:
@@ -1389,26 +1382,14 @@ echo PHP_EOL;
 
 function toWeirdCase($string)
 {
-    $str = str_split(strtolower($string));
-    for ($i = 0; $i < count($str); $i++) {
-        if ($str[$i] != " ") {
-            $str[$i] = strtoupper($str[$i]);
-            $i = $i + 1;
-        }
+    $arr = explode(" ", $string);
+    foreach ($arr as $value => $key) {
+
     }
-    return implode("", $str);
-    // $arr = explode(" ", strtolower($string));
-    // for ($i = 0; $i < count($arr); $i++) {
-    //     for ($k = 0; $k < strlen($arr[$i]); $k++) {
-    //         if ($k % 2 === 0) {
-    //             $arr[$i][$k] = strtoupper($arr[$i][$k]);
-    //         }
-    //     }
-    // }
-    // return implode(" ", $arr);
 }
 var_dump(toWeirdCase("Weird string case"));
 echo PHP_EOL;
+
 
 
 // 38. [6-kyu] IP Validation
@@ -1484,7 +1465,48 @@ echo PHP_EOL;
 
 
 
-// 40. [6-kyu] Help the bookseller !
+// 40. [6-kyu] Sums of Parts
+// https://www.codewars.com/kata/5ce399e0047a45001c853c2b
+// Рассмотрим этот пример (массив, записанный в общем формате):
+// ls = [0, 1, 3, 6, 10]
+// Его следующие части:
+// ls = [0, 1, 3, 6, 10]
+// ls = [1, 3, 6, 10]
+// ls = [3, 6, 10]
+// ls = [6, 10]
+// ls = [10]
+// ls = []
+// Соответствующие суммы (объединенные в список): [20, 20, 19, 16, 10, 0]
+// Функция parts_sums (или ее варианты на других языках) будет принимать в качестве параметра список ls и возвращать список сумм его частей, как определено выше.
+// Другие примеры:
+// ls = [1, 2, 3, 4, 5, 6]
+// parts_sums(ls) -> [21, 20, 18, 15, 11, 6, 0]
+// ls = [744125, 935, 407, 454, 430, 90, 144, 6710213, 889, 810, 2579358]
+// parts_sums(ls) -> [10037855, 9293730, 9292795, 9292388, 9291934, 9291504, 9291414, 9291270, 2581057, 2580168, 2579358, 0]
+// Обратите внимание на производительность: в некоторых списках тысячи элементов.
+
+function parts_sums($list)
+{
+    $arr[] = $sum = array_sum($list); // первый элемент добавляется на этом этапе
+    $count_list = sizeof($list);
+    for ($i = 0; $i < $count_list; $i++) {
+        $sum = $sum - $list[$i];
+        $arr[] = $sum;
+    }
+    return $arr;
+    // быстрее чем
+    // $count_list = sizeof($list);
+    // for ($i = 0; $i <= $count_list; $i++) {
+    //     $arr[] = array_sum(array_slice($list, $i));
+    // }
+    // return $arr;
+}
+var_dump(parts_sums([0, 1, 3, 6, 10])); // 20 19 16 10 0
+echo PHP_EOL;
+
+
+
+// 41. [6-kyu] Help the bookseller !
 // https://www.codewars.com/kata/54dc6f5a224c26032800005c/train/php
 // У продавца книг есть много книг, классифицированных по 26 категориям, обозначенным как A, B, ... Z. Каждая книга имеет код c из 3, 4, 5 или более символов. Первый символ кода — заглавная буква, которая определяет категорию книги.
 // В списке товаров продавца книг за каждым кодом c следует пробел и положительное целое число n (int n >= 0), которое указывает количество книг с этим кодом на складе.
@@ -1540,8 +1562,6 @@ function solution($listArt, $listCat)
 }
 var_dump(solution(["BBAR 150", "CDXE 515", "BKWR 250", "BTSQ 890", "DRTY 600"], ["A", "B", "C", "D"]));
 // (A : 0) - (B : 1290) - (C : 515) - (D : 600)
-
-
 
 
 
