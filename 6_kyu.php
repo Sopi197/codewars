@@ -1583,25 +1583,35 @@ echo PHP_EOL;
 
 function findMissing($list)
 {
-    $arr = [];
     $count_list = sizeof($list);
-    for ($i = 0; $i < $count_list - 1; $i++) {
-        $arr[] = $list[$i + 1] - $list[$i];
-    }
-    sort($arr);
-    if ($arr[0] !== $arr[1]) {
-        $flag = $arr[1];
-    } else {
-        $flag = $arr[0]; // 2
-    }
-    for ($i = 0; $i < $count_list - 1; $i++) {
-        if ($list[$i + 1] - $list[$i] !== $flag) { // !== 2
-            return $list[$i] + $flag;
-        } else if ($count_list < 4) {
-            return $list[$i] + $arr[0];
+    for ($i = 0; $i < $count_list - 2; $i++) {
+        if ($list[$i + 1] - $list[$i] < $list[$i + 2] - $list[$i + 1]) {
+            return $list[$i + 1] + ($list[$i + 1] - $list[$i]);
+        } else if ($list[$i + 1] - $list[$i] > $list[$i + 2] - $list[$i + 1]) {
+            return $list[$i] + ($list[$i + 2] - $list[$i + 1]);
         }
     }
     return $list[0];
+    
+    // $arr = [];
+    // $count_list = sizeof($list);
+    // for ($i = 0; $i < $count_list - 1; $i++) {
+    //     $arr[] = $list[$i + 1] - $list[$i];
+    // }
+    // sort($arr);
+    // if ($arr[0] !== $arr[1]) {
+    //     $flag = $arr[1];
+    // } else {
+    //     $flag = $arr[0]; // 2
+    // }
+    // for ($i = 0; $i < $count_list - 1; $i++) {
+    //     if ($list[$i + 1] - $list[$i] !== $flag) { // !== 2
+    //         return $list[$i] + $flag;
+    //     } else if ($count_list < 4) {
+    //         return $list[$i] + $arr[0];
+    //     }
+    // }
+    // return $list[0];
 }
 var_dump(findMissing([0, 2, 3]));
 var_dump(findMissing([0, 1, 3]));
