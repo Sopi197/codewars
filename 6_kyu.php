@@ -8,6 +8,10 @@ echo "\n\n========================================= 6-[kyu] ====================
 // https://www.codewars.com/kata/5277c8a221e209d3f6000b56
 // https://www.codewars.com/kata/583203e6eb35d7980400002a
 
+// Интересные и непростые задачи, которые пока что не решил
+// https://www.codewars.com/kata/568fca718404ad457c000033
+
+
 
 // 1. [6-kyu], [strings]. Stop gninnipS My sdroW!
 // https://www.codewars.com/kata/5264d2b162488dc400000001/solutions/php
@@ -1562,6 +1566,55 @@ function solution($listArt, $listCat)
 }
 var_dump(solution(["BBAR 150", "CDXE 515", "BKWR 250", "BTSQ 890", "DRTY 600"], ["A", "B", "C", "D"]));
 // (A : 0) - (B : 1290) - (C : 515) - (D : 600)
+echo PHP_EOL;
+
+
+
+// 42. [6-kyu] Reverse or rotate? Find the missing term in an Arithmetic Progression
+// https://www.codewars.com/kata/52de553ebb55d1fca3000371
+// Арифметическая прогрессия определяется как прогрессия, в которой существует постоянная разница между последовательными членами заданного ряда чисел. Вам предоставляются последовательные элементы арифметической прогрессии. Однако есть одна загвоздка: ровно один член из исходного ряда отсутствует в наборе чисел, которые вам даны. Остальная часть заданного ряда совпадает с исходным AP. Найдите отсутствующий член.
+// Вам нужно написать функцию, которая получает список, размер списка всегда будет составлять не менее 3 чисел. Отсутствующий член никогда не будет первым или последним.
+// P.S. Это пример вопроса из задания инженера Facebook на interviewstreet.
+// Пример
+// findMissing([1, 3, 5, 9, 11]) == 7
+// $this->assertSame(4, findMissing([1, 2, 3, 5]));
+// $this->assertSame(7, findMissing([1, 3, 5, 9, 11]));
+// $this->assertSame(400, findMissing([100, 200, 300, 500]));
+
+function findMissing($list)
+{
+    $arr = [];
+    $count_list = sizeof($list);
+    for ($i = 0; $i < $count_list - 1; $i++) {
+        $arr[] = $list[$i + 1] - $list[$i];
+    }
+    sort($arr);
+    if ($arr[0] !== $arr[1]) {
+        $flag = $arr[1];
+    } else {
+        $flag = $arr[0]; // 2
+    }
+    for ($i = 0; $i < $count_list - 1; $i++) {
+        if ($list[$i + 1] - $list[$i] !== $flag) { // !== 2
+            return $list[$i] + $flag;
+        } else if ($count_list < 4) {
+            return $list[$i] + $arr[0];
+        }
+    }
+    return $list[0];
+    //  and ($list[1] - $list[0] > $list[2] - $list[1])
+}
+// var_dump(findMissing([0, 2, 3]));
+// var_dump(findMissing([0, 1, 3]));
+// var_dump(findMissing([1, 2, 3, 5]));
+// var_dump(findMissing([100, 200, 300, 500]));
+// [1, 1, 1, 2, 1] => [1, 1, 1, 1, 2]
+
+
+
+
+
+
 
 
 
