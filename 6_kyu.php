@@ -1619,43 +1619,30 @@ var_dump(findMissing([1, 2, 3, 5]));
 echo PHP_EOL;
 
 
-// 43. [6-kyu] продолжить арифметическую прогрессию
-// Вам дан массив чисел с арифметической прогрессией, продолжите его на 5 элементов
-// Пример:
-// [1, 5, 9, 13] => [1, 5, 9, 13, 17, 21, 25, 29, 33]
+// 43. Encrypt this!
+// https://www.codewars.com/kata/5848565e273af816fb000449/train/php
+// Ваше сообщение представляет собой строку, содержащую слова, разделенные пробелами.
+// Вам нужно зашифровать каждое слово в сообщении, используя следующие правила:
+// Первая буква должна быть преобразована в ее код ASCII.
+// Вторая буква должна быть заменена последней буквой
+// Проще говоря: во входных данных нет специальных символов.
+// Примеры:
+// encryptThis("Hello") === "72olle"
+// encryptThis("good") === "103doo"
+// encryptThis("hello world") === "104olle 119drlo"
+// $this->assertSame("65", encryptThis("A"));
+// $this->assertSame("65 119esi 111dl 111lw 108dvei 105n 97n 111ka", encryptThis("A wise old owl lived in an oak"));
+// $this->assertSame("84eh 109ero 104e 115wa 116eh 108sse 104e 115eokp", encryptThis("The more he saw the less he spoke"));
+// $this->assertSame("84eh 108sse 104e 115eokp 116eh 109ero 104e 104dare", encryptThis("The less he spoke the more he heard"));
+// $this->assertSame("87yh 99na 119e 110to 97ll 98e 108eki 116tah 119esi 111dl 98dri", encryptThis("Why can we not all be like that wise old bird"));
+// $this->assertSame("84kanh 121uo 80roti 102ro 97ll 121ruo 104ple", encryptThis("Thank you Piotr for all your help"));
+
+function encryptThis($text)
+{
+    // return ord($text[0]); // 104
+    return explode(" ", $text);
+}
+var_dump(encryptThis("hello world")); // "104olle 119drlo"
 
 
 
-<?php
-
-
-// Функции для работы с символами в PHP | Базовый курс PHP-7
-
-$str = "function is a great instrument for solution kata in PHP";
-$res = substr($str, strpos($str, "sol")); // solution kata in PHP
-var_dump($res);
-
-$str_new = str_replace("PHP", "Java", $str); // "function is a great instrument for solution kata in Java"
-var_dump($str_new);
-
-$ex = "   hello     word     
-";
-var_dump(trim($ex)); // "hello     word" - используется для форм
-echo PHP_EOL;
-
-
-// Работа с НТМL-кодом в PHP | Базовый курс PHP-7
-
-// работает в браузере как html
-$str_html = "<p>Строка, которая <strong>содержит</strong> теги</p>";
-echo $str_html;
-
-?>
-// php работает html
-<h2><?php echo $str_html; ?></h2>;
-
-<?php
-
-
-// 06.09 - 60 мин Функции для работы с символами в PHP | Базовый курс PHP-7 и Работа с НТМL-кодом в PHP | Базовый курс PHP-7 
-Посмотреть ещё раз видео про работу с формами
