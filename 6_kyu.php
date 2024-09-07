@@ -8,6 +8,7 @@ echo "\n\n========================================= 6-[kyu] ====================
 // https://www.codewars.com/kata/5277c8a221e209d3f6000b56
 // https://www.codewars.com/kata/583203e6eb35d7980400002a
 
+
 // Интересные и непростые задачи, которые пока что не решил
 // https://www.codewars.com/kata/568fca718404ad457c000033
 
@@ -1637,35 +1638,56 @@ echo PHP_EOL;
 // $this->assertSame("87yh 99na 119e 110to 97ll 98e 108eki 116tah 119esi 111dl 98dri", encryptThis("Why can we not all be like that wise old bird"));
 // $this->assertSame("84kanh 121uo 80roti 102ro 97ll 121ruo 104ple", encryptThis("Thank you Piotr for all your help"));
 
-unction encryptThis($text)
+function encryptThis($text)
 {
     // Первая буква должна быть преобразована в ее код ASCII.
     // Вторая буква должна быть заменена последней буквой
+    $res = "";
     $arr = explode(" ", $text);
-    $arr_count = sizeof($arr);
-    $arr_ord = [];
-    for ($i = 0; $i < $arr_count; $i++) {
-        $arr_ord[] = ord($arr[$i][0]);
-        if (strlen($arr[$i]) > 3) {
-            $arr[$i] = $arr_ord[$i] . $arr[$i][strlen($arr[$i]) - 1] . substr($arr[$i], 2, strlen($arr[$i]) - 3) . $arr[$i][1];
-        } else if (strlen($arr[$i]) === 3) {
-            $arr[$i] = $arr_ord[$i] . $arr[$i][strlen($arr[$i]) - 1] . $arr[$i][1];
-        } else {
-            if (isset($arr[$i][1])) {
-                $arr[$i] = $arr_ord[$i] . $arr[$i][1];
-            } else {
-                $arr[$i] = $arr_ord[$i];
-            }
+    $count_arr = sizeof($arr);
+    for ($i = 0; $i < $count_arr; $i++) {
+        if (strlen($arr[$i]) > 2) {
+            [$arr[$i][1], $arr[$i][-1]] = [$arr[$i][-1], $arr[$i][1]];
         }
+        $res .= ord($arr[$i][0]) . substr($arr[$i], 1) . " ";
     }
-    return implode(" ", $arr);
+    return trim($res);
+
+    // $arr = explode(" ", $text);
+    // $arr_count = sizeof($arr);
+    // $arr_ord = [];
+    // for ($i = 0; $i < $arr_count; $i++) {
+    //     $arr_ord[] = ord($arr[$i][0]);
+    //     if (strlen($arr[$i]) > 3) {
+    //         $arr[$i] = $arr_ord[$i] . $arr[$i][-1] . substr($arr[$i], 2, strlen($arr[$i]) - 3) . $arr[$i][1];
+    //     } else if (strlen($arr[$i]) === 3) {
+    //         $arr[$i] = $arr_ord[$i] . $arr[$i][-1] . $arr[$i][1];
+    //     } else {
+    //         if (isset($arr[$i][1])) {
+    //             $arr[$i] = $arr_ord[$i] . $arr[$i][1];
+    //         } else {
+    //             $arr[$i] = $arr_ord[$i];
+    //         }
+    //     }
+    // }
+    // return implode(" ", $arr);
+
+    // $r = '';
+    // foreach (explode(' ', $text) as $w) {
+    //     if (strlen($w) > 2) {
+    //         [$w[1], $w[-1]] = [$w[-1], $w[1]];
+    //     }
+    //     $r .= ' ' . ord($w) . substr($w, 1);
+    // }
+    // return trim($r);
 }
-var_dump(encryptThis("ABd")); // "65dB"
-// var_dump(encryptThis("A")); // "65dB"
-// var_dump(encryptThis("hello world")); // "104olle 119drlo"
+var_dump(encryptThis("AB")); // "65dB"
+var_dump(encryptThis("good")); // "103doo" 
+var_dump(encryptThis("A")); // "65"
+var_dump(encryptThis("hello world")); // "104olle 119drlo"
 // var_dump(encryptThis("ABdE")); // "65EdB"
-// var_dump(encryptThis("good")); // "103doo" 
 // var_dump(encryptThis("Hello")); // "72olle"
 
 
+// 07
 
