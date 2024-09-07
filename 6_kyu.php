@@ -1689,5 +1689,7 @@ var_dump(encryptThis("hello world")); // "104olle 119drlo"
 // var_dump(encryptThis("Hello")); // "72olle"
 
 
-// 07
+
+// 06.09 - + 60 мин Функции для работы с символами в PHP | Базовый курс PHP-7 и Работа с НТМL-кодом в PHP | Базовый курс PHP-7 
+// 07.09 - 60 мин 1 задача codewars
 
