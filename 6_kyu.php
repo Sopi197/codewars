@@ -1647,6 +1647,7 @@ function encryptThis($text)
     $count_arr = sizeof($arr);
     for ($i = 0; $i < $count_arr; $i++) {
         if (strlen($arr[$i]) > 2) {
+            // смена символов строки местами
             [$arr[$i][1], $arr[$i][-1]] = [$arr[$i][-1], $arr[$i][1]];
         }
         $res .= ord($arr[$i][0]) . substr($arr[$i], 1) . " ";
@@ -1671,15 +1672,6 @@ function encryptThis($text)
     //     }
     // }
     // return implode(" ", $arr);
-
-    // $r = '';
-    // foreach (explode(' ', $text) as $w) {
-    //     if (strlen($w) > 2) {
-    //         [$w[1], $w[-1]] = [$w[-1], $w[1]];
-    //     }
-    //     $r .= ' ' . ord($w) . substr($w, 1);
-    // }
-    // return trim($r);
 }
 var_dump(encryptThis("AB")); // "65dB"
 var_dump(encryptThis("good")); // "103doo" 
@@ -1687,6 +1679,9 @@ var_dump(encryptThis("A")); // "65"
 var_dump(encryptThis("hello world")); // "104olle 119drlo"
 // var_dump(encryptThis("ABdE")); // "65EdB"
 // var_dump(encryptThis("Hello")); // "72olle"
+
+
+
 
 
 
