@@ -1637,12 +1637,35 @@ echo PHP_EOL;
 // $this->assertSame("87yh 99na 119e 110to 97ll 98e 108eki 116tah 119esi 111dl 98dri", encryptThis("Why can we not all be like that wise old bird"));
 // $this->assertSame("84kanh 121uo 80roti 102ro 97ll 121ruo 104ple", encryptThis("Thank you Piotr for all your help"));
 
-function encryptThis($text)
+unction encryptThis($text)
 {
-    // return ord($text[0]); // 104
-    return explode(" ", $text);
+    // Первая буква должна быть преобразована в ее код ASCII.
+    // Вторая буква должна быть заменена последней буквой
+    $arr = explode(" ", $text);
+    $arr_count = sizeof($arr);
+    $arr_ord = [];
+    for ($i = 0; $i < $arr_count; $i++) {
+        $arr_ord[] = ord($arr[$i][0]);
+        if (strlen($arr[$i]) > 3) {
+            $arr[$i] = $arr_ord[$i] . $arr[$i][strlen($arr[$i]) - 1] . substr($arr[$i], 2, strlen($arr[$i]) - 3) . $arr[$i][1];
+        } else if (strlen($arr[$i]) === 3) {
+            $arr[$i] = $arr_ord[$i] . $arr[$i][strlen($arr[$i]) - 1] . $arr[$i][1];
+        } else {
+            if (isset($arr[$i][1])) {
+                $arr[$i] = $arr_ord[$i] . $arr[$i][1];
+            } else {
+                $arr[$i] = $arr_ord[$i];
+            }
+        }
+    }
+    return implode(" ", $arr);
 }
-var_dump(encryptThis("hello world")); // "104olle 119drlo"
+var_dump(encryptThis("ABd")); // "65dB"
+// var_dump(encryptThis("A")); // "65dB"
+// var_dump(encryptThis("hello world")); // "104olle 119drlo"
+// var_dump(encryptThis("ABdE")); // "65EdB"
+// var_dump(encryptThis("good")); // "103doo" 
+// var_dump(encryptThis("Hello")); // "72olle"
 
 
 
