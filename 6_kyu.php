@@ -1928,6 +1928,60 @@ function sol($n)
 var_dump(sol(1));
 
 
+// Length of missing array
+// https://www.codewars.com/kata/57b6f5aadb5b3d0ae3000611
+// Вы получаете массив массивов.
+// Если вы отсортируете массивы по их длине, вы увидите, что их значения длины являются последовательными.
+// Но один массив отсутствует!
+// Вы должны написать метод, который возвращает длину отсутствующего массива.
+// Пример:
+// [[1, 2], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]] --> 3
+// Если массив массивов равен null/nil или пуст, метод должен вернуть 0.
+// Когда массив в массиве равен null или пуст, метод также должен вернуть 0!
+// Всегда будет отсутствующий элемент, и его длина всегда будет между заданными массивами.
+// $this->assertSame(3, getLengthOfMissingArray([[1, 2], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]]));
+// $this->assertSame(2, getLengthOfMissingArray([[5, 2, 9], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]]));
+// $this->assertSame(2, getLengthOfMissingArray([[null], [null, null, null]]));
+// $this->assertSame(5, getLengthOfMissingArray([['a', 'a', 'a'], ['a', 'a'], ['a', 'a', 'a', 'a'], ['a'], ['a', 'a', 'a', 'a', 'a', 'a']]));
+// $this->assertSame(0, getLengthOfMissingArray([]));
+
+function getLengthOfMissingArray($arrayOfArrays)
+{
+    if(is_array($arrayOfArrays)) {
+        $count_arrayOfArrays = sizeof($arrayOfArrays);
+    } else {
+        return 0;
+    }
+    if(!$count_arrayOfArrays) {
+        return 0;
+    }
+    $arr = [];
+    for($i = 0; $i < $count_arrayOfArrays; $i++) {
+        if(is_array($arrayOfArrays[$i]) and sizeof($arrayOfArrays[$i])) {
+            $arr[] = sizeof($arrayOfArrays[$i]);
+        } else {
+            return 0;
+        }
+    }
+    sort($arr);
+    $range = range($arr[0], $arr[sizeof($arr) - 1]);
+    return current(array_diff($range, $arr));
+}
+var_dump(getLengthOfMissingArray([[10, 11], [16, 10, 32, 45, 7, 29, 26], [], [38, 34, 20, 23, 7, 49, 19, 9], [8, 50, 40, 16, 21], [37, 31, 21, 4], [34], [19, 13, 0, 23, 23, 27, 24, 13, 49], [6, 8, 41, 40, 27, 3]]));
+
+// Pair of gloves
+// https://www.codewars.com/kata/58235a167a8cb37e1a0000db
+// Зима уже близко, вам нужно подготовиться к лыжным каникулам. Цель этого ката — определить количество пар перчаток, которые вы можете составить из перчаток, имеющихся в вашем ящике.
+// Имея массив, описывающий цвет каждой перчатки, верните количество пар, которые вы можете составить, предполагая, что только перчатки одного цвета могут образовывать пары.
+input = ["red", "green", "red", "blue", "blue"]
+result = 2 (1 red pair + 1 blue pair)
+input = ["red", "red", "red", "red", "red", "red"]
+result = 3 (3 red pairs)
+
+// 20.09.2024 - 30 мин 1 задача codewars
+// 21.09.2024 - 
+
+
 
 
 
