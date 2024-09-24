@@ -1978,8 +1978,6 @@ result = 2 (1 red pair + 1 blue pair)
 input = ["red", "red", "red", "red", "red", "red"]
 result = 3 (3 red pairs)
 
-// 20.09.2024 - 30 мин 1 задача codewars
-// 21.09.2024 - 
 
 
 
