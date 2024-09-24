@@ -11,7 +11,9 @@ echo "\n\n========================================= 6-[kyu] ====================
 // Интересные и непростые задачи, которые пока что не решил (#не решена)
 // https://www.codewars.com/kata/59df2f8f08c6cec835000012  
 // https://www.codewars.com/kata/568fca718404ad457c000033
-// 
+// https://www.codewars.com/kata/55b3425df71c1201a800009c/train/php
+// https://www.codewars.com/kata/586d6cefbcc21eed7a001155/train/php
+
 
 
 // 1. [6-kyu], [strings]. Stop gninnipS My sdroW!
@@ -1900,6 +1902,7 @@ var_dump(Xbonacci([1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 9));
 echo PHP_EOL;
 
 
+
 // 49. Fibonacci, Tribonacci and friends
 // https://www.codewars.com/kata/58223370aef9fc03fd000071/train/php
 // Дано целое число, вернуть строку с дефисами '-' до и после каждой нечетной цифры, но не начинать и не заканчивать строку дефисом.
@@ -1912,9 +1915,9 @@ function sol($n)
     $str = strval($n);
     $strlen = strlen($str);
     $res = "";
-    for($i = 0; $i < $strlen; $i++) {
-        if(intval($str[$i]) % 2 !== 0) {
-            if(isset($str[$i + 1]) and intval($str[$i + 1]) % 2 === 0) {
+    for ($i = 0; $i < $strlen; $i++) {
+        if (intval($str[$i]) % 2 !== 0) {
+            if (isset($str[$i + 1]) and intval($str[$i + 1]) % 2 === 0) {
                 $res .= "-" . $str[$i] . "-";
             } else {
                 $res .= "-" . $str[$i];
@@ -1926,9 +1929,147 @@ function sol($n)
     return trim($res, "-");
 }
 var_dump(sol(1));
+echo PHP_EOL;
 
 
-// Length of missing array
+
+// 50. Reverse every other word in the string
+// https://www.codewars.com/kata/58d76854024c72c3e20000de/train/php
+// Переверните каждое второе слово в данной строке, затем верните строку. Удалите все начальные и конечные пробелы, при этом убедитесь, что между каждым словом есть ровно один пробел. Знаки препинания следует рассматривать так, как будто они являются частью слова в этой ката.
+// $this->assertSame("Did ti work?", reverse("Did it work?"));
+// $this->assertSame("I yllaer hope ti works siht time...", reverse("I really hope it works this time..."));
+// $this->assertSame("Reverse siht string, !esaelp", reverse("Reverse this string, please!"));
+// $this->assertSame("", reverse("   "));
+
+function reverse($str)
+{
+    $arr = explode(" ", trim($str));
+    $count = sizeof($arr);
+    for ($i = 1; $i < $count; $i = $i + 2) {
+        $arr[$i] = strrev($arr[$i]); // меняем каждый второй элемент на перевёрнутый элемент 
+    }
+    return implode(" ", $arr);
+}
+var_dump(reverse("I really hope it works this time..."));
+var_dump(reverse("   "));
+echo PHP_EOL;
+
+
+
+// 51. Kebabize
+// https://www.codewars.com/kata/57f8ff867a28db569e000c4a
+// Измените функцию kebabize так, чтобы она преобразовывала строку в camel case в kebab case.
+// "camelsHaveThreeHumps" --> "camels-have-three-humps"
+// "camelsHave3Humps" --> "camels-have-humps"
+// "CAMEL" --> "c-a-m-e-l"
+// возвращаемая строка должна содержать только строчные буквы
+// $this->assertSame('my-camel-cased-string', kebabize('myCamelCasedString'));
+// $this->assertSame('my-camel-has-humps', kebabize('myCamelHas3Humps'));
+
+function kebabize($string)
+{
+    $res = "";
+    $strlen = strlen($string);
+    for ($i = 0; $i < $strlen; $i++) {
+        if (!is_numeric($string[$i])) {
+            if ($string[$i] === strtoupper($string[$i])) {
+                $res .= "-" . strtolower($string[$i]);
+            } else {
+                $res .= $string[$i];
+            }
+        }
+    }
+    return trim($res, "-");
+}
+var_dump(kebabize("camelsHave3ThreeHumps"));
+echo PHP_EOL;
+
+
+
+// 52. Character with longest consecutive repetition - не решена до конца!!!
+// https://www.codewars.com/kata/586d6cefbcc21eed7a001155/train/php
+// Для заданной строки s найти символ "c" (или "C") с самым длинным последовательным повторением и вернуть:
+// [$c, $l]
+// где l (или L) — длина повторения. Если есть два или более символов с одинаковым l, вернуть первый в порядке появления.
+// Для пустой строки вернуть:
+// ["", 0]
+// $this->dotest("aaaabb", ["a",4]);
+// $this->dotest("bbbaaabaaaa", ["a",4]);
+// $this->dotest("cbdeuuu900", ["u",3]);
+// $this->dotest("abbbbb", ["b",5]);
+// $this->dotest("aabb", ["a",2]);
+// $this->dotest("", ["",0]);
+// $this->dotest("abcdefg", ["a",1]);
+// $this->dotest("ba", ["b",1]);
+
+function longestRepetition($s)
+{
+    $maxChar = '';
+    $maxLen = 0;
+    $currChar = '';
+    $currLen = 0;
+    for ($i = 0; $i < strlen($s); $i++) { // bbbaaabaaaa
+        if ($s[$i] === $currChar) {
+            $currLen++;
+        } else {
+            if ($currLen > $maxLen) {
+                $maxLen = $currLen;
+                $maxChar = $currChar;
+            }
+            $currChar = $s[$i];
+            $currLen = 1;
+        }
+    }
+    if ($currLen > $maxLen) {
+        $maxLen = $currLen;
+        $maxChar = $currChar;
+    }
+    return [$maxChar, $maxLen];
+
+    // $unique = array_values(array_unique(str_split($s)));
+    // $strlen = strlen($s);
+    // $count_unique = count($unique);
+    // $count_copy = 0;
+    // $keys = [];
+    // $values = [];
+    // for ($i = 0; $i < $count_unique; $i++) {
+    //     for ($k = 0; $k < $strlen; $k++) {
+    //         if ($unique[$i] == $s[$k]) {
+    //             $count_copy++;
+    //         } else { // aeeeeeeee5555533akyyyxxxxsssdaeee6m
+    //             if ($count_copy != 0) {
+    //                 $keys[] = $unique[$i];
+    //                 $values[] = $count_copy;
+    //                 $count_copy = 0;
+    //             }
+    //         }
+    //         if ($k === $strlen - 1 and $count_copy != 0) {
+    //             $keys[] = $unique[$i];
+    //             $values[] = $count_copy;
+    //         }
+    //     }
+    // }
+    // if (empty(trim($s))) {
+    //     return ["", 0];
+    // }
+    // if (count(array_unique($values)) === 1) {
+    //     return [$s[0], substr_count($s, $s[0])];
+    // }
+    // $max = max($values); // [2, 2] => 2
+    // $count_values = count($values);
+    // $index_max = 0;
+    // for ($i = 0; $i < $count_values; $i++) {
+    //     if ($max === $values[$i]) {
+    //         $index_max = $i;
+    //     }
+    // }
+    // return [$keys[$index_max], $max];
+}
+var_dump(longestRepetition("bbbaaabaaaa")); // ["e",8]
+echo PHP_EOL;
+
+
+// 53. Length of missing array
 // https://www.codewars.com/kata/57b6f5aadb5b3d0ae3000611
 // Вы получаете массив массивов.
 // Если вы отсортируете массивы по их длине, вы увидите, что их значения длины являются последовательными.
@@ -1947,17 +2088,17 @@ var_dump(sol(1));
 
 function getLengthOfMissingArray($arrayOfArrays)
 {
-    if(is_array($arrayOfArrays)) {
+    if (is_array($arrayOfArrays)) {
         $count_arrayOfArrays = sizeof($arrayOfArrays);
     } else {
         return 0;
     }
-    if(!$count_arrayOfArrays) {
+    if (!$count_arrayOfArrays) {
         return 0;
     }
     $arr = [];
-    for($i = 0; $i < $count_arrayOfArrays; $i++) {
-        if(is_array($arrayOfArrays[$i]) and sizeof($arrayOfArrays[$i])) {
+    for ($i = 0; $i < $count_arrayOfArrays; $i++) {
+        if (is_array($arrayOfArrays[$i]) and sizeof($arrayOfArrays[$i])) {
             $arr[] = sizeof($arrayOfArrays[$i]);
         } else {
             return 0;
@@ -1968,19 +2109,94 @@ function getLengthOfMissingArray($arrayOfArrays)
     return current(array_diff($range, $arr));
 }
 var_dump(getLengthOfMissingArray([[10, 11], [16, 10, 32, 45, 7, 29, 26], [], [38, 34, 20, 23, 7, 49, 19, 9], [8, 50, 40, 16, 21], [37, 31, 21, 4], [34], [19, 13, 0, 23, 23, 27, 24, 13, 49], [6, 8, 41, 40, 27, 3]]));
+echo PHP_EOL;
 
-// Pair of gloves
+
+
+// 54. Pair of gloves
 // https://www.codewars.com/kata/58235a167a8cb37e1a0000db
 // Зима уже близко, вам нужно подготовиться к лыжным каникулам. Цель этого ката — определить количество пар перчаток, которые вы можете составить из перчаток, имеющихся в вашем ящике.
 // Имея массив, описывающий цвет каждой перчатки, верните количество пар, которые вы можете составить, предполагая, что только перчатки одного цвета могут образовывать пары.
-input = ["red", "green", "red", "blue", "blue"]
-result = 2 (1 red pair + 1 blue pair)
-input = ["red", "red", "red", "red", "red", "red"]
-result = 3 (3 red pairs)
+// input = ["red", "green", "red", "blue", "blue"] => 2 (1 red pair + 1 blue pair)
+// input = ["red", "red", "red", "red", "red", "red"] => 3 (3 red pairs)
+// $this->dotest(['red','red'], 1);
+// $this->dotest(['red','green','blue'], 0);
+// $this->dotest(['gray','black','purple','purple','gray','black'], 3);
+
+function numberOfPairs($gloves)
+{
+    $arr = [];
+    $str = implode(" ", $gloves);
+    $unique = array_values(array_unique($gloves)); // [red, green, blue]
+    $count_unique = sizeof($unique);
+    for ($i = 0; $i < $count_unique; $i++) {
+        $arr[] = floor(substr_count($str, $unique[$i]) / 2);
+    }
+    return array_sum($arr);
+}
+var_dump(numberOfPairs(["red", "red", "green", "green", "green"]));
+echo PHP_EOL;
 
 
+// 55. New Cashier Does Not Know About Space or Shift
+// https://www.codewars.com/kata/5d23d89906f92a00267bb83d/train/php
+// В вашем ресторане начали работать новые кассиры.
+// Они хорошо принимают заказы, но не знают, как писать слова с заглавной буквы или использовать пробел!
+// Все заказы, которые они создают, выглядят примерно так:
+// "milkshakepizzachickenfriescokeburgerpizzasandwichmilkshakepizza"
+// Сотрудники кухни грозятся уволиться из-за того, как сложно читать заказы.
+// Они предпочитают получать заказы в виде красивой чистой строки с пробелами и заглавными буквами, например:
+// "Burger Fries Chicken Pizza Pizza Pizza Sandwich Milkshake Milkshake Coke"
+// Сотрудники кухни ожидают, что блюда будут располагаться в том же порядке, в котором они указаны в меню.
+// Меню довольно простое, в названиях блюд нет совпадений:
+// 1. Burger
+// 2. Fries
+// 3. Chicken
+// 4. Pizza
+// 5. Sandwich
+// 6. Onionrings
+// 7. Milkshake
+// 8. Coke
+// $this->assertSame("Burger Fries Chicken Pizza Pizza Pizza Sandwich Milkshake Milkshake Coke", getOrder("milkshakepizzachickenfriescokeburgerpizzasandwichmilkshakepizza"));
+// $this->assertSame("Burger Fries Fries Chicken Pizza Sandwich Milkshake Coke", getOrder("pizzachickenfriesburgercokemilkshakefriessandwich"));
+// $this->assertSame("Burger Burger Fries Fries Fries Fries Fries Fries Pizza Sandwich Coke", getOrder("burgerfriesfriesfriesfriesfriespizzasandwichcokefriesburger"));
 
+function getOrder($input)
+{
+    $res = "";
+    $menu = ["Burger", "Fries", "Chicken", "Pizza", "Sandwich", "Onionrings", "Milkshake", "Coke"];
+    $count_menu = sizeof($menu);
+    for ($i = 0; $i < $count_menu; $i++) {
+        if (str_contains($input, strtolower($menu[$i]))) {
+            $res .= str_repeat($menu[$i], substr_count($input, strtolower($menu[$i]))) . " ";
+        }
+    }
+    // return $res; // "Burger Fries Chicken PizzaPizzaPizza Sandwich MilkshakeMilkshake Coke "
+    $arr = explode(" ", trim($res));
+    $count_arr = sizeof($arr);
+    $arr_sort = [];
+    for ($i = 0; $i < $count_arr; $i++) {
+        $substr_count = substr_count($arr[$i], $arr[$i][0]); // 1
+        if ($substr_count === 1) {
+            $arr_sort[] = $arr[$i];
+        } else {
+            $slice = substr($arr[$i], 0, strlen($arr[$i]) / $substr_count);
+            while ($substr_count > 0) {
+                $arr_sort[] = $slice;
+                $substr_count--;
+            }
+        }
+    }
+    return implode(" ", $arr_sort); 
 
-
+    // или 
+    // $menu = ['Burger', 'Fries', 'Chicken', 'Pizza', 'Sandwich', 'Onionrings', 'Milkshake', 'Coke'];
+    // $output = "";
+    // foreach ($menu as $item) {
+    //     $output .= str_repeat($item . ' ', substr_count($input, strtolower($item)));
+    // }
+    // return trim($output);
+}
+var_dump(getOrder("milkshakepizzachickenfriescokeburgerpizzasandwichmilkshakepizza"));
 
 
