@@ -2187,7 +2187,7 @@ function getOrder($input)
             }
         }
     }
-    return implode(" ", $arr_sort); 
+    return implode(" ", $arr_sort);
 
     // или 
     // $menu = ['Burger', 'Fries', 'Chicken', 'Pizza', 'Sandwich', 'Onionrings', 'Milkshake', 'Coke'];
@@ -2198,5 +2198,273 @@ function getOrder($input)
     // return trim($output);
 }
 var_dump(getOrder("milkshakepizzachickenfriescokeburgerpizzasandwichmilkshakepizza"));
+echo PHP_EOL;
+
+
+
+// 56. The Deaf Rats of Hamelin
+// https://www.codewars.com/kata/598106cb34e205e074000031
+// Крысолов был нанят, чтобы сыграть свою волшебную мелодию и выманить всех крыс из города.
+// Но некоторые крысы глухие и идут не в ту сторону!
+// Сколько глухих крыс?
+// Легенда
+// P = Крысолов
+// O~ = Крыса идет влево
+// ~O = Крыса идет вправо
+// Пример
+// ex1 ~O~O~O~O P => 0 глухих крыс
+// ex2 P O~ O~ ~O O~ => есть 1 глухая крыса
+// ex3 ~O~O~O~OP~O~OO~ => есть 2 глухих крысы
+// $this->assertSame(0, countDeafRats("~O~O~O~O P"));
+// $this->assertSame(1, countDeafRats("P O~ O~ ~O O~"));
+// $this->assertSame(2, countDeafRats("~O~O~O~OP~O~OO~"));
+
+function countDeafRats($town)
+{
+    $res = str_replace(" ", "", $town);
+    $left = str_split(substr($res, 0, strpos($res, "P")), 2); // "~O~O~O~OP~O~OO~"
+    $right = str_split(substr($res, strpos($res, "P") + 1), 2);
+    $count_left = sizeof($left);
+    $count_right = sizeof($right);
+    $count_deaf_rats = 0;
+    for ($i = 0; $i < $count_left; $i++) {
+        if ($left[$i] === "O~") {
+            $count_deaf_rats++;
+        }
+    }
+    for ($i = 0; $i < $count_right; $i++) {
+        if ($right[$i] === "~O") {
+            $count_deaf_rats++;
+        }
+    }
+    return $count_deaf_rats;
+
+    // или
+    // $townSides = explode("P", trim(str_replace(' ', '', $town)));
+    // $left = array_count_values(str_split($townSides[0], 2));
+    // $right = array_count_values(str_split($townSides[1], 2));
+    // return (int) $left['O~'] + (int) $right['~O'];
+}
+var_dump(countDeafRats("~O~O~O~OP~O~OO~"));
+echo PHP_EOL;
+
+
+
+// 57. Lottery Ticket
+// https://www.codewars.com/kata/57f625992f4d53c24200070e
+// Время выиграть в лотерею!
+// Имея лотерейный билет (ticket), представленный массивом массивов из 2 значений, вы должны выяснить, выиграли ли вы джекпот.
+// Пример билета:
+// [ [ 'ABC', 65 ], [ 'HGR', 74 ], [ 'BYHT', 74 ] ]
+// Чтобы сделать это, вы должны сначала посчитать «мини-выигрыши» на вашем билете. Каждый подмассив содержит как строку, так и число. Если код символа любого из символов в строке совпадает с числом, вы получаете мини-выигрыш. Обратите внимание, что у вас может быть только один мини-выигрыш на подмассив. Символы в строке могут повторяться дважды.
+// После того, как вы посчитаете все свои мини-выигрыши, сравните это число с другим предоставленным вводом (выигрыш). Если ваша сумма больше или равна (выигрыш), верните "Winner!". В противном случае верните "Loser!".
+// Все входные данные будут иметь правильный формат. Строки на билетах не всегда имеют одинаковую длину.
+// $this->assertSame("Loser!", bingo([['ABC', 65], ['HGR', 74], ['BYHT', 74]], 2));
+// $this->assertSame("Winner!", bingo([['ABC', 65], ['HGR', 74], ['BYHT', 74]], 1));
+// $this->assertSame("Loser!", bingo([['HGTYRE', 74], ['BE', 66], ['JKTY', 74]], 3));
+
+function bingo($ticket, $win)
+{
+    $count_win = 0;
+    $arr = [];
+    $count_ticket = sizeof($ticket);
+    for ($i = 0; $i < $count_ticket; $i++) {
+        for ($k = 0; $k < strlen($ticket[$i][0]); $k++) {
+            if (ord($ticket[$i][0][$k]) == $ticket[$i][1]) {
+                $arr[] = $ticket[$i][0][$k]; // Символы в строке могут повторяться дважды.
+            }
+        }
+    }
+    return count(array_unique($arr)) >= $win ? "Winner!" : "Loser!";
+
+    // или
+    // $result = 0;
+    // foreach($ticket as $one) {
+    //   $result += strpos($one[0], chr($one[1])) !== false ? 1 : 0;
+    // }
+    // return $result >= $win ? "Winner!" : "Loser!";
+}
+var_dump(bingo([['ABC', 65], ['HGR', 74], ['BYHT', 74]], 1));
+echo PHP_EOL;
+
+
+
+// 58. String transformer
+// https://www.codewars.com/kata/5878520d52628a092f0002d0
+// Дана строка, вернуть новую строку, преобразованную на основе ввода:
+// Изменить регистр каждого символа, т. е. строчные на заглавные, заглавные на строчные.
+// Изменить порядок слов из ввода на обратный.
+// Примечание: вам придется обрабатывать несколько пробелов, а также начальные и конечные пробелы.
+// Например:
+// "Example Input" ==> "iNPUT eXAMPLE"
+// Вы можете предположить, что ввод содержит только английский алфавит и пробелы.
+//  $this->assertSame("STRING eXAMPLE", string_transformer("Example string"));
+
+function string_transformer($s)
+{
+    $res = "";
+    $strlen = strlen($s);
+    for ($i = 0; $i < $strlen; $i++) {
+        if ($s[$i] !== strtolower($s[$i])) {
+            $res .= strtolower($s[$i]);
+        } else {
+            $res .= strtoupper($s[$i]);
+        }
+    }
+    return implode(" ", array_reverse(explode(" ", $res)));
+    // или
+    // return implode(' ',array_reverse(explode(' ',strtolower($str) ^ strtoupper($str) ^ $str)));
+    // strtolower($str) ^ strtoupper($str) приводит к разнице между строками в верхнем и нижнем регистре. ^ $str после него сравнивает разницу в регистре с предыдущей строкой со строкой в ​​обычном регистре; что приводит к строке в противоположном регистре.
+
+}
+var_dump(string_transformer("Example Input"));
+echo PHP_EOL;
+
+
+
+// 59. Grouped by commas
+// https://www.codewars.com/kata/5274e122fc75c0943d000148
+// Завершите решение так, чтобы оно принимало на вход n (целое число) и возвращало строку, которая является десятичным представлением числа, сгруппированного запятыми после каждых 3 цифр.
+// Предположим: 0 <= n < 2147483647
+// 1  ->           "1"
+// 10  ->          "10"
+// 100  ->         "100"
+// 1000  ->       "1,000"
+// 10000  ->      "10,000"
+// 100000  ->     "100,000"
+// 1000000  ->   "1,000,000"
+// 35235235  ->  "35,235,235"
+// $this->assertSame('1', groupByCommas(1));
+// $this->assertSame('10', groupByCommas(10));
+// $this->assertSame('100', groupByCommas(100));
+// $this->assertSame('1,000', groupByCommas(1000));
+// $this->assertSame('10,000', groupByCommas(10000));
+// $this->assertSame('100,000', groupByCommas(100000));
+// $this->assertSame('1,000,000', groupByCommas(1000000));
+// $this->assertSame('35,235,235', groupByCommas(35235235));
+
+function grouped_by_commas($n)
+{
+    // number_format($price, n, "a", "b") - форматирует строку, n - число знаков после запятой, а - разделитель дробной и целой части, b - разделение тысячных
+    return number_format($n);
+    // или 
+    // $str = strrev("$n");
+    // $arr = str_split($str, 3);
+    // return strrev(implode(',', $arr));
+}
+var_dump(grouped_by_commas(1000));
+echo PHP_EOL;
+
+
+
+// 60. Primorial Of a Number
+// https://www.codewars.com/kata/5a99a03e4a6b34bb3c000124/train/php
+// Похоже на факториал числа. В первичном числе не все натуральные числа умножаются, только простые числа умножаются для вычисления первичного числа. Оно обозначается как P# и является произведением первых n простых чисел.
+// Для числа N вычислите его первичное число.!alt!alt
+// Будут переданы только положительные числа (N > 0).
+// numPrimorial (3) ==> return (30) => 2 * 3 * 5 = 30
+// numPrimorial (5) ==> return (2310) => 2 * 3 * 5 * 7 * 11 = 2310
+// Поскольку переданное число равно (3), то первичное число должно быть получено путем умножения 2 * 3 * 5 = 30.
+// $this->assertSame(30, numPrimorial(3));
+// $this->assertSame(210, numPrimorial(4));
+// $this->assertSame(2310, numPrimorial(5));
+// $this->assertSame(9699690, numPrimorial(8));
+// $this->assertSame(223092870, numPrimorial(9));
+
+function numPrimorial($n)
+{
+    if ($n === 1) {
+        return 2;
+    }
+    for ($i = 2; $i < $n * $n; $i++) {
+        $flag = true; // индикатор простых чисел
+        for ($k = 2; $k < $i; $k++) {
+            if ($i % $k === 0) {
+                $flag = false; // число уже не простое
+            }
+        }
+        if ($flag) {
+            $arr[] = $i; // добавляем в массив только простые числа
+        }
+        if (sizeof($arr) == $n) {
+            return array_product($arr);
+        }
+    }
+}
+var_dump(numPrimorial(4));
+echo PHP_EOL;
+
+
+// написать функцию, которая проверяет, является ли число простым
+function check_prime_number($n)
+{
+    for ($i = 2; $i < $n; $i++) {
+        if ($n % $i === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+var_dump(check_prime_number(29));
+
+// написать функцию, которая проверяет простое ли число (через фукнцию выше) и добавляет его в массив, если оно простое, а затем вычисляет его провеизведение
+function product_prime($n)
+{
+    $arr = [];
+    for ($i = 2; sizeof($arr) < $n; $i++) {
+        if (check_prime_number($i)) {
+            $arr[] = $i; // 2,3,5,7
+        }
+    }
+    return array_product($arr);
+}
+var_dump(product_prime(4));
+echo PHP_EOL;
+
+// вывести массив простых чисел до n
+function print_prime_number($n)
+{
+    for ($i = 2; $i < $n; $i++) {
+        $flag = true;
+        for ($k = 2; $k < $i; $k++) {
+            if ($i % $k === 0) {
+                $flag = false;
+            }
+        }
+        if ($flag) {
+            $arr[] = $i;
+        }
+    }
+    return $arr;
+}
+var_dump(print_prime_number(100));
+echo PHP_EOL;
+
+
+// вывести массив простых чисел до n одним циклом в функции
+function print_prime_number_($n)
+{
+    function check_prime($a) // функция проверяет является ли число простым
+    {
+        for ($i = 2; $i < $a; $i++) {
+            if ($a % $i === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    $arr = [];
+    for ($i = 2; $i < $n; $i++) {
+        if (check_prime($i)) {
+            $arr[] = $i;
+        }
+    }
+    return $arr;
+
+}
+var_dump(print_prime_number_(100));
+
+
+
 
 
