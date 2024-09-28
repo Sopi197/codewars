@@ -2466,5 +2466,6 @@ var_dump(print_prime_number_(100));
 
 
 
-
+// пройти два урока в ютубе php-7
+// добавить их в гитхаб theory_php
 
