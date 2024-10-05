@@ -2562,3 +2562,61 @@ var_dump(print_prime_number_(100));
 
 // досмотреть курс до конца php-7
 // залить теорию в гитхаб
+
+// Noctis lux - Medium
+// bearded theme
+// https://www.codewars.com/kata/5616868c81a0f281e500005c/train/php
+// Для участия в розыгрыше призов каждый называет свое имя.
+// Каждая буква имени имеет значение, которое является ее рангом в английском алфавите. A и a имеют ранг 1, B и b — ранг 2 и так далее.
+// Длина имени добавляется к сумме этих рангов, отсюда получается число som.
+// Массив случайных весов связан с именами, и каждый som умножается на свой соответствующий вес, чтобы получить то, что они называют выигрышным числом.
+// Пример:
+// имена: "COLIN,AMANDBA,AMANDAB,CAROL,PauL,JOSEPH"
+// веса: [1, 4, 4, 5, 2, 1]
+// PauL -> som = длина имени + 16 + 1 + 21 + 12 = 4 + 50 -> 54
+// *Вес*, связанный с PauL, равен 2, поэтому *выигрышное число* PauL равно 54 * 2 = 108.
+// Теперь можно отсортировать имена в порядке убывания выигрышных чисел. Когда у двух людей одинаковый выигрышный номер, отсортируйте их в алфавитном порядке по именам.
+// Задача:
+// параметры: st — строка имен, we — массив весов, n — ранг
+// возвращение: имя участника, ранг которого равен n (ранги нумеруются с 1) !!!
+// Пример:
+// имена: "COLIN,AMANDBA,AMANDAB,CAROL,PauL,JOSEPH"
+// веса: [1, 4, 4, 5, 2, 1]
+// n: 4
+// Функция должна вернуть: "PauL"
+// Примечания:
+// Массив весов должен быть как минимум таким же длинным, как и количество имен, но может быть и длиннее.
+// Если st пуст, вернуть "Нет участников".
+// Если n больше количества участников, вернуть "Недостаточно участников".
+// См. примеры тестовых случаев для получения дополнительных примеров.
+// $this->dotest(rank("Addison,Jayden,Sofia,Michael,Andrew,Lily,Benjamin", [4, 2, 1, 4, 3, 1, 2], 4), "Benjamin");
+// $this->dotest(rank("Elijah,Chloe,Elizabeth,Matthew,Natalie,Jayden", [1, 3, 5, 5, 3, 6], 2), "Matthew");
+// $this->dotest(rank("Addison,Jayden,Sofia,Michael,Andrew,Lily,Benjamin", [4, 2, 1, 4, 3, 1, 2], 8), "Not enough participants");
+// $this->dotest(rank("Lagon,Lily", [1, 5], 2), "Lagon");
+
+function rank($st, $we, $n)
+{
+    $names = explode(",", $st);
+    $count_names = sizeof($names);
+    if(empty($st)) {
+        return "No participants";
+    } else if($n > $count_names) {
+        return "Not enough participants";
+    }
+    $alphabet = range("a", "z");
+    $ranks = [];
+    for($i = 0; $i < $count_names; $i++) {
+        $some = 0;
+        for($k = 0; $k < strlen($names[$i]); $k++) {
+            $some += array_search(strtolower($names[$i][$k]), $alphabet) + 1;
+        }
+        $some = (strlen($names[$i]) + $some) * $we[$i];
+        $ranks[] = $some;
+    }
+    $combine = array_combine($ranks, $names);
+    rsort($ranks);
+    return $combine[$ranks[$n - 1]];
+    // array_combine(array $keys, array $values): array
+    // сортировка по имени
+}
+var_dump(rank("Elijah,Chloe,Elizabeth,Matthew,Natalie,Jayden", [1, 3, 5, 5, 3, 6], 2));
