@@ -2618,5 +2618,6 @@ function rank($st, $we, $n)
     return $combine[$ranks[$n - 1]];
     // array_combine(array $keys, array $values): array
     // сортировка по имени
+    // https://www.php.net/manual/ru/array.sorting.php
 }
 var_dump(rank("Elijah,Chloe,Elizabeth,Matthew,Natalie,Jayden", [1, 3, 5, 5, 3, 6], 2));
