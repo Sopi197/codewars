@@ -3363,3 +3363,4 @@ echo PHP_EOL;
 // 23.10. - проводил время с Настей, ничего не делал!
 // 24.10. - 90 мин PHP в одном уроке [ITDoctor] [7 часов] => 6:52
 // 25.10. - 50 мин PHP в одном уроке [ITDoctor] [7 часов] => 07:00 [https://www.youtube.com/watch?v=M-peGbXCvNA]
+// крутой таймер https://online-timer.ru/
