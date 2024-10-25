@@ -2,18 +2,43 @@
 
 
 echo "\n\n========================================= 6-[kyu] ========================================= \n\n";
+
+
 // https://www.codewars.com/kata/search/php?q=&r%5B%5D=-6&beta=false&order_by=popularity%20desc
 
 // Задачи на регулярные выражения
 // https://www.codewars.com/kata/5277c8a221e209d3f6000b56
 // https://www.codewars.com/kata/583203e6eb35d7980400002a
+// https://www.codewars.com/kata/5269452810342858ec000951
+// https://www.codewars.com/kata/59325dc15dbb44b2440000af
+
+
 
 // Интересные и непростые задачи, которые пока что не решил (#не решена)
 // https://www.codewars.com/kata/59df2f8f08c6cec835000012  
 // https://www.codewars.com/kata/568fca718404ad457c000033
-// https://www.codewars.com/kata/55b3425df71c1201a800009c/train/php
-// https://www.codewars.com/kata/586d6cefbcc21eed7a001155/train/php
+// https://www.codewars.com/kata/55b3425df71c1201a800009c
+// https://www.codewars.com/kata/586d6cefbcc21eed7a001155
+// https://www.codewars.com/kata/59752e1f064d1261cb0000ec - не решил (90/15 => 1 градус это 6 минут ?)
 
+// Хорошие задачи с тегом [TOP_]
+
+// Как узнать, какой ввод приводит к сбою моего решения?
+// Большинство, если не все, языки Codewars поддерживают запись в стандартный вывод (stdout). Вы можете использовать функции stdout вашего языка для вывода аргументов функций (или чего угодно), и это будет видно на панели тестового вывода.
+// print $arg . "\n"; или echo $arg . "\n";
+// Важное примечание: помните, что при запуске тестов сначала выполняется ваше решение (потенциально со всеми операторами печати внутри), затем выполняются утверждения для возвращаемого значения, и, наконец, выводятся зеленые/красные сообщения утверждений. Это приводит к тому, что все, что вы печатаете в своем решении, будет отображаться над сообщением утверждения, к которому оно применяется. Довольно сложно визуально определить это на панели тестового вывода Codewars. Если вы считаете, что ваш вывод полностью не соответствует тестовому случаю или его сообщению утверждения, обязательно посмотрите на зеленое/красное сообщение, расположенное под тем, что вы печатали, а не над ним. Кроме того, некоторые тестовые наборы построены таким образом, что выводимые данные и связанные сообщения утверждений визуально отделены друг от друга, но такие ката являются скорее исключениями и встречаются не так уж часто.
+// Я хочу что-то вывести на консоль, но оно не отображается!
+// Иногда тестовый набор аварийно завершается или принудительно прерывается исполнителем тестов, и в таких случаях вывод, который вы хотите вывести, не отображается или обрезается. Обычно это происходит из-за того, что стандартный вывод не был очищен, когда произошел сбой. Убедитесь, что stdout очищается после каждой операции записи, чтобы вы не потеряли ни одной его части.
+// Тесты не проходят, а сообщения об утверждениях запутанные и бесполезные
+// Этот вопрос часто относится к kata C и C++, но не исключительно. Некоторые библиотеки тестов или утверждений, используемые Codewars, не имеют удобного способа указать дополнительные сообщения об утверждениях для неудачных тестовых случаев, или авторы не подумали или не позаботились об их добавлении. Если это так, вам, к сожалению, придется отлаживать kata другим способом (например, распечатав входные данные теста) и, возможно, поднять вопрос о запутанных сообщениях об утверждениях.
+
+// перемельман - арифметика для развлечения
+// книги по математике перельман
+// грокаем алгоритмы
+
+// ...[] - оператор spread - вытаскивает элементы из массива
+// strlen(943) = 3 - преобразует в строку автоматически
+// str_split(943) = ["9", "4", "3"] - преобразует в строку автоматически
 
 
 // 1. [6-kyu], [strings]. Stop gninnipS My sdroW!
@@ -1014,7 +1039,8 @@ function is_prime($n)
     if ($n <= 1) {
         return false;
     }
-    for ($i = 2; $i <= sqrt($n); $i++) { // нет смысла перебирать числа больше корня из числа, которое мы проверяем
+    $sqrt = sqrt($n); // оптимизация кода
+    for ($i = 2; $i <= $sqrt; $i++) { // нет смысла перебирать числа больше корня из числа, которое мы проверяем
         if ($n % $i === 0) {
             return false;
         }
@@ -1573,7 +1599,7 @@ echo PHP_EOL;
 
 
 
-// 42. [6-kyu] Find the missing term in an Arithmetic Progression
+// 42. [6-kyu] Find the missing term in an Arithmetic Progression [TOP_]
 // https://www.codewars.com/kata/52de553ebb55d1fca3000371
 // Арифметическая прогрессия определяется как прогрессия, в которой существует постоянная разница между последовательными членами заданного ряда чисел. Вам предоставляются последовательные элементы арифметической прогрессии. Однако есть одна загвоздка: ровно один член из исходного ряда отсутствует в наборе чисел, которые вам даны. Остальная часть заданного ряда совпадает с исходным AP. Найдите отсутствующий член.
 // Вам нужно написать функцию, которая получает список, размер списка всегда будет составлять не менее 3 чисел. Отсутствующий член никогда не будет первым или последним.
@@ -1584,17 +1610,25 @@ echo PHP_EOL;
 // $this->assertSame(7, findMissing([1, 3, 5, 9, 11]));
 // $this->assertSame(400, findMissing([100, 200, 300, 500]));
 
-function findMissing($list)
+function findMissing($arr)
 {
-    $count_list = sizeof($list);
-    for ($i = 0; $i < $count_list - 2; $i++) {
-        if ($list[$i + 1] - $list[$i] < $list[$i + 2] - $list[$i + 1]) {
-            return $list[$i + 1] + ($list[$i + 1] - $list[$i]);
-        } else if ($list[$i + 1] - $list[$i] > $list[$i + 2] - $list[$i + 1]) {
-            return $list[$i] + ($list[$i + 2] - $list[$i + 1]);
+    $count_arr = sizeof($arr) - 2;
+    for ($i = 0; $i < $count_arr; $i++) {
+        if ($arr[$i + 1] - $arr[$i] > $arr[$i + 2] - $arr[$i + 1]) {
+            return $arr[$i] + $arr[$i + 2] - $arr[$i + 1];
         }
     }
-    return $list[0];
+    return $arr[0];
+
+    // $count_list = sizeof($list);
+    // for ($i = 0; $i < $count_list - 2; $i++) {
+    //     if ($list[$i + 1] - $list[$i] < $list[$i + 2] - $list[$i + 1]) {
+    //         return $list[$i + 1] + ($list[$i + 1] - $list[$i]);
+    //     } else if ($list[$i + 1] - $list[$i] > $list[$i + 2] - $list[$i + 1]) {
+    //         return $list[$i] + ($list[$i + 2] - $list[$i + 1]);
+    //     }
+    // }
+    // return $list[0];
 
     // $arr = [];
     // $count_list = sizeof($list);
@@ -1787,7 +1821,7 @@ function solve($s)
     }
     return max($numbers);
 }
-var_dump(value: solve("zodiacs"));
+var_dump(solve("zodiacs"));
 echo PHP_EOL;
 
 
@@ -2202,7 +2236,7 @@ echo PHP_EOL;
 
 
 
-// 56. The Deaf Rats of Hamelin
+// 56. The Deaf Rats of Hamelin [TOP_]
 // https://www.codewars.com/kata/598106cb34e205e074000031
 // Крысолов был нанят, чтобы сыграть свою волшебную мелодию и выманить всех крыс из города.
 // Но некоторые крысы глухие и идут не в ту сторону!
@@ -2357,7 +2391,7 @@ echo PHP_EOL;
 
 
 
-// 60. Primorial Of a Number
+// 60. Primorial Of a Number [TOP_]
 // https://www.codewars.com/kata/5a99a03e4a6b34bb3c000124/train/php
 // Похоже на факториал числа. В первичном числе не все натуральные числа умножаются, только простые числа умножаются для вычисления первичного числа. Оно обозначается как P# и является произведением первых n простых чисел.
 // Для числа N вычислите его первичное число.!alt!alt
@@ -2376,9 +2410,9 @@ function numPrimorial($n)
     if ($n === 1) {
         return 2;
     }
-    for ($i = 2; $i < $n * $n; $i++) {
+    for ($i = 2; $i <= $n; $i++) {
         $flag = true; // индикатор простых чисел
-        for ($k = 2; $k < $i; $k++) {
+        for ($k = 2; $k <= sqrt($i); $k++) {
             if ($i % $k === 0) {
                 $flag = false; // число уже не простое
             }
@@ -2398,7 +2432,8 @@ echo PHP_EOL;
 // написать функцию, которая проверяет, является ли число простым
 function check_prime_number($n)
 {
-    for ($i = 2; $i < $n; $i++) {
+    $sqrt = sqrt($n);
+    for ($i = 2; $i <= $sqrt; $i++) {
         if ($n % $i === 0) {
             return false;
         }
@@ -2411,7 +2446,7 @@ var_dump(check_prime_number(29));
 function product_prime($n)
 {
     $arr = [];
-    for ($i = 2; sizeof($arr) < $n; $i++) {
+    for ($i = 2; sizeof($arr) <= $n; $i++) {
         if (check_prime_number($i)) {
             $arr[] = $i; // 2,3,5,7
         }
@@ -2424,9 +2459,10 @@ echo PHP_EOL;
 // вывести массив простых чисел до n
 function print_prime_number($n)
 {
-    for ($i = 2; $i < $n; $i++) {
+    $sqrt = sqrt($n);
+    for ($i = 2; $i <= $n; $i++) {
         $flag = true;
-        for ($k = 2; $k < $i; $k++) {
+        for ($k = 2; $k <= sqrt($i); $k++) {
             if ($i % $k === 0) {
                 $flag = false;
             }
@@ -2440,13 +2476,13 @@ function print_prime_number($n)
 var_dump(print_prime_number(100));
 echo PHP_EOL;
 
-
 // вывести массив простых чисел до n одним циклом в функции
 function print_prime_number_($n)
 {
     function check_prime($a) // функция проверяет является ли число простым
     {
-        for ($i = 2; $i < $a; $i++) {
+        $sqrt = sqrt($a);
+        for ($i = 2; $i <= $sqrt; $i++) { // именно <= sqrt($n), тогда число 4 не попадет в список
             if ($a % $i === 0) {
                 return false;
             }
@@ -2454,28 +2490,771 @@ function print_prime_number_($n)
         return true;
     }
     $arr = [];
-    for ($i = 2; $i < $n; $i++) {
+    for ($i = 2; $i <= $n; $i++) {
         if (check_prime($i)) {
             $arr[] = $i;
         }
     }
     return $arr;
-
 }
 var_dump(print_prime_number_(100));
+echo PHP_EOL;
+
+
+
+// 61. Backwards Read Primes [TOP_]
+// https://www.codewars.com/kata/5539fecef69c483c5a000015/train/php
+// Простые числа, прочитанные в обратном порядке, — это простые числа, которые при чтении в обратном порядке по основанию 10 (справа налево) являются другими простыми числами. (Это исключает простые числа, являющиеся палиндромами.). Вам нужно исключить числа - полиндромы. Простое число-палиндром — простое число, которое также является палиндромом, то есть его запись одинаково читается как справа налево, так и слева направо. 2, 3, 5, 7, 11, 101, 131, 151, 181, 191, 313, 353, 373, 383, 727, 757, 787, 797, 919, 929, 10301, 10501, 10601, 11311…
+// Примеры:
+// 13 17 31 37 71 73 являются простыми числами, прочитанными в обратном порядке
+// 13 является таковым, потому что оно простое, и при чтении справа налево получается 31, которое также является простым числом. То же самое и для других. Нужно исключить полиндромы
+// Задача
+// Найти все простые числа, прочитанные в обратном порядке, между двумя заданными положительными числами (оба включительно), причем второе всегда больше или равно первому. Результирующий массив или результирующая строка будут упорядочены в соответствии с естественным порядком простых чисел.
+// Примеры (в общем виде):
+// backwardsPrime(2, 100) => [13, 17, 31, 37, 71, 73, 79, 97] backwardsPrime(9900, 10000) => [9923, 9931, 9941, 9967] backwardsPrime(501, 599) => []
+// $a = [7027, 7043, 7057];
+// $this->revTest(backwardsPrime(7000, 7100), $a);
+// $a = [70001, 70009, 70061, 70079, 70121, 70141, 70163, 70241];
+// $this->revTest(backwardsPrime(70000, 70245), $a);
+// $a = [70489, 70529, 70573, 70589];
+// $this->revTest(backwardsPrime(70485, 70600), $a);
+
+function backwardsPrime($start, $stop)
+{
+    $arr = [];
+    function is_prime_($a)
+    {
+        $sqrt = sqrt($a);
+        for ($i = 2; $i <= $sqrt; $i++) {
+            if ($a % $i === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    for ($i = $start; $i <= $stop; $i++) {
+        if (is_prime_($i) and $i !== +strrev($i)) { // число простоe и не является полиндроном
+            $arr[] = $i; // простые числа, которые не являются полиндромами
+        }
+    }
+    $count_arr = sizeof($arr);
+    $arr_prime = [];
+    for ($i = 0; $i < $count_arr; $i++) {
+        if (is_prime_(strrev($arr[$i]))) { // поворачиваем простые числа и те, которые являются простыми при повороте - записываем в массив
+            $arr_prime[] = $arr[$i];
+        }
+    }
+    return $arr_prime;
+}
+var_dump(backwardsPrime(2, 200));
+echo PHP_EOL;
+
+
+
+// 62. Exclamation marks series #17: Put the exclamation marks and question marks on the balance - are they balanced?
+// https://www.codewars.com/kata/57fb44a12b53146fe1000136
+// Вес каждого восклицательного знака равен 2; вес каждого вопросительного знака равен 3. Если положить две струны слева и справа на весы — они сбалансированы?
+// Если левая сторона тяжелее, вернуть «Left»; если правая сторона тяжелее, вернуть «Right»; если они сбалансированы, вернуть «Balance».
+// Примеры
+// "!!", "??" --> "Right"
+// "!??", "?!!" --> "Left"
+// "!?!!", "?!?" --> "Left"
+// "!!???!????", "??!!?!!!!!!!" --> "Balance"
+
+function balance($l, $r)
+{
+    $left = substr_count($l, "!") * 2 + substr_count($l, "?") * 3;
+    $right = substr_count($r, "!") * 2 + substr_count($r, "?") * 3;
+    if ($left > $right) {
+        return "Left";
+    } else if ($left < $right) {
+        return "Right";
+    } else {
+        return "Balance";
+    }
+}
+var_dump(balance("!!???!????", "??!!?!!!!!!!"));
+echo PHP_EOL;
+
+
+
+// 63. Coding Meetup #8 - Higher-Order Functions Series - Will all continents be represented?
+// https://www.codewars.com/kata/58291fea7ff3f640980000f9
+// Вам будет предоставлена ​​последовательность объектов (ассоциативные массивы в PHP), представляющих данные о разработчиках, которые зарегистрировались для участия в следующем собрании по кодированию, которое вы организуете.
+// Ваша задача — вернуть:
+// true, если ВСЕ следующие континенты/географические зоны будут представлены хотя бы одним разработчиком: 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'. Всего континентов - 5.
+// false в противном случае.
+// Например, дан следующий входной массив:
+// $list1 = [["first_name" => "Fatima", "last_name" => "A.", "country" => "Algeria", "continent" => "Africa", "age" => 25, "language" => "JavaScript"], ["first_name" => "Agustin", "last_name" => "M.", "country" => "Chile", "continent" => "Americas", "age" => 37, "language" => "C"], ["first_name" => "Jing", "last_name" => "X", "country" => "China", "continent" => "Asia", "age" => 39, "language" => "Ruby"], ["first_name" => "Laia", "last_name" => "P.", "country" => "Andorra", "continent" => "Europe", "age" => 55, "language" => "Ruby"], ["first_name" => "Oliver", "last_name" => "Q.", "country" => "Australia", "continent" => "Oceania", "age" => 65, "language" => "PHP"]]
+// ваша функция должна возвращать значение true, так как есть по крайней мере один разработчик из требуемых 5 географических зон.
+// Входной массив и названия континентов всегда будут допустимыми и отформатированными, как в списке выше, например, "Africa" ​​всегда будет начинаться с заглавной буквы "A".
+
+function all_continents($a)
+{
+    return sizeof(array_unique(array_column($a, "continent"))) == 5;
+}
+var_dump(all_continents([["first_name" => "Fatima", "last_name" => "A.", "country" => "Algeria", "continent" => "Africa", "age" => 25, "language" => "JavaScript"], ["first_name" => "Agustin", "last_name" => "M.", "country" => "Chile", "continent" => "Americas", "age" => 37, "language" => "C"], ["first_name" => "Jing", "last_name" => "X", "country" => "China", "continent" => "Asia", "age" => 39, "language" => "Ruby"], ["first_name" => "Laia", "last_name" => "P.", "country" => "Andorra", "continent" => "Europe", "age" => 55, "language" => "Ruby"], ["first_name" => "Oliver", "last_name" => "Q.", "country" => "Australia", "continent" => "Oceania", "age" => 65, "language" => "PHP"]]));
+echo PHP_EOL;
+
+
+
+// 64. Array Deep Count
+// https://www.codewars.com/kata/596f72bbe7cd7296d1000029/train/php
+// Вам дан массив. Завершите функцию, которая возвращает количество ВСЕХ элементов в массиве, включая любые вложенные массивы.
+// Примеры
+// [] --> 0
+// [1, 2, 3] --> 3
+// ["x", "y", ["z"]] --> 4
+// [1, 2, [3, 4, [5]]] --> 7
+// Входные данные всегда будут массивом.
+// В PHP вы не можете предполагать, что переданный массив будет неассоциативным.
+// Обратите внимание, что count(), eval() и COUNT_RECURSIVE запрещены — вы должны быть в состоянии реализовать логику для deep_c() самостоятельно ;)
+// $this->assertSame(0, deep_c([]));
+// $this->assertSame(3, deep_c([1, 2, 3]));
+// $this->assertSame(4, deep_c(["x", "y", ["z"]]));
+// $this->assertSame(7, deep_c([1, 2, [3, 4, [5]]]));
+// $this->assertSame(8, deep_c([[[[[[[[[]]]]]]]]]));
+
+// function count_el($current)
+// {
+//     return $current++;
+// }
+
+function deep_c($a)
+{
+    $add = 0;
+    foreach ($a as $el) {
+        $add++;
+        if (is_array($el)) {
+            $add += deep_c($el); // накопление переменной в рекурсии
+        }
+    }
+    return $add;
+}
+var_dump(deep_c([[[[[[[[[]]]]]]]]]));
+echo PHP_EOL;
+
+
+
+// 65. Steps in Primes
+// https://www.codewars.com/kata/5613d06cee1e7da6d5000055
+// Простые числа не имеют регулярных интервалов. Например, от 2 до 3 шаг равен 1. От 3 до 5 шаг равен 2. От 7 до 11 шаг равен 4. Между 2 и 50 у нас есть следующие пары простых чисел с 2 шагами:
+// 3, 5 - 5, 7, - 11, 13, - 17, 19, - 29, 31, - 41, 43
+// Мы напишем функцию step с параметрами:
+// g (целое число >= 2), которая указывает на шаг, который мы ищем,
+// m (целое число >= 2), которая дает начало поиска (m включительно),
+// n (целое число >= m), которая дает конец поиска (n включительно)
+// В примере выше step(2, 2, 50) вернет [3, 5], что является первой парой между 2 и 50 с 2 шагами.
+// Таким образом, эта функция должна возвращать первую пару из двух простых чисел, расположенных с шагом g между пределами m, n, если эти простые числа с шагом g существуют, в противном случае nil или null или None или Nothing или [] или "0, 0" или {0, 0} или 0 0 или "" (в зависимости от языка).
+// Примеры:
+// step(2, 5, 7) --> [5, 7] или (5, 7) или {5, 7} или "5 7"
+// step(2, 5, 5) --> nil или ... или [] в Ocaml или {0, 0} в C++
+// step(4, 130, 200) --> [163, 167] или (163, 167) или {163, 167}
+// ([193, 197] также является таким 4-шаговым простым числом между 130 и 200, но это не первая пара).
+// step(6, 100, 110) --> [101, 107] из простых чисел [101, 103, 107, 109] разница между 107 и 103 равна 6. Хотя есть простое число между 101 и 107, которое равно 103; пара 101-103 — это 2-шаг. - ВАЖНЫЙ ПРИМЕР!
+// $this->revTest(step(2, 100, 110), [101, 103]);
+// $this->revTest(step(4, 100, 110), [103, 107]);
+// $this->revTest(step(6, 100, 110), [101, 107]);
+// $this->revTest(step(8, 300, 400), [359, 367]);
+// $this->revTest(step(10, 300, 400), [307, 317]);
+
+$start = microtime(true); // измерение скорости кода
+function step($g, $m, $n)
+{
+    function check_prime_n($x)
+    {
+        $sqrt = sqrt($x);
+        for ($i = 2; $i <= $sqrt; $i++) {
+            if ($x % $i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    if ($n - $m < 2) {
+        return null;
+    }
+    for ($i = $m; $i <= $n; $i++) { // [101, 103, 107, 109]
+        if (check_prime_n($i) && check_prime_n($i + $g)) {
+            return [$i, $i + $g];
+        }
+    }
+    return null;
+}
+var_dump(step(6, 100, 110));
+$diff = sprintf('%.6f sec.', microtime(true) - $start);
+echo "Время выполнения: $diff \n"; // Время выполнения: 0.000079 sec.
+echo PHP_EOL;
+
+// время выполнения кода 
+$start = microtime(true); // измерение скорости кода
+function time_code()
+{
+    $res = "";
+    $i = 5;
+    while ($i !== 1000000) {
+        $res .= $i . " ";
+        $i++;
+    }
+    return $res;
+}
+// var_dump(time_code()); // закоментировал, чтобы не 
+$diff = sprintf('%.6f sec.', microtime(true) - $start);
+echo "Время выполнения: $diff \n"; // Время выполнения: 17.063433 sec.
+
+
+// 66. Steps in Primes [TOP_]
+// https://www.codewars.com/kata/56af1a20509ce5b9b000001e/train/php
+// Коммивояжер должен посетить клиентов. Он получил адрес каждого клиента, например, «432 Main Long Road St. Louisville OH 43071» в виде списка.
+// Основной формат почтового индекса обычно состоит из двух заглавных букв, за которыми следует пробел и пять цифр. Список клиентов для посещения был дан в виде строки всех адресов, каждый из которых отделен от другого запятой, например:
+// «123 Main Street St. Louisville OH 43071,432 Main Long Road St. Louisville OH 43071,786 High Street Pollocksville NY 56432».
+// Чтобы облегчить себе поездку, он хочет сгруппировать список по почтовому индексу.
+// Функция travel будет принимать два параметра r (список адресов всех клиентов в виде строки) и почтовый индекс и возвращать строку в следующем формате:
+// почтовый индекс:улица и город,улица и город,.../номер дома,номер дома,...
+// Номера улиц должны располагаться в том же порядке, что и улицы, к которым они относятся.
+// Если заданный почтовый индекс отсутствует в списке адресов клиентов, верните "zipcode:/"
+// Примеры
+// r = "123 Main Street St. Louisville OH 43071,432 Main Long Road St. Louisville OH 43071,786 High Street Pollocksville NY 56432"
+// travel(r, "OH 43071") --> "OH 43071:Main Street St. Louisville,Main Long Road St. Louisville/123,432"
+// travel(r, "NY 56432") --> "NY 56432:High Street Pollocksville/786"
+// travel(r, "NY 5643") --> "NY 5643:/"
+// travel(r, "NY 643") --> "NY 5643:/"
+// В тестовых случаях вы можете увидеть несколько адресов и почтовых индексов.
+// $this->dotest(travel($this->ad, "AA 45522"), "AA 45522:Paris St. Abbeville,Paris St. Abbeville/67,670");
+// $this->dotest(travel($this->ad, "EX 34342"), "EX 34342:Pussy Cat Rd. Chicago,Pussy Cat Rd. Chicago/10,100");
+// $this->dotest(travel($this->ad, "EX 34345"), "EX 34345:Pussy Cat Rd. Chicago/100");
+// $this->dotest(travel($this->ad, "AA 45521"), "AA 45521:Paris bd. Abbeville,Paris St. Abbeville/674,67");
+// $this->dotest(travel($this->ad, "AE 56215"), "AE 56215:Main Al. Bern/320");
+
+function travel($r, $zipcode)
+{
+    $arr = explode(",", $r);
+    $count = sizeof($arr);
+    $home = [];
+    $street = [];
+    $res = "";
+    for ($i = 0; $i < $count; $i++) {
+        if (str_contains($arr[$i], $zipcode)) {
+            $home[] = explode(" ", $arr[$i])[0];
+            for ($k = 0; $k < strlen($arr[$i]); $k++) {
+                if (!is_numeric($arr[$i][$k])) {
+                    $street[] = substr($arr[$i], $k + 1, -9);
+                    break;
+                }
+            }
+        }
+    }
+    if (sizeof($home) === 0 or strlen($zipcode) < 7) {
+        return $zipcode . ":/";
+    }
+    $count_ = sizeof($home);
+    for ($i = 0; $i < $count_; $i++) {
+        if ($i === 0) {
+            $res .= $zipcode . ":" . $street[$i] . ",";
+        } else {
+            $res .= $street[$i] . ",";
+        }
+    }
+    $res = trim($res, ",") . "/";
+    for ($i = 0; $i < $count_; $i++) {
+        $res .= $home[$i] . ",";
+    }
+    return trim($res, ",");
+}
+var_dump(travel("123 Main Street St. Louisville OH 43071,432 Main Long Road St. Louisville OH 43071,786 High Street Pollocksville NY 56432", "NY 564312")); // "OH 43071:Main Street St. Louisville,Main Long Road St. Louisville/123,432"
+echo PHP_EOL;
+
+
+
+// 67. Prize Draw [TOP_]
+// https://www.codewars.com/kata/5616868c81a0f281e500005c/train/php
+// Для участия в розыгрыше призов каждый называет свое имя.
+// Каждая буква имени имеет значение, которое является ее рангом в английском алфавите. A и a имеют ранг 1, B и b — ранг 2 и так далее.
+// Длина имени добавляется к сумме этих рангов, отсюда получается число som.
+// Массив случайных весов связан с именами, и каждый som умножается на свой соответствующий вес, чтобы получить то, что они называют выигрышным числом.
+// Пример:
+// имена: "COLIN,AMANDBA,AMANDAB,CAROL,PauL,JOSEPH"
+// веса: [1, 4, 4, 5, 2, 1]
+// PauL -> som = длина имени + 16 + 1 + 21 + 12 = 4 + 50 -> 54
+// *Вес*, связанный с PauL, равен 2, поэтому *выигрышное число* PauL равно 54 * 2 = 108.
+// Теперь можно отсортировать имена в порядке убывания выигрышных чисел. Когда у двух людей одинаковый выигрышный номер, отсортируйте их в алфавитном порядке по именам.
+// Задача:
+// параметры: st — строка имен, we — массив весов, n — ранг
+// возвращение: имя участника, ранг которого равен n (ранги нумеруются с 1) !!!
+// Пример:
+// имена: "COLIN,AMANDBA,AMANDAB,CAROL,PauL,JOSEPH"
+// веса: [1, 4, 4, 5, 2, 1]
+// n: 4
+// Функция должна вернуть: "PauL"
+// Примечания:
+// Массив весов должен быть как минимум таким же длинным, как и количество имен, но может быть и длиннее.
+// Если st пуст, вернуть "Нет участников".
+// Если n больше количества участников, вернуть "Недостаточно участников".
+// См. примеры тестовых случаев для получения дополнительных примеров.
+// $this->dotest(rank("Addison,Jayden,Sofia,Michael,Andrew,Lily,Benjamin", [4, 2, 1, 4, 3, 1, 2], 4), "Benjamin");
+// $this->dotest(rank("Elijah,Chloe,Elizabeth,Matthew,Natalie,Jayden", [1, 3, 5, 5, 3, 6], 2), "Matthew");
+// $this->dotest(rank("Addison,Jayden,Sofia,Michael,Andrew,Lily,Benjamin", [4, 2, 1, 4, 3, 1, 2], 8), "Not enough participants");
+// $this->dotest(rank("Lagon,Lily", [1, 5], 2), "Lagon");
+
+function rank($st, $we, $n)
+{
+    $names = explode(",", $st);
+    $count_names = sizeof($names);
+    if (empty($st)) {
+        return "No participants";
+    } else if ($n > $count_names) {
+        return "Not enough participants";
+    }
+    $alphabet = range("a", "z");
+    $ranks = [];
+    for ($i = 0; $i < $count_names; $i++) {
+        $some = 0;
+        for ($k = 0; $k < strlen($names[$i]); $k++) {
+            $some += array_search(strtolower($names[$i][$k]), $alphabet) + 1;
+        }
+        $some = (strlen($names[$i]) + $some) * $we[$i];
+        $ranks[] = $some;
+    }
+    $info_ranks = [];
+    $count_ranks = sizeof($ranks);
+    for ($i = 0; $i < $count_ranks; $i++) {
+        $info_ranks[] = $ranks[$i] . "-" . $names[$i];
+    }
+    rsort($ranks);
+    $count_info_ranks = sizeof($info_ranks);
+    for ($i = 0; $i < $count_info_ranks; $i++) {
+        if (str_contains($info_ranks[$i], $ranks[$n - 1])) {
+            $end[] = substr($info_ranks[$i], strpos($info_ranks[$i], "-") + 1);
+        }
+    }
+    sort($end);
+    if (sizeof($end) > 1 and isset($end[$n - 1])) {
+        return $end[$n - 1];
+    }
+    return $end[0];
+}
+var_dump(rank("Elijah,Chloe,Elizabeth,Matthew,Natalie,Jayden", [1, 3, 5, 5, 3, 6], 2));
+echo PHP_EOL;
+
+
+
+
+// 68. String average [TOP_]
+// https://www.codewars.com/kata/5966847f4025872c7d00015b
+// Вам дана строка чисел от 0 до 9. Найдите среднее значение этих чисел и верните его как целое число с дробной частью (т. е. без знаков после запятой), записанное в виде строки. Например:
+// "ноль девять пять два" -> "четыре"
+// Если строка пустая или содержит число больше 9, верните "n/a"
+// $this->assertSame("four", average_string("zero nine five two"));
+// $this->assertSame("three", average_string("four six two three"));
+// $this->assertSame("three", average_string("one two three four five"));
+// $this->assertSame("four", average_string("five four"));
+// $this->assertSame("zero", average_string("zero zero zero zero zero"));
+// $this->assertSame("two", average_string("one one eight one"));
+// $this->assertSame("n/a", average_string(""));
+
+function average_string($s)
+{
+    $arr = [0 => "zero", 1 => "one", 2 => "two", 3 => "three", 4 => "four", 5 => "five", 6 => "six", 7 => "seven", 8 => "eight", 9 => "nine"];
+    $average = 0;
+    $arr_str = explode(" ", $s);
+    $count_arr = sizeof($arr_str);
+    for ($i = 0; $i < $count_arr; $i++) {
+        if (in_array($arr_str[$i], $arr)) {
+            $average += array_search($arr_str[$i], $arr);
+        } else {
+            return "n/a";
+        }
+    }
+    if (empty($s)) {
+        return "n/a";
+    }
+    return $arr[floor($average / $count_arr)];
+}
+var_dump(average_string("eight eight eight eight eight eleven"));
+echo PHP_EOL;
+
+
+
+// 69. Coordinates Validator [TOP_]
+// https://www.codewars.com/kata/5269452810342858ec000951
+// Вам необходимо создать функцию, которая будет проверять, являются ли заданные параметры допустимыми географическими координатами.
+// Допустимые координаты выглядят следующим образом: "23.32353342, -32.543534534". Возвращаемое значение должно быть либо true, либо false.
+// Широта (которая является первым числом с плавающей точкой) может быть от 0 до 90, положительной или отрицательной. Долгота (которая является вторым числом с плавающей точкой) может быть от 0 до 180, положительной или отрицательной.
+// Координаты могут содержать только цифры или один из следующих символов (включая пробел после запятой) __ -, . __
+// Между знаком минус "-" и цифрой после него не должно быть пробела.
+// Вот некоторые допустимые координаты:
+// -23, 25
+// 24.53525235, 23.45235
+// 04, -23.234235
+// 43.91343345, 143
+// 4, -3
+// И некоторые недопустимые:
+// 23.234, - 23.4234
+// 2342.43536, 34.324236
+// N23.43345, E32.6457
+// 99.234, 12.324
+// 6.325624, 43.34345.345
+// 0, 1,2 
+// 0.342q0832, 1.2324 
+
+// Между знаком минус "-" и цифрой после него не должно быть пробела.
+// Широта (которая является первым числом с плавающей точкой) может быть от 0 до 90, положительной или отрицательной
+// Долгота (которая является вторым числом с плавающей точкой) может быть от 0 до 180, положительной или отрицательной.
+// Координаты могут содержать только цифры или один из следующих символов (включая пробел после запятой) __ -, . __
+
+function isValidCoordinates($coordinates)
+{
+
+    // print $coordinates . "\n"; // тестирование в codewars!!!
+    $arr = explode(" ", $coordinates);
+    $count_arr = sizeof($arr);
+    if ($count_arr != 2) { // Между знаком минус "-" и цифрой после него не должно быть пробела
+        return false;
+    }
+    $latitude = substr($arr[0], 0, -1); // широта
+    $longitude = $arr[1]; // долгота
+    $array_mix = [$latitude, $longitude];
+    $count_array_mix = 2;
+    if (($latitude < -90 or $latitude > 90) or ($longitude < -180 or $longitude > 180)) {
+        return false;
+    }
+    for ($i = 0; $i < $count_array_mix; $i++) {
+        if (substr_count($array_mix[$i], "_") > 2 or substr_count($array_mix[$i], "-") > 1 or substr_count($array_mix[$i], ".") > 1 or (substr_count($array_mix[$i], ",") > 0) or !is_numeric($array_mix[$i]) or str_contains($array_mix[$i], "e")) {
+            return false; // Координаты могут содержать только цифры или один из следующих символов (включая пробел после запятой) __ -, . __
+        }
+    }
+    return true;
+}
+var_dump(isValidCoordinates("23.245, 1e1"));
+echo PHP_EOL;
+
+
+
+// 70. Simple Fun #79: Delete a Digit 
+// https://www.codewars.com/kata/5894318275f2c75695000146
+// Дано целое число n, найдите максимальное число, которое можно получить, удалив ровно одну цифру из данного числа.
+// Для n = 152 вывод должен быть 52;
+// Для n = 1001 вывод должен быть 101.
+// Ограничения: 10 ≤ n ≤ 1000000.
+// $this->assertSame(52, deleteDigit(152));
+// $this->assertSame(101, deleteDigit(1001));
+// $this->assertSame(1, deleteDigit(10));
+
+function deleteDigit($n)
+{
+    $strlen = strlen($n);
+    $arr = [];
+    for ($i = 0; $i < $strlen; $i++) {
+        $arr[] = substr_replace($n, '', $i, 1); // замена каждого элемента на пустую строку
+    }
+    return (int) max($arr);
+
+    // $res = [];
+    // $arr = str_split($n); // [1, 0, 0, 1]
+    // $arr_clone = $arr;
+    // $count_arr_n = sizeof($arr);
+    // for ($i = 0; $i < $count_arr_n; $i++) {
+    //     unset($arr[$i]);
+    //     $res[] = implode($arr);
+    //     $arr = $arr_clone;
+    // }
+    // return (int) max($res);
+}
+var_dump(deleteDigit(152));
+echo PHP_EOL;
+
+
+
+// 71. Number Zoo Patrol 
+// https://www.codewars.com/kata/5276c18121e20900c0000235
+// Вы работаете в зоопарке чисел, и, похоже, одно из чисел пропало!
+// Сотрудники зоопарка понятия не имеют, какое число пропало, и слишком некомпетентны, чтобы это выяснить, поэтому они нанимают вас, чтобы вы сделали это за них.
+// В случае, если зоопарк потеряет еще одно число, они хотят, чтобы ваша программа работала независимо от того, сколько всего чисел.
+// Задача:
+// Напишите функцию, которая принимает перетасованный список уникальных чисел от 1 до n с одним пропущенным элементом (который может быть любым числом, включая n). Верните это пропущенное число.
+// Примечание: будут протестированы огромные списки.
+// Примеры:
+// [1, 3, 4] => 2
+// [1, 2, 3] => 4
+// [4, 2, 3] => 1
+// $this->assertSame(2, find_number([1, 3]));
+// $this->assertSame(1, find_number([2, 3, 4]));
+// $this->assertSame(12, find_number([13, 11, 10, 3, 2, 1, 4, 5, 6, 9, 7, 8]));
+
+function find_number($arr)
+{
+    // echo implode(", ", $arr) . "\n \n";
+    if ($arr == null) {
+        return null;
+    }
+    sort($arr); // [1, 2, 3, 4, 6]
+    $count = sizeof($arr) - 1;
+    for ($i = 0; $i < $count; $i++) {
+        if ($arr[$i + 1] - $arr[$i] != 1) {
+            return $arr[$i] + 1;
+        }
+    }
+    if (isset($arr[0]) and $arr[0] !== 1) {
+        return 1;
+    } else {
+        return $arr[$count] + 1;
+    }
+    //  return ((count($a) + 1) * (count($a) + 2) / 2) - array_sum($a);
+}
+var_dump(find_number([1, 3]));
+echo PHP_EOL;
+
+
+
+// 72. Integer depth
+// https://www.codewars.com/kata/59b401e24f98a813f9000026/train/php
+// Глубина целого числа n определяется как количество кратных n, которые необходимо вычислить, прежде чем все 10 цифр появятся хотя бы один раз в некотором кратном числе.
+// пример:
+// давайте посмотрим n=42
+// Множественное значение цифры комментарий
+// 42*1 42 2,4 //  1356790 // 12
+// 42*2 84 8; 4 существовало
+// 42*3 126 1,6; 2 существовало
+// 42*4 168 - все существовало
+// 42*5 210 0,2; 1 существовало
+// 42*6 252 5 2 существовало
+// 42*7 294 9 2, 4 существовало
+// 42*8 336 3 6 существовало
+// 42*9 378 7 3,8 существовало
+// Глядя на приведенную выше таблицу в столбце цифр, вы можете найти все цифры от 0 до 9, следовательно, потребовалось 9 кратных 42, чтобы получить все цифры. Таким образом, глубина числа 42 равна 9. Напишите функцию с именем computeDepth, которая вычисляет глубину своего целочисленного аргумента. В качестве входных данных будут передаваться только положительные числа больше нуля.
+// $this->assertSame( 9, compute_depth(42));
+// $this->assertSame(10, compute_depth(1));
+// $this->assertSame(72, compute_depth(125));
+// $this->assertSame( 1, compute_depth(1234567890));
+
+function compute_depth($n)
+{
+
+    $str = "1234567890";
+    for ($i = 1; $i < 100; $i++) {
+        $res = $n * $i;
+        $res = strval($res);
+        $strlen_res = strlen($res);
+        for ($k = 0; $k < $strlen_res; $k++) {
+            $str = str_replace($res[$k], "", $str);
+            // return $str;
+        }
+        if (strlen($str) == 0) {
+            return $i;
+        }
+    }
+}
+var_dump(compute_depth(4439));
+echo PHP_EOL;
+
+
+
+// 73. Sum of Two Integers - худшая задача, не проходит тесты
+// https://www.codewars.com/kata/59b401e24f98a813f9000026/train/php
+// Данные два целых числа a, b, найти их сумму, НО Вам не разрешено использовать операторы + и -
+// Числа (a,b) могут быть положительными, отрицательными значениями или нулями.
+// Возвращаемое значение будет целым числом.
+// PHP: запрещены следующие функции: array_sum, array_map, eval, exec, shell_exec, system, passthru, proc*_, popen, bc*, gmp*_, modify (of DateTime), Date. Кроме того, запрещен также вызов функций с использованием интерполяции строк, т. е. ("func")() или $obj->{"func"}(). Смотрите тестовые примеры здесь: https://regex101.com/r/skHT0f/latest
+// Входные данные >> Примеры выходных данных
+// 1- Добавить (5,19) ==> вернуть (24)
+// 2- Добавить (-27,18) ==> вернуть (-9)
+// 3- Добавить (-14,-16) ==> вернуть (-30)
+// $this->assertSame( 3, add(1,2));
+// $this->assertSame(24, add(5,19));
+// $this->assertSame(40, add(23,17));
+// $this->assertSame( -30, add(-14,-16));
+// $this->assertSame(-226, add(-50,-176));-
+// $this->assertSame( -39, add(-10,-29));
+// $this->assertSame(  0, add(-13,13));
+// $this->assertSame( -9, add(-27,18));
+// $this->assertSame(-60, add(-90,30));
+
+function add($x, $y)
+{
+    if ($x >= 0 and $y >= 0) {
+        $str = str_repeat("1", abs($x)) . str_repeat("1", abs($y));
+        return strlen($str);
+    } else if ($x <= 0 and $y <= 0) {
+        $str = str_repeat("1", abs($x)) . str_repeat("1", abs($y));
+        return (int) ("-" . strlen($str));
+    } else if ($x < 0 and abs($x) >= abs($y)) {
+        $str = str_repeat("1", abs($x));
+        $str = substr_replace($str, "", 0, abs($y));
+        return (int) ("-" . strlen($str));
+    } else if ($y < 0 and abs($y) >= abs($x)) {
+        $str = str_repeat("1", abs($y));
+        $str = substr_replace($str, "", 0, abs($x));
+        return (int) ("-" . strlen($str));
+    } else if ($x < 0 and abs($x) < abs($y)) {
+        $str = str_repeat("1", abs($y));
+        $str = substr_replace($str, "", 0, abs($x));
+        return strlen($str);
+    } else if ($y < 0 and abs($y) < abs($x)) {
+        $str = str_repeat("1", abs($x));
+        $str = substr_replace($str, "", 0, abs($y));
+        return strlen($str);
+    }
+}
+var_dump(add(18, -27));
+echo PHP_EOL;
+
+
+
+// 74. Are we alternate?
+// https://www.codewars.com/kata/59325dc15dbb44b2440000af
+// Создайте функцию isAlt(), которая принимает строку в качестве аргумента и проверяет, находятся ли гласные (a, e, i, o, u) и согласные в чередующемся порядке.
+// Аргументы состоят только из строчных букв.
+// isAlt("amazon") => true
+// isAlt("apple")  => false
+// isAlt("banana") => true
+// $this->assertSame(true, isAlt("amazona"));
+// $this->assertSame(false, isAlt("apple"));
+// $this->assertSame(true, isAlt("banana"));
+// $this->assertSame(false, isAlt("orange"));
+// $this->assertSame(true, isAlt("helipad"));
+// $this->assertSame(true, isAlt("yay"));
+
+function isAlt($s)
+{
+    $letters = ["a", "e", "i", "o", "u"]; // гласные
+    $strlen_s = strlen($s) - 1;
+    for ($i = 0; $i < $strlen_s; $i++) {
+        if (in_array($s[$i], $letters) and in_array($s[$i + 1], $letters)) {
+            return false;
+        } else if (!in_array($s[$i], $letters) and !in_array($s[$i + 1], $letters)) {
+            return false;
+        }
+    }
+    return true;
+    //   return !preg_match('/[aeiou]{2}|[^aeiou]{2}/', $s);
+}
+var_dump(isAlt("apple"));
+echo PHP_EOL;
+
+
+
+// 75. [7-kyu]. Correct the date-string [TOP_]
+// https://www.codewars.com/kata/5787628de55533d8ce000b84/train/php
+// Вам необходимо создать метод, который исправляет заданную строку даты. Кроме того, возникла проблема: многие строки даты повреждены. Формат даты — европейский. Это означает «ДД.ММ.ГГГГ».
+// в фервале 28 дней, раз в 4 года => 29 дней
+// Некоторые примеры:
+// "30.02.2016" -> "01.03.2016" 29 февраля
+// "40.06.2015" -> "10.07.2015"
+// "11.13.2014" -> "11.01.2015"
+// "99.11.2010" -> "07.02.2011"
+// Если входная строка равна нулю или пуста, верните именно это значение!
+// Если формат строки даты недействителен, верните ноль.
+// Подсказка: сначала исправьте месяц, а затем день!
+// $this->assertSame("11.01.2015", dateCorrect("11.13.2014"));
+// $this->assertSame(null, dateCorrect(null));
+// $this->assertSame("", dateCorrect(""));
+// $this->assertSame(null, dateCorrect("01112016"));
+// $this->assertSame(null, dateCorrect("01,11,2016"));
+// $this->assertSame(null, dateCorrect("0a.1c.2016"));
+// $this->assertSame("01.03.2016", dateCorrect("30.02.2016"));
+// $this->assertSame("10.07.2015", dateCorrect("40.06.2015"));
+// $this->assertSame("11.01.2015", dateCorrect("11.13.2014"));
+// $this->assertSame("07.02.2011", dateCorrect("99.11.2010"));
+
+function dateCorrect($datestring)
+{
+    $arr = explode(".", $datestring);
+    if ($datestring === "") {
+        return "";
+    }
+    if (sizeof($arr) != 3 or !is_numeric($arr[0]) or !is_numeric($arr[1]) or !is_numeric($arr[2])) {
+        return null;
+    }
+    $day = +$arr[0]; // день
+    $month = +$arr[1]; // месяц
+    $year = $arr[2]; // год
+    $arr_months = ["1" => 31, "2" => 28, "3" => 31, "4" => 30, "5" => 31, "6" => 30, "7" => 31, "8" => 31, "9" => 30, "10" => 31, "11" => 30, "12" => 31]; // количество дней в месяцах 
+    if ($month > 12) {
+        $count_iter = 0;
+        while ($month > 12) {
+            $month = $month - 12; // изменили месяц
+            $count_iter++;
+        }
+        $year = $year + $count_iter; // изменили год
+    }
+    $count_month = $month;
+    if ($year % 4 === 0) { // высокосный год
+        $arr_months[2] = 29;
+    }
+    if ($day > $arr_months[$month]) {
+        while ($day > $arr_months[$month]) {
+            $day = $day - $arr_months[$count_month];
+            if ($count_month < 12) {
+                $count_month++;
+            } else {
+                $count_month = 1;
+                $year++;
+            }
+        }
+    }
+    if ($day < 10) {
+        $day = "0" . $day;
+    }
+    if ($count_month < 10) {
+        $count_month = "0" . $count_month;
+    }
+    $res = [$day, $count_month, $year];
+    return implode(".", $res);
+    // if(empty($datestring)) return $datestring;
+    // return ($date = date_create_from_format('d.m.Y', $datestring)) ? $date->format('d.m.Y') : null;
+}
+var_dump(dateCorrect("13.10.2024")); // '01.03.2016'
+echo PHP_EOL;
+
+
+
+
+// 76. Sequences and Series
+// https://www.codewars.com/kata/5254bd1357d59fbbe90001ec
+// Посмотрите на следующие числа.
+// n | score
+// ---+-------
+// 1 | 50 => *1  
+// 2 | 150 => *3 
+// 3 | 300 => *6 
+// 4 | 500 => *10 
+// 5 | 750 => *15 => 2,3,4,5
+// Можете ли вы найти в этом закономерность? Если да, то напишите функцию getScore(n)/get_score(n)/GetScore(n), которая возвращает оценку для любого положительного числа n.
+// Примечание. Реальные тестовые случаи состоят из 100 случайных случаев, где 1 <= n <= 10000
+// $this->assertSame(50, get_score(1));
+// $this->assertSame(150, get_score(2));
+// $this->assertSame(300, get_score(3));
+// $this->assertSame(500, get_score(4));
+// $this->assertSame(750, get_score(5));
+
+function get_score($n)
+{
+    $count = 0;
+    $x = 1;
+    for ($i = 0; $i < $n; $i++) {
+        $count = $count + $x;
+        $x++;
+    }
+    return $count * 50;
+    //  return 25 * $n * ($n + 1);
+    //  return 50 * array_sum(range(1,$n));
+}
+var_dump(get_score(2)); // 150
+echo PHP_EOL;
 
 
 
 
 
-// когда мы ищем простые числа циклом, то нет смысла перебирать числа больше корня из числа, которое мы проверяем $i <= sqrt($n); Делить нужно до корня из числа, дальше бессмысленно
-// ...[] - оператор spread - вытаскивает элементы из массива
-// strlen(943) = 3 - преобразует в строку автоматически
-// str_split(943) = ["9", "4", "3"] - преобразует в строку автоматически
-// перемельман - арифметика для развлечения
-// книги по математике перельман
-// грокаем алгоритмы
-// array_values($arr) возвращает индексный массив со всеми значениями массива array и сбрасывает ключи 
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2550,74 +3329,37 @@ var_dump(print_prime_number_(100));
 // 17.09 - 90 минут - загрузка файла на сервер | Базовый курс PHP-7 загрузка файла на сервер
 // 18.09 - 3 часа - 1 задача codewars
 // 19.09 - ничего не делал, гулял, общался с Настей
-// 20.09.2024 - 30 мин 1 задача codewars
-// 21.09.2024 - 20 мин 1 задача codewars + 30 мин загрузка файла на сервер | Базовый курс PHP-7 загрузка файла на сервер
-// 22.09.2024 - 90 мин cookie | Базовый курс PHP-7 и session Базовый курс PHP-7
-// 23.09.2024 - 40 минут codewars 6-kyu 1 задача + 120 мин суперглобальный массив $_SERVER Базовый курс PHP-7
-// 24.09.2024 - 30 минут codewars 6-kyu 1 задача + 90 минут Методы в php Базовый курс PHP-7
-// 25.09.2024 - 26 минут codewars 6-kyu 1 задача + 30 минут Методы в php (self) - часть 2 | Базовый курс PHP-7
-// 26.09.2024 - 6 минут codewars 6-kyu 1 задача + 45 минут конструкторы и деструкторы, сетеры и гетеры
-// 27.09.2024  - отдыхал, хотя мог позаниматься
-// 28.09.2024 - 30 минут codeawars 6-kyu 2 задачи
-
-// досмотреть курс до конца php-7
-// залить теорию в гитхаб
-
-// Noctis lux - Medium
-// bearded theme
-// https://www.codewars.com/kata/5616868c81a0f281e500005c/train/php
-// Для участия в розыгрыше призов каждый называет свое имя.
-// Каждая буква имени имеет значение, которое является ее рангом в английском алфавите. A и a имеют ранг 1, B и b — ранг 2 и так далее.
-// Длина имени добавляется к сумме этих рангов, отсюда получается число som.
-// Массив случайных весов связан с именами, и каждый som умножается на свой соответствующий вес, чтобы получить то, что они называют выигрышным числом.
-// Пример:
-// имена: "COLIN,AMANDBA,AMANDAB,CAROL,PauL,JOSEPH"
-// веса: [1, 4, 4, 5, 2, 1]
-// PauL -> som = длина имени + 16 + 1 + 21 + 12 = 4 + 50 -> 54
-// *Вес*, связанный с PauL, равен 2, поэтому *выигрышное число* PauL равно 54 * 2 = 108.
-// Теперь можно отсортировать имена в порядке убывания выигрышных чисел. Когда у двух людей одинаковый выигрышный номер, отсортируйте их в алфавитном порядке по именам.
-// Задача:
-// параметры: st — строка имен, we — массив весов, n — ранг
-// возвращение: имя участника, ранг которого равен n (ранги нумеруются с 1) !!!
-// Пример:
-// имена: "COLIN,AMANDBA,AMANDAB,CAROL,PauL,JOSEPH"
-// веса: [1, 4, 4, 5, 2, 1]
-// n: 4
-// Функция должна вернуть: "PauL"
-// Примечания:
-// Массив весов должен быть как минимум таким же длинным, как и количество имен, но может быть и длиннее.
-// Если st пуст, вернуть "Нет участников".
-// Если n больше количества участников, вернуть "Недостаточно участников".
-// См. примеры тестовых случаев для получения дополнительных примеров.
-// $this->dotest(rank("Addison,Jayden,Sofia,Michael,Andrew,Lily,Benjamin", [4, 2, 1, 4, 3, 1, 2], 4), "Benjamin");
-// $this->dotest(rank("Elijah,Chloe,Elizabeth,Matthew,Natalie,Jayden", [1, 3, 5, 5, 3, 6], 2), "Matthew");
-// $this->dotest(rank("Addison,Jayden,Sofia,Michael,Andrew,Lily,Benjamin", [4, 2, 1, 4, 3, 1, 2], 8), "Not enough participants");
-// $this->dotest(rank("Lagon,Lily", [1, 5], 2), "Lagon");
-
-function rank($st, $we, $n)
-{
-    $names = explode(",", $st);
-    $count_names = sizeof($names);
-    if(empty($st)) {
-        return "No participants";
-    } else if($n > $count_names) {
-        return "Not enough participants";
-    }
-    $alphabet = range("a", "z");
-    $ranks = [];
-    for($i = 0; $i < $count_names; $i++) {
-        $some = 0;
-        for($k = 0; $k < strlen($names[$i]); $k++) {
-            $some += array_search(strtolower($names[$i][$k]), $alphabet) + 1;
-        }
-        $some = (strlen($names[$i]) + $some) * $we[$i];
-        $ranks[] = $some;
-    }
-    $combine = array_combine($ranks, $names);
-    rsort($ranks);
-    return $combine[$ranks[$n - 1]];
-    // array_combine(array $keys, array $values): array
-    // сортировка по имени
-    // https://www.php.net/manual/ru/array.sorting.php
-}
-var_dump(rank("Elijah,Chloe,Elizabeth,Matthew,Natalie,Jayden", [1, 3, 5, 5, 3, 6], 2));
+// 20.09. - 30 мин 1 задача codewars
+// 21.09. - 20 мин 1 задача codewars + 30 мин загрузка файла на сервер | Базовый курс PHP-7 загрузка файла на сервер
+// 22.09. - 90 мин cookie | Базовый курс PHP-7 и session Базовый курс PHP-7
+// 23.09. - 40 минут codewars 6-kyu 1 задача + 120 мин суперглобальный массив $_SERVER Базовый курс PHP-7
+// 24.09. - 30 минут codewars 6-kyu 1 задача + 90 минут Методы в php Базовый курс PHP-7
+// 25.09. - 26 минут codewars 6-kyu 1 задача + 30 минут Методы в php (self) - часть 2 | Базовый курс PHP-7
+// 26.09. - 6 минут codewars 6-kyu 1 задача + 45 минут конструкторы и деструкторы, сетеры и гетеры
+// 27.09. - отдыхал, хотя мог позаниматься (пятница)
+// 28.09. - 30 минут codeawars 6-kyu 2 задачи
+// 29.09. - 60 минут codewars 6-kyu 2 задачи
+// 30.09. - 5 минут codewars 6-kyu 1 задача + 40 минут php Наследование и перезагрузка методов ооп + PHP в одном уроке [ITDoctor] [7 часов]
+// 01.10. - 10 минут codewars 6-kyu 1 задача (после работы сразу начал отдыхать и ничегоне делал!!!)
+// 02.10. - 40 минут codewars 6-kyu 1 задача (после работы сразу начал отдыхать и ничегоне делал!!!)
+// 03.10. - 40 минут codewars 6-kyu 1 задача (после работы сразу начал отдыхать и ничегоне делал!!!)
+// 04.10. - 60 минут codewars 6-kyu 1 задача + 25 мин PHP в одном уроке [ITDoctor] [7 часов] => 38 
+// 05.10. - 60 минут codewars 6-kyu 1 задача + 25 мин PHP в одном уроке [ITDoctor] [7 часов] => 60 
+// 06.10. - 15 минут codewars 6-kyu 1 задача + 60 мин PHP в одном уроке [ITDoctor] [7 часов] => 2:03 
+// 07.10. - 90 минут codewars 6-kyu 1 задача + 30 мин PHP в одном уроке [ITDoctor] [7 часов] => 2:22 
+// 08.10. - 30 минут codewars 6-kyu 1 задача + 40 мин PHP в одном уроке [ITDoctor] [7 часов] => 3:27
+// 09.10. - 20 минут codewars 6-kyu 1 задача + 20 мин PHP в одном уроке [ITDoctor] [7 часов] => 3:50 - чтение и запись в файл
+// 10.10. - 0 - спал с 19 вечера
+// 11.10. - codewars 1 задача 20 мин 
+// 12.10. - codewars 1 задача 60 мин + 40 мин PHP в одном уроке [ITDoctor] [7 часов] => 4:05
+// 13.10. - codewars 2 задачи 140 мин + 60 мин PHP в одном уроке [ITDoctor] [7 часов] => 4:41
+// 14.10. - codewars 1 задача 20 мин 
+// 15.10. - 30 мин PHP в одном уроке [ITDoctor] [7 часов] => 5:04; Думаю перестать решать задачи на codewars потому что я трачу много на это времени и не прохожу курсы дальше
+// 16.10. - 30 мин PHP в одном уроке [ITDoctor] [7 часов] => 5:21
+// 19.10. - 30 мин codewars 5-kyu 1 задача + 45 минут PHP в одном уроке [ITDoctor] [7 часов] => 5:28
+// 20.10. - 20 мин codewars 5-kyu 1 задача + 40 минут PHP в одном уроке [ITDoctor] [7 часов] => 5:42
+// 21.10. - 80 мин PHP в одном уроке [ITDoctor] [7 часов] => 6:08
+// 22.10. - 80 мин PHP в одном уроке [ITDoctor] [7 часов] => 6:34
+// 23.10. - проводил время с Настей, ничего не делал!
+// 24.10. - 90 мин PHP в одном уроке [ITDoctor] [7 часов] => 6:52
+// 25.10. - 50 мин PHP в одном уроке [ITDoctor] [7 часов] => 07:00 [https://www.youtube.com/watch?v=M-peGbXCvNA]
