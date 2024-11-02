@@ -3369,6 +3369,6 @@ echo PHP_EOL;
 // 30.10. - 120 мин PHP — чуть-чуть: SQL [AreaWeb] [https://www.youtube.com/watch?v=KNsqhheMQWI&list=PLiOhsP3M5j5zOB3j5kWdCCLUmazI1tkVx&index=3] основы SQL => 20:00
 // 31.10. - 120 мин PHP — чуть-чуть: SQL [AreaWeb] [https://www.youtube.com/watch?v=KNsqhheMQWI&list=PLiOhsP3M5j5zOB3j5kWdCCLUmazI1tkVx&index=3] основы SQL => 50:19
 // 01.11. - 85 мин PHP — чуть-чуть: practice [AreaWeb] [https://www.youtube.com/watch?v=KNsqhheMQWI&list=PLiOhsP3M5j5zOB3j5kWdCCLUmazI1tkVx&index=3]  => 00:00
-// 02.11. - 85 мин PHP — чуть-чуть: practice [AreaWeb] [https://www.youtube.com/watch?v=KNsqhheMQWI&list=PLiOhsP3M5j5zOB3j5kWdCCLUmazI1tkVx&index=3]  => 
+// 02.11. - 10 мин PHP — чуть-чуть: practice [AreaWeb] [https://www.youtube.com/watch?v=KNsqhheMQWI&list=PLiOhsP3M5j5zOB3j5kWdCCLUmazI1tkVx&index=3]  => 
 
 
