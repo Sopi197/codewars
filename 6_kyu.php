@@ -3371,4 +3371,6 @@ echo PHP_EOL;
 // 01.11. - 85 мин PHP — чуть-чуть: practice [AreaWeb] [https://www.youtube.com/watch?v=KNsqhheMQWI&list=PLiOhsP3M5j5zOB3j5kWdCCLUmazI1tkVx&index=3]  => 00:00
 // 02.11. - 10 мин PHP — чуть-чуть: practice [AreaWeb] [https://www.youtube.com/watch?v=KNsqhheMQWI&list=PLiOhsP3M5j5zOB3j5kWdCCLUmazI1tkVx&index=3]  => 
 
+// 02.11 сегодня доверстать все страницы и пройти урок до конца, на это уйдёт примерно 5 часов
+
 
