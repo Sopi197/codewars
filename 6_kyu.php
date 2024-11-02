@@ -3263,7 +3263,6 @@ echo PHP_EOL;
 
 
 
-
 // 120 минут 22 июня 2 задачи
 // 60 минут 23 июня 1 задача
 // 40 минут 27 июня  1 задача
@@ -3363,12 +3362,13 @@ echo PHP_EOL;
 // 23.10. - проводил время с Настей, ничего не делал!
 // 24.10. - 90 мин PHP в одном уроке [ITDoctor] [7 часов] => 6:52
 // 25.10. - 110 мин PHP в одном уроке [ITDoctor] [7 часов] => 07:18 
-// 26.10. - 130 мин PHP в одном уроке [ITDoctor] [7 часов] => 07:48 [https://www.youtube.com/watch?v=M-peGbXCvNA]
+// 26.10. - 130 мин PHP в одном уроке [ITDoctor] [7 часов] => 07:48 
+// 27.10. - 60 мин PHP в одном уроке [ITDoctor] [7 часов] => конец, написал пет проект калькулятор двух чисел, настроил отправку писем на почту
+// 28.10. - 120 мин книга программирование на PHP в примерах и задачах => 59 стр + PHP — чуть-чуть: основы языка [AreaWeb] [https://www.youtube.com/watch?v=KNsqhheMQWI&list=PLiOhsP3M5j5zOB3j5kWdCCLUmazI1tkVx&index=3] => Основы языка 42:00
+// 29.10. - 110 мин PHP — чуть-чуть: основы языка [AreaWeb] [https://www.youtube.com/watch?v=KNsqhheMQWI&list=PLiOhsP3M5j5zOB3j5kWdCCLUmazI1tkVx&index=3] основы SQL => 00:00
+// 30.10. - 120 мин PHP — чуть-чуть: SQL [AreaWeb] [https://www.youtube.com/watch?v=KNsqhheMQWI&list=PLiOhsP3M5j5zOB3j5kWdCCLUmazI1tkVx&index=3] основы SQL => 20:00
+// 31.10. - 120 мин PHP — чуть-чуть: SQL [AreaWeb] [https://www.youtube.com/watch?v=KNsqhheMQWI&list=PLiOhsP3M5j5zOB3j5kWdCCLUmazI1tkVx&index=3] основы SQL => 50:19
+// 01.11. - 85 мин PHP — чуть-чуть: practice [AreaWeb] [https://www.youtube.com/watch?v=KNsqhheMQWI&list=PLiOhsP3M5j5zOB3j5kWdCCLUmazI1tkVx&index=3]  => 00:00
+// 02.11. - 85 мин PHP — чуть-чуть: practice [AreaWeb] [https://www.youtube.com/watch?v=KNsqhheMQWI&list=PLiOhsP3M5j5zOB3j5kWdCCLUmazI1tkVx&index=3]  => 
 
 
-// 27.10 - видеокурс до конца
-// Залить всю теорию на гитхаб по папкам!
-// Васильев php от 0 до 49 стр. (побитовы операции) 
-// крутой таймер https://online-timer.ru/
-// Написать калькуляятор как мини пет проект
-// Проверить отправку писем на почту
